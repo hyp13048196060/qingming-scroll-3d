@@ -1,0 +1,35 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "viewport": {
+    "w": 1600,
+    "h": 900,
+    "dsf": 1,
+    "mobile": false
+  },
+  "sample": {
+    "width": 1600,
+    "height": 900,
+    "meanColor": [
+      175,
+      174,
+      169
+    ],
+    "stdDev": 38.38,
+    "nonUniformRatio": 0.462,
+    "isSoftwareRenderer": false,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Laptop GPU (0x00002560) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "gpuVendor": "Google Inc. (NVIDIA)",
+    "drawCalls": 10,
+    "triangles": 4352,
+    "programs": 5,
+    "textures": 5,
+    "geometries": 15,
+    "frameStats": {
+      "frames": 861,
+      "p50": 6.06,
+      "p95": 6.32,
+      "max": 12.72,
+      "avgFps": 164.47
+    }
+  }
+}

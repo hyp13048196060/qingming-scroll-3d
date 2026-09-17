@@ -1,0 +1,22 @@
+* text=auto eol=lf
+
+# 二进制资产必须显式标记,否则 git 可能做行尾转换而损坏文件
+*.glb   binary -diff
+*.gltf  binary -diff
+*.png   binary -diff
+*.jpg   binary -diff
+*.jpeg  binary -diff
+*.webp  binary -diff
+*.ktx2  binary -diff
+*.woff2 binary -diff
+*.wasm  binary -diff
+*.blend binary -diff
+*.hdr   binary -diff
+
+# 必须保持 CRLF 的脚本
+*.bat   text eol=crlf
+*.ps1   text eol=crlf
+
+# 生成物不计入语言统计
+package-lock.json  linguist-generated=true
+blender/out/**     linguist-vendored=true

@@ -1,0 +1,29 @@
+# 依赖与构建产物
+node_modules/
+dist/
+.vite/
+
+# Blender 中间产物(可重新生成,不入库)
+# 注:public/models/ 下的 GLB 是运行资产,必须入库
+blender/out/
+blender/assets_src/
+
+# 工具探测结果(与本机相关,不入库)
+tools/.caps.json
+tools/.glyphs.txt
+tools/.chrome-profile/
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 日志与临时文件
+*.log
+npm-debug.log*
+.screenshots-tmp/
+
+# 录制素材(体积大,按 docs/部署与录制.md 说明由使用者自行生成)
+recordings/

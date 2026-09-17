@@ -1,0 +1,28 @@
+{
+  "name": "qingming-scroll-3d",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "《清明上河图》三维交互长卷 —— Blender 程序化建模 + Three.js 实时渲染",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24.0.0 <25"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "node scripts/serve-dist.mjs --dir dist --port 4173",
+    "typecheck": "tsc --noEmit",
+    "shot": "node tools/perf/shot.mjs",
+    "perf": "node tools/perf/perf_probe.mjs"
+  },
+  "dependencies": {
+    "three": "0.186.0"
+  },
+  "devDependencies": {
+    "@types/three": "0.186.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.0",
+    "vite-plugin-static-copy": "4.1.1"
+  }
+}

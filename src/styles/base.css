@@ -1,0 +1,81 @@
+:root {
+  color-scheme: dark;
+
+  /* 宋代长卷取色:绢底、墨、赭石、青灰 */
+  --qm-ink: #1a1614;
+  --qm-ink-soft: #3a322c;
+  --qm-paper: #e6dcc3;
+  --qm-paper-dim: #c9bda0;
+  --qm-ochre: #a8763f;
+  --qm-slate: #5b6470;
+
+  --qm-panel-bg: rgba(24, 20, 17, 0.86);
+  --qm-panel-line: rgba(214, 198, 160, 0.28);
+  --qm-text: #e8dfc8;
+  --qm-text-dim: #a89c84;
+
+  --qm-radius: 3px;
+  --qm-shadow: 0 6px 28px rgba(0, 0, 0, 0.55);
+
+  /* 界面字体。离线环境下回退到系统字体,见 docs/04-离线部署说明.md */
+  --qm-font-ui: "LXGW WenKai", "Noto Sans CJK SC", "Source Han Sans SC",
+    "Microsoft YaHei", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #0d0b0a;
+  color: var(--qm-text);
+  font-family: var(--qm-font-ui);
+  -webkit-font-smoothing: antialiased;
+  /* 移动端禁止双击缩放与回弹,避免与三维手势冲突 */
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+}
+
+#stage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* 指针事件完全交给 OrbitControls,禁止浏览器抢走触摸手势 */
+  touch-action: none;
+  outline: none;
+}
+
+/*
+ * UI 根层本身不接收指针事件,由各面板自行开启。
+ * 否则整层会挡住三维场景,导致环视/缩放失效。
+ */
+#ui-root {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#ui-root .qm-interactive {
+  pointer-events: auto;
+}
+
+noscript {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  line-height: 1.8;
+  background: var(--qm-ink);
+}
