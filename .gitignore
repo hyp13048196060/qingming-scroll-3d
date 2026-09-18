@@ -51,6 +51,14 @@ screenshots/_local/
 __pycache__/
 *.pyc
 
-# Claude Code 的本地会话状态(与项目本身无关)
-.claude/scheduled_tasks.json
-.claude/scheduled_tasks.lock
+# Claude Code 的本地配置与会话状态(与项目本身无关)
+#
+# ⚠️ 这里原本只逐条忽略 scheduled_tasks.json 与 .lock 两个文件,
+#    于是 settings.json **被提交进了仓库**,还跟着公开了 ——
+#    因为逐条列名单是"默认收进来、点名剔出去",漏掉谁就漏掉谁。
+#    已改成整目录忽略,不再依靠列全名单。
+#
+#    被漏掉的那份 settings.json 内容只是"关掉某个本地 hook",不含凭据;
+#    但它是**本机工具链的偏好**,不该由这个仓库分发 —— 读者克隆下来之后
+#    不应该被我这里的 hook 开关影响。属于计划里要求排除的「私密配置」一类。
+.claude/
