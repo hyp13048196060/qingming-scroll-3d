@@ -13,6 +13,7 @@
     "build": "vite build",
     "preview": "node scripts/serve-dist.mjs --dir dist --port 4173",
     "typecheck": "tsc --noEmit",
+    "lint:syntax": "node tools/check_syntax.mjs",
     "shot": "node tools/perf/shot.mjs",
     "stats": "node tools/stats_report.mjs",
     "repro": "node tools/verify_reproducible.mjs --runs 2"
