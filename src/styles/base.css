@@ -17,7 +17,14 @@
   --qm-radius: 3px;
   --qm-shadow: 0 6px 28px rgba(0, 0, 0, 0.55);
 
-  /* 界面字体。离线环境下回退到系统字体,见 docs/04-离线部署说明.md */
+  /*
+   * 界面字体。首位那款**已随包发布**(子集化的 woff2,见 styles/fonts.css),
+   * 不再是"装了才有楷体"。
+   *
+   * 后面那串是**逐字符回退**,不是整段回退:LXGW WenKai 本身就不含 ▸ ◂ 这类
+   * 几何符号(卷首/卷尾按钮在用),浏览器会只为那几个字去后面找字形。
+   * 这是已知边界,不是配置遗漏。
+   */
   --qm-font-ui: "LXGW WenKai", "Noto Sans CJK SC", "Source Han Sans SC",
     "Microsoft YaHei", system-ui, sans-serif;
 }

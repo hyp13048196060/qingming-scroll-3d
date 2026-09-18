@@ -1,5 +1,7 @@
 import * as THREE from 'three';
 
+// 字体声明放在最前:base.css 的 --qm-font-ui 依赖它注册的 "LXGW WenKai"
+import './styles/fonts.css';
 import './styles/base.css';
 import './styles/panels.css';
 import './styles/responsive.css';

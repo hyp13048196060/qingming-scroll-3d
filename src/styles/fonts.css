@@ -1,0 +1,32 @@
+/*
+ * 界面字体:霞鹜文楷(LXGW WenKai),SIL Open Font License 1.1。
+ *
+ * 随包发布的是**子集**,只含界面真正用到的那 1600 多个字,两个字重合计约 680 KB;
+ * 未经裁剪的源字体一个文件就有 24 MB,首屏放不下。
+ * 子集由 tools/build_font_subset.py 生成,该脚本会逐字符复查产物覆盖,
+ * 重新生成的方式见 docs/04-离线部署说明.md。
+ *
+ * 为什么非要自己带字体:原来只写字体栈靠系统字体,装了文楷的人看到楷体、
+ * 没装的人看到微软雅黑 —— 同一份代码在两台机器上长相不同。
+ *
+ * URL 写成相对路径是必需的:CSS 里的根绝对路径 /assets/... 在 GitHub Pages
+ * 的 /<repo>/ 子路径下会 404。交给 Vite 处理,构建时按 base 重写。
+ *
+ * font-display: swap —— 楷文体量大,宁可先用系统字体把字显示出来再换,
+ * 也不要让整页文字空白等它下完。
+ */
+@font-face {
+  font-family: "LXGW WenKai";
+  src: url("../assets/fonts/lxgw-wenkai-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LXGW WenKai";
+  src: url("../assets/fonts/lxgw-wenkai-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
