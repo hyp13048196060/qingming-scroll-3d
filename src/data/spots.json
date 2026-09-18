@@ -1,0 +1,226 @@
+{
+  "schema": 1,
+  "generatedFrom": "blender/out/stats.json",
+  "seed": 20240601,
+  "unit": "m",
+  "coordNote": "本文件里的坐标一律是 **three 坐标(Y 向上)**。由 Blender 的 Z-up 换算:x=x, y=z, z=−y。直接与 probe_pixel_web.mjs 的命中点比对,不需要再换算。",
+  "spots": [
+    {
+      "id": "bridge",
+      "name": "虹桥",
+      "anchor": {
+        "object": "虹桥_桥面",
+        "qmId": "bridge_deck",
+        "kind": "bridge",
+        "bboxThree": [
+          -10.5012,
+          0.2764,
+          -3.9,
+          10.5012,
+          5.6188,
+          3.9
+        ]
+      },
+      "target": [
+        0,
+        5.619,
+        0
+      ],
+      "view": [
+        24.726,
+        18.463,
+        -17.652
+      ],
+      "near": [
+        11.127,
+        11.399,
+        -7.943
+      ],
+      "derived": {
+        "rule": "view = target + dir(azimuth,pitch) × fitDistance(bbox, fill);fitDistance 解 |w·right| ≤ tanH·fill·(dist−w·d) 逐角点取最大",
+        "fovDeg": 50,
+        "aspect": 1.7778,
+        "fill": 0.78,
+        "dist": 32.984,
+        "azimuth": 0.62,
+        "pitch": 0.4,
+        "raisedToMinY": null
+      },
+      "why": "瞄桥面顶(不用盒心):虹桥的看点是那条起拱的弧,瞄盒心会把弧顶留在画外。机位取东南上方,与 Blender 侧 three_quarter 预览机位同侧 —— 两端看图时能对上同一个面。"
+    },
+    {
+      "id": "boat",
+      "name": "漕船",
+      "anchor": {
+        "object": "boat_cao_hero_hull",
+        "qmId": "boat_cao_hero_hull",
+        "kind": "boat",
+        "bboxThree": [
+          0.02,
+          -1.1,
+          3.7654,
+          3.18,
+          1.2955,
+          15.275
+        ]
+      },
+      "target": [
+        1.6,
+        0.218,
+        9.52
+      ],
+      "view": [
+        2.087,
+        2.888,
+        21.45
+      ],
+      "near": [
+        1.819,
+        2.2,
+        14.889
+      ],
+      "derived": {
+        "rule": "view = target + dir(azimuth,pitch) × fitDistance(bbox, fill);fitDistance 解 |w·right| ≤ tanH·fill·(dist−w·d) 逐角点取最大",
+        "fovDeg": 50,
+        "aspect": 1.7778,
+        "fill": 0.8,
+        "dist": 12.235,
+        "azimuth": -1.53,
+        "pitch": 0.22,
+        "raisedToMinY": [
+          "near 1.42→2.2"
+        ]
+      },
+      "why": "机位在下游、顺着河道看回来 —— 船在前、虹桥在后,与画中\"漕船将过桥\"的关系一致。俯角压到 0.22 是为了看见舷弧与舱篷的纵向关系:俯角一大,船就成了一条梭子。瞄 0.55 高度(水线以上一点)而不是盒心:盒心在龙骨附近,瞄它会把船压在画面下半。"
+    },
+    {
+      "id": "teahouse",
+      "name": "茶肆",
+      "anchor": {
+        "object": "shop_e0_1_cha_facade",
+        "qmId": "shop_e0_1_cha_facade",
+        "kind": "building",
+        "bboxThree": [
+          20.8516,
+          0.3,
+          -40.7398,
+          21.5484,
+          3.3,
+          -28.5981
+        ]
+      },
+      "target": [
+        21.2,
+        1.8,
+        -34.669
+      ],
+      "view": [
+        12.13,
+        3.639,
+        -34.669
+      ],
+      "near": [
+        17.118,
+        2.627,
+        -34.669
+      ],
+      "derived": {
+        "rule": "view = target + dir(azimuth,pitch) × fitDistance(bbox, fill);fitDistance 解 |w·right| ≤ tanH·fill·(dist−w·d) 逐角点取最大",
+        "fovDeg": 50,
+        "aspect": 1.7778,
+        "fill": 0.85,
+        "dist": 9.255,
+        "azimuth": 3.141592653589793,
+        "pitch": 0.2,
+        "raisedToMinY": null
+      },
+      "why": "临河茶肆的正面朝西(朝街),所以机位必须落在 −X 一侧,否则只能看到背面。俯角取 0.20 —— 再大就把凉棚的挑出遮住了,而凉棚正是这间铺子与普通悬山铺面的区别。"
+    },
+    {
+      "id": "gate",
+      "name": "城门",
+      "anchor": {
+        "object": "gate_tower",
+        "qmId": "gate_tower",
+        "kind": "gate",
+        "bboxThree": [
+          57.205,
+          12.48,
+          28.6,
+          77.205,
+          21.655,
+          47.4
+        ]
+      },
+      "target": [
+        67.205,
+        16.609,
+        38
+      ],
+      "view": [
+        50.131,
+        23.584,
+        64.105
+      ],
+      "near": [
+        59.522,
+        19.748,
+        49.747
+      ],
+      "derived": {
+        "rule": "view = target + dir(azimuth,pitch) × fitDistance(bbox, fill);fitDistance 解 |w·right| ≤ tanH·fill·(dist−w·d) 逐角点取最大",
+        "fovDeg": 50,
+        "aspect": 1.7778,
+        "fill": 0.75,
+        "dist": 31.963,
+        "azimuth": -2.15,
+        "pitch": 0.22,
+        "raisedToMinY": null
+      },
+      "why": "城门在东南、城墙沿 Z 铺开。机位从西北方看 —— 那是从河上望向城门的方向,与画中\"沿河望去见城楼\"的视向一致。锚点用 `gate_tower`(门楼本体)而不是整段城墙:城墙有 240m 长,量进取景就成了一个远处的土坡。"
+    },
+    {
+      "id": "market",
+      "name": "街市",
+      "anchor": {
+        "object": "cel_e00_frame",
+        "qmId": "cel_e00_frame",
+        "kind": "celebration",
+        "bboxThree": [
+          18.95,
+          -0.1,
+          -24.8452,
+          20.75,
+          6.67,
+          -16.5863
+        ]
+      },
+      "target": [
+        19.85,
+        2.947,
+        -20.716
+      ],
+      "view": [
+        12.37,
+        5.008,
+        -6.834
+      ],
+      "near": [
+        16.484,
+        3.874,
+        -14.469
+      ],
+      "derived": {
+        "rule": "view = target + dir(azimuth,pitch) × fitDistance(bbox, fill);fitDistance 解 |w·right| ≤ tanH·fill·(dist−w·d) 逐角点取最大",
+        "fovDeg": 50,
+        "aspect": 1.7778,
+        "fill": 0.62,
+        "dist": 15.903,
+        "azimuth": -2.065,
+        "pitch": 0.13,
+        "raisedToMinY": null
+      },
+      "why": "锚点取东岸的彩楼欢门,机位落在街面、沿街斜看 —— 门楼下是店铺行,街道在它西侧,这样一张图里同时有门楼、店面与街。fill 只取 0.62:填满了就只剩一个架子,街看不出来。"
+    }
+  ]
+}

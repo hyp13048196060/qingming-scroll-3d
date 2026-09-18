@@ -1,0 +1,94 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "results": [
+    {
+      "name": "进度终值 = 1.0",
+      "pass": true,
+      "detail": "phase=ready progress=1"
+    },
+    {
+      "name": "阶段日志依次经过 下载 → 解析 → 编译",
+      "pass": true,
+      "detail": "实际顺序: manifest → fetching → parsing → compiling → ready"
+    },
+    {
+      "name": "下载字节数与 manifest 分母一致",
+      "pass": true,
+      "detail": "13347004 / 13347004 字节,失败 0 项"
+    },
+    {
+      "name": "① 左键拖拽 → 环视",
+      "pass": true,
+      "detail": "方位角 Δ1.815 rad(需 >0.15),半径 Δ0.00m(需 <5%)"
+    },
+    {
+      "name": "② 滚轮前滚 → 拉近",
+      "pass": true,
+      "detail": "半径 40.94 → 30.09m(比 0.735,需 <0.95),方位角 Δ0.0001"
+    },
+    {
+      "name": "② 滚轮后滚 → 推远",
+      "pass": true,
+      "detail": "半径 30.09 → 47.75m"
+    },
+    {
+      "name": "③ 右键拖拽 → 平移",
+      "pass": true,
+      "detail": "目标点位移 11.87m(需 >0.5),半径 Δ0.00m(需 <5%)"
+    },
+    {
+      "name": "④ 键盘 W → 靠近目标",
+      "pass": true,
+      "detail": "相机位移 7.94m,观察半径 40.94 → 33.30m(需缩短)"
+    },
+    {
+      "name": "④ 按 W 时目标点不动",
+      "pass": true,
+      "detail": "目标点位移 0.00001m(需 ≈0)"
+    },
+    {
+      "name": "④ 键盘 S → 远离目标",
+      "pass": true,
+      "detail": "相机位移 7.78m,观察半径 33.30 → 40.78m(需变长)"
+    },
+    {
+      "name": "④ 键盘 D → 绕目标横行",
+      "pass": true,
+      "detail": "方位角 Δ0.191 rad(需 >0.05),半径 Δ0.007m(需 <0.6)"
+    }
+  ],
+  "loadReport": {
+    "phase": "ready",
+    "progress": 1,
+    "phaseLog": [
+      {
+        "phase": "manifest",
+        "t": 304.3149999976158,
+        "progress": 0
+      },
+      {
+        "phase": "fetching",
+        "t": 1061.3149999976158,
+        "progress": 0.02
+      },
+      {
+        "phase": "parsing",
+        "t": 1114.0600000023842,
+        "progress": 0.75
+      },
+      {
+        "phase": "compiling",
+        "t": 1399.875,
+        "progress": 0.97
+      },
+      {
+        "phase": "ready",
+        "t": 3047.3949999958277,
+        "progress": 1
+      }
+    ],
+    "bytesLoaded": 13347004,
+    "bytesTotal": 13347004,
+    "failures": 0
+  }
+}

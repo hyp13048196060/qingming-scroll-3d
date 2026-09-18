@@ -1,0 +1,288 @@
+{
+  "generatedAt": "2026-09-18T05:44:01.461Z",
+  "url": "http://127.0.0.1:4173/",
+  "viewport": [
+    1600,
+    900
+  ],
+  "guardTimeoutMs": 8000,
+  "elapsedSec": 19.1,
+  "checks": [
+    {
+      "stage": "A",
+      "name": "渲染器是真 GPU(不是 SwiftShader)",
+      "ok": true,
+      "detail": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Laptop GPU (0x00002560) Direct3D11 vs_5_0 ps_5_0, D3D11)"
+    },
+    {
+      "stage": "A",
+      "name": "基线画面非空白",
+      "ok": true,
+      "detail": "stdDev=64.71 非背景像素占比=0.946 均色=rgb(142,140,135)"
+    },
+    {
+      "stage": "B",
+      "name": "守卫进入丢失状态",
+      "ok": true,
+      "detail": "lostCount=1"
+    },
+    {
+      "stage": "B",
+      "name": "store 同步(gpu.contextLost=true,lostCount+1)",
+      "ok": true,
+      "detail": "storeLost=true lostCount=1"
+    },
+    {
+      "stage": "B",
+      "name": "最后一次 setAnimationLoop 传的是 null",
+      "ok": true,
+      "detail": "调用序列 [null]"
+    },
+    {
+      "stage": "B",
+      "name": "gl.isContextLost() === true",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "stage": "B",
+      "name": "丢失期间绘图缓冲为 0×0(负对照)",
+      "ok": true,
+      "detail": "0×0"
+    },
+    {
+      "stage": "B",
+      "name": "遮罩显示出来且说了人话",
+      "ok": true,
+      "detail": "veil=true gpuBox=true"
+    },
+    {
+      "stage": "B",
+      "name": "丢失文案提到「图形上下文」并给出按钮",
+      "ok": true,
+      "detail": "\"图形上下文已丢失,画面已暂停。正在等待浏览器恢复…… 已丢失 1 次。显卡驱动重置、系统休眠唤醒、GPU 进程重启都会造成这种情况。 刷新页面…\""
+    },
+    {
+      "stage": "C",
+      "name": "守卫退出丢失状态",
+      "ok": true,
+      "detail": "等了 1174ms"
+    },
+    {
+      "stage": "C",
+      "name": "store 同步(restoredCount=1、loopRunning=true)",
+      "ok": true,
+      "detail": "restoredCount=1 loopRunning=true 中断=152ms"
+    },
+    {
+      "stage": "C",
+      "name": "两项重建都跑了且都成功",
+      "ok": true,
+      "detail": "环境贴图、水面反射"
+    },
+    {
+      "stage": "C",
+      "name": "环境贴图真的重烘了(environmentRevision 增长)",
+      "ok": true,
+      "detail": "重建前 1 → 重建后 2"
+    },
+    {
+      "stage": "C",
+      "name": "恢复后首帧 dt < 50ms(resetTimer 生效)",
+      "ok": true,
+      "detail": "最近一帧 dt=6.02ms(丢失中断 152ms;dt 等于 50 就是被 MAX_DT 钳住了)"
+    },
+    {
+      "stage": "C",
+      "name": "丢失路径上 **没有** 调用任何 dispose",
+      "ok": true,
+      "detail": "0 次(几何与贴图的 CPU 侧数据必须留着,恢复靠的就是重新上传它们)"
+    },
+    {
+      "stage": "C",
+      "name": "恢复后画面回来了(不是黑屏/空白)",
+      "ok": true,
+      "detail": "stdDev=64.72 非背景像素占比=0.941 均色=rgb(142,140,135)"
+    },
+    {
+      "stage": "C",
+      "name": "恢复后整体色调与丢失前一致(不是逐像素一致,见下)",
+      "ok": true,
+      "detail": "Δrgb=(0,0,0) 基线=rgb(142,140,135) 恢复后=rgb(142,140,135) —— ⚠️ 整帧均色对动态内容不敏感:实测隔 3 秒采两次也是 Δ=(0,0,0),同期人物走了 1.0~1.3m。这条只证明\"没发黑、没变蓝、整体色调没跑\"。"
+    },
+    {
+      "stage": "D",
+      "name": "第二次丢失已被捕获",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "stage": "D",
+      "name": "等不到恢复时报「超时」(阈值 8000ms)",
+      "ok": true,
+      "detail": "实测等待 8146ms"
+    },
+    {
+      "stage": "D",
+      "name": "实测等待时间与阈值同量级(没有抄错常数)",
+      "ok": true,
+      "detail": "阈值 8000ms,实测 8146ms"
+    },
+    {
+      "stage": "D",
+      "name": "超时文案说明「没有恢复」并指向刷新",
+      "ok": true,
+      "detail": "\"图形上下文没有恢复。浏览器已经不打算重建它了,需要刷新页面。 已丢失 2 次,此前成功恢复 1 次。显卡驱动重置、系统休眠唤醒、GPU 进程重启都会造成这种情况。 刷新页面…\""
+    },
+    {
+      "stage": "D",
+      "name": "超时后再恢复能成功,且超时标志被清掉",
+      "ok": true,
+      "detail": "超时标志=false lostCount=2 restoredCount=2"
+    },
+    {
+      "stage": "D",
+      "name": "第二次恢复后画面仍然正常",
+      "ok": true,
+      "detail": "stdDev=64.72 非背景像素占比=0.944"
+    }
+  ],
+  "summary": {
+    "pass": 23,
+    "fail": 0,
+    "fatal": null
+  },
+  "diag": {
+    "gpuLost": {
+      "contextLost": true,
+      "lostCount": 1,
+      "restoredCount": 0,
+      "recoveryTimedOut": false,
+      "lastOutageMs": 0,
+      "lastRebuild": [],
+      "storeLost": true,
+      "storeLostCount": 1,
+      "storeRestoredCount": 0,
+      "storeTimedOut": false,
+      "loopRunning": false,
+      "veilVisible": true,
+      "gpuBoxVisible": true,
+      "lastFrameDtMs": 5.77,
+      "frameCount": 271
+    },
+    "gpuBack": {
+      "contextLost": false,
+      "lostCount": 1,
+      "restoredCount": 1,
+      "recoveryTimedOut": false,
+      "lastOutageMs": 152,
+      "lastRebuild": [
+        {
+          "name": "环境贴图",
+          "ok": true
+        },
+        {
+          "name": "水面反射",
+          "ok": true
+        }
+      ],
+      "storeLost": false,
+      "storeLostCount": 1,
+      "storeRestoredCount": 1,
+      "storeTimedOut": false,
+      "loopRunning": true,
+      "veilVisible": false,
+      "gpuBoxVisible": false,
+      "lastFrameDtMs": 50,
+      "frameCount": 273
+    },
+    "gpuFinal": {
+      "contextLost": false,
+      "lostCount": 2,
+      "restoredCount": 2,
+      "recoveryTimedOut": true,
+      "lastOutageMs": 8293,
+      "lastRebuild": [
+        {
+          "name": "环境贴图",
+          "ok": true
+        },
+        {
+          "name": "水面反射",
+          "ok": true
+        }
+      ],
+      "storeLost": false,
+      "storeLostCount": 2,
+      "storeRestoredCount": 2,
+      "storeTimedOut": false,
+      "loopRunning": true,
+      "veilVisible": false,
+      "gpuBoxVisible": false,
+      "lastFrameDtMs": 50,
+      "frameCount": 490
+    },
+    "probeLost": {
+      "animCalls": [
+        "null"
+      ],
+      "disposeCalls": [],
+      "envRevBefore": 1,
+      "envRev": 1
+    },
+    "probeBack": {
+      "animCalls": [
+        "null",
+        "function"
+      ],
+      "disposeCalls": [],
+      "envRevBefore": 1,
+      "envRev": 2
+    },
+    "baseline": {
+      "width": 1600,
+      "height": 900,
+      "meanColor": [
+        142,
+        140,
+        135
+      ],
+      "stdDev": 64.71,
+      "nonUniformRatio": 0.946,
+      "isSoftwareRenderer": false,
+      "drawCalls": 591,
+      "triangles": 405726
+    },
+    "afterRestore": {
+      "width": 1600,
+      "height": 900,
+      "meanColor": [
+        142,
+        140,
+        135
+      ],
+      "stdDev": 64.72,
+      "nonUniformRatio": 0.941,
+      "isSoftwareRenderer": false,
+      "drawCalls": 411,
+      "triangles": 298122
+    },
+    "finalCanvas": {
+      "width": 1600,
+      "height": 900,
+      "meanColor": [
+        141,
+        140,
+        134
+      ],
+      "stdDev": 64.72,
+      "nonUniformRatio": 0.944,
+      "isSoftwareRenderer": false,
+      "drawCalls": 410,
+      "triangles": 297870
+    },
+    "lostText": "图形上下文已丢失,画面已暂停。正在等待浏览器恢复…… 已丢失 1 次。显卡驱动重置、系统休眠唤醒、GPU 进程重启都会造成这种情况。 刷新页面",
+    "timedText": "图形上下文没有恢复。浏览器已经不打算重建它了,需要刷新页面。 已丢失 2 次,此前成功恢复 1 次。显卡驱动重置、系统休眠唤醒、GPU 进程重启都会造成这种情况。 刷新页面",
+    "browserVersion": "Chrome/153.0.8010.37"
+  }
+}

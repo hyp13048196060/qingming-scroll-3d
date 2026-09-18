@@ -1,0 +1,105 @@
+{
+  "checks": [
+    {
+      "group": "响应式",
+      "name": "页面在 390px 宽下没有横向溢出",
+      "ok": true,
+      "detail": "documentElement 390 / body 390 / innerWidth 390"
+    },
+    {
+      "group": "响应式",
+      "name": "景点条允许自己横滚(窄下去时不把整页撑宽)",
+      "ok": true,
+      "detail": "overflow-x=auto,内容 366 / 可视 366(当前排得下,无需滚动)"
+    },
+    {
+      "group": "响应式",
+      "name": "顶栏 / 面板区 / 工具栏都在视口内",
+      "ok": true,
+      "detail": ".qm-topbar y 0–76 x 0–390 | .qm-panelhost y 104–692 x 8–382 | .qm-toolbar y 765–844 x 0–390"
+    },
+    {
+      "group": "响应式",
+      "name": "面板区没有被顶栏或工具栏压住(两者的实测矩形不相交)",
+      "ok": true,
+      "detail": "顶栏底 76 ≤ 面板区顶 104;面板区底 692 ≤ 工具栏顶 765"
+    },
+    {
+      "group": "响应式",
+      "name": "窄屏断点确实命中(否则\"没溢出\"可能只是规则没生效)",
+      "ok": true,
+      "detail": "顶栏 column / 工具栏 column(高 79px),面板区 left=8px"
+    },
+    {
+      "group": "响应式",
+      "name": "三维画布仍然铺满整个视口(没有被界面挤小)",
+      "ok": true,
+      "detail": "画布 390×844"
+    },
+    {
+      "group": "响应式",
+      "name": "窄屏上每个可见控件都点得到(中心点命中它自己)",
+      "ok": true,
+      "detail": "检查了 16 个(.qm-spotnav__btn×5, .qm-toolbar__btn×9, .qm-label×2),全部可点"
+    },
+    {
+      "group": "响应式",
+      "name": "触摸点景点按钮,简介面板真的开了(且开的是点的那个景点)",
+      "ok": true,
+      "detail": "panelVisible=qm-panel qm-panel--spot qm-interactive selected=boat(点前 null) 标题「漕船 · 放倒桅杆的一刻」"
+    },
+    {
+      "group": "响应式",
+      "name": "触摸点【走近看看】,相机走到了该景点的机位",
+      "ok": true,
+      "detail": "位移 30.86 m,与漕船机位相差 0.000 m(触摸点 63,588)"
+    },
+    {
+      "group": "响应式",
+      "name": "触摸点工具栏按钮,面板真的开了",
+      "ok": true,
+      "detail": "panelVisible=qm-panel qm-panel--basis qm-interactive(触摸点 219,787)"
+    },
+    {
+      "group": "响应式",
+      "name": "面板在窄屏上没有超出视口",
+      "ok": true,
+      "detail": "面板 374×588 x 8–382 y 104–692"
+    },
+    {
+      "group": "响应式",
+      "name": "面板内容超高时可滚动(内容看不全又不能滚 = 手机上永远读不到)",
+      "ok": true,
+      "detail": "内容 3799 / 可视 531 px,overflow-y=auto"
+    },
+    {
+      "group": "响应式",
+      "name": "量拖动前面板已收起(否则量的是面板,不是画布)",
+      "ok": true,
+      "detail": "panelhost 里还有 0 个面板可见(关了 1 个)"
+    },
+    {
+      "group": "响应式",
+      "name": "窄屏上画布仍是可触区域的主体(标签只占少数小岛)",
+      "ok": true,
+      "detail": "30/30 个采样点最上面是画布"
+    },
+    {
+      "group": "响应式",
+      "name": "画布上单指拖动,相机跟着绕行",
+      "ok": true,
+      "detail": "位移 3.788 m(起手点 195,362,最上面是画布)"
+    },
+    {
+      "group": "响应式",
+      "name": "窄屏下无未捕获异常与 console.error",
+      "ok": true,
+      "detail": "(无)"
+    }
+  ],
+  "summary": {
+    "pass": 16,
+    "fail": 0,
+    "total": 16
+  }
+}

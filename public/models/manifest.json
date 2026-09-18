@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "seed": 20240601,
+  "unit": "m",
+  "builtAt": "2026-09-18T06:12:51+00:00",
+  "blender": "5.2.2 LTS",
+  "files": [
+    {
+      "name": "scene_core.glb",
+      "bytes": 4354976,
+      "sha256": "4e1ab036830b10ba25f244ce2f93044d1c6c92f0fe6e25dbfd5a120ba17204cb",
+      "tris": 37692,
+      "objects": 17,
+      "meshes": 17,
+      "materials": 11,
+      "collections": [
+        "河道",
+        "岸线",
+        "虹桥",
+        "城墙城门楼"
+      ]
+    },
+    {
+      "name": "scene_props.glb",
+      "bytes": 7882836,
+      "sha256": "4c9e0a365a30c7f73562890c8eb3d2cebe62d4d157e8f58c40c906475206e631",
+      "tris": 123588,
+      "objects": 155,
+      "meshes": 155,
+      "materials": 14,
+      "collections": [
+        "建筑群",
+        "彩楼欢门",
+        "柳树",
+        "道具"
+      ]
+    },
+    {
+      "name": "boats.glb",
+      "bytes": 830436,
+      "sha256": "2e27fade33257233f554eaa6f445ffa97f9853f40e797a40382cec3fedc80fd5",
+      "tris": 8656,
+      "objects": 44,
+      "meshes": 44,
+      "materials": 4,
+      "collections": [
+        "全部船只"
+      ]
+    },
+    {
+      "name": "scene_characters.glb",
+      "bytes": 278756,
+      "sha256": "f4a8387d3fef42a234ab2d9d07ee0fd9df8871ebe822090a01b76b70bcd7bf53",
+      "tris": 2096,
+      "objects": 16,
+      "meshes": 9,
+      "materials": 8,
+      "collections": [
+        "人物模板"
+      ]
+    }
+  ],
+  "totalBytes": 13347004,
+  "totalTris": 172032,
+  "exported": {
+    "objects": 232,
+    "meshes": 225,
+    "note": "objects/meshes 为四块之和;materials 按块看 files[].materials,不可求和"
+  },
+  "scene": {
+    "objects": 234,
+    "meshes": 227,
+    "armatures": 7,
+    "materials": 31,
+    "textures": 33,
+    "counts": {
+      "byKind": {
+        "prop": 56,
+        "character": 16,
+        "boat": 41,
+        "celebration": 21,
+        "gate": 5,
+        "building": 56,
+        "tree": 30,
+        "terrain": 5,
+        "water": 1,
+        "bridge": 3
+      },
+      "objects": 234
+    }
+  }
+}

@@ -1,0 +1,864 @@
+/* =========================================================================
+ * 面板与控件
+ *
+ * 布局骨架(桌面):
+ *
+ *   ┌──────────────────── topbar ────────────────────┐
+ *   │ 标题                              五个景点按钮 │
+ *   ├────────────────────────────────────────────────┤
+ *   │ HUD                                    ┌─────┐ │
+ *   │                                        │面板 │ │
+ *   │              (三维画面)                 └─────┘ │
+ *   ├──────────────────── toolbar ───────────────────┤
+ *   │ 舆图 原卷 依据 设置        巡游 隐藏 全屏 配乐 │
+ *   └────────────────────────────────────────────────┘
+ *
+ * ⚠️ `#ui-root [hidden]` 那条规则是**必需的**,不是顺手写的。
+ *    HTML 的 `hidden` 属性靠 UA 样式表里的 `display: none` 生效,
+ *    而任何一条带 `display: flex/grid` 的规则都会**盖过它** ——
+ *    于是 `element.hidden = true` 静默失效,面板关不掉。
+ *    本文件里几乎每个容器都是 flex,所以必须显式地把 hidden 抬回最高优先级。
+ * ========================================================================= */
+
+#ui-root [hidden] {
+  display: none !important;
+}
+
+/* 三个可靠度等级的颜色只在这里定义一次。徽标、筛选按钮、边界块都引用它,
+   免得同一个色值散在六处 —— 改一处忘了另一处,两个面板的 A 级就会是两种绿。 */
+:root {
+  --qm-grade-a: #7f9c72;
+  --qm-grade-b: #b08a4e;
+  --qm-grade-c: #7c8794;
+}
+
+/* -------------------------------------------------------------------------
+ * 通用控件
+ * ------------------------------------------------------------------------- */
+
+.qm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 13px;
+  border: 1px solid var(--qm-panel-line);
+  border-radius: var(--qm-radius);
+  background: rgba(24, 20, 17, 0.72);
+  color: var(--qm-text);
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: border-color 140ms ease, color 140ms ease, background-color 140ms ease;
+}
+
+.qm-btn:hover {
+  border-color: var(--qm-ochre);
+  color: var(--qm-paper);
+}
+
+.qm-btn:focus-visible {
+  outline: 2px solid var(--qm-ochre);
+  outline-offset: 2px;
+}
+
+/* 选中态。用**实心**而不是只改边框:边框颜色在深色画面上差异太小,
+   隔着一段距离看不出哪个按钮是按下的。 */
+.qm-btn.is-on {
+  border-color: var(--qm-ochre);
+  background: rgba(168, 118, 63, 0.26);
+  color: var(--qm-paper);
+}
+
+.qm-btn--ghost {
+  border-color: transparent;
+  background: transparent;
+  color: var(--qm-text-dim);
+}
+
+.qm-btn--ghost:hover {
+  border-color: var(--qm-panel-line);
+  color: var(--qm-paper);
+}
+
+.qm-btn--primary {
+  border-color: var(--qm-ochre);
+  background: rgba(168, 118, 63, 0.3);
+  color: var(--qm-paper);
+}
+
+.qm-btn--primary:hover {
+  background: rgba(168, 118, 63, 0.44);
+}
+
+/* 小号说明文字 */
+.qm-k {
+  color: var(--qm-text-dim);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+
+/* -------------------------------------------------------------------------
+ * 顶栏
+ * ------------------------------------------------------------------------- */
+
+.qm-topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 10px 16px;
+  background: linear-gradient(180deg, rgba(10, 8, 7, 0.72) 0%, rgba(10, 8, 7, 0) 100%);
+}
+
+.qm-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  min-width: 0;
+}
+
+.qm-brand__title {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: var(--qm-paper);
+  white-space: nowrap;
+}
+
+.qm-brand__sub {
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: var(--qm-text-dim);
+  white-space: nowrap;
+}
+
+.qm-spotnav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.qm-spotnav__btn {
+  font-size: 12px;
+  padding: 5px 11px;
+}
+
+/* -------------------------------------------------------------------------
+ * 面板容器
+ * ------------------------------------------------------------------------- */
+
+.qm-panelhost {
+  position: absolute;
+  top: 62px;
+  right: 16px;
+  bottom: 68px;
+  width: min(380px, calc(100vw - 32px));
+  /* 容器本身不吃指针事件:面板之间的空白应当让三维画面能继续环视。
+     面板自己带 .qm-interactive 把事件收回来。 */
+  pointer-events: none;
+}
+
+.qm-panel {
+  position: absolute;
+  /* ⚠️ 高度按内容收,不撑满面板容器。
+   *
+   * 原先写的是 `inset: 0`(撑满整个 panelhost)。对简介、依据这类长文面板
+   * 看不出问题,因为它们反正会占满;但舆图与设置的内容只有三百多像素,
+   * 撑满之后下面过半是一整块空的深色矩形 —— 截图一看就像"内容没加载出来",
+   * 而不是"这个面板就这么点东西"。
+   *
+   * 改成上/左/右贴边、下边界由内容决定,再用 max-height 兜住:
+   *   · 短面板 → 收缩成一张卡片,尺寸与内容一致;
+   *   · 长面板(简介 365 字、依据 17 条)→ 撑到容器高度后由 __body 滚动。
+   * 两种情形共用同一条规则,不必给每个面板单独调。
+   *
+   * `max-height: 100%` 能生效是因为 `.qm-panelhost` 的上下边界都定了,
+   * 高度是确定的百分比基准。 */
+  inset: 0 0 auto 0;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--qm-panel-line);
+  border-radius: var(--qm-radius);
+  background: var(--qm-panel-bg);
+  box-shadow: var(--qm-shadow);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+
+.qm-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex: 0 0 auto;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--qm-panel-line);
+}
+
+.qm-panel__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--qm-paper);
+}
+
+.qm-panel__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 14px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  line-height: 1.78;
+  font-size: 13px;
+}
+
+
+.qm-panel__body p {
+  margin: 0 0 10px;
+}
+
+.qm-panel__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.qm-panel__anchor {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--qm-text-dim);
+}
+
+.qm-panel__intro {
+  color: var(--qm-text);
+}
+
+/* 滚动条。默认样式在深色底上是一条刺眼的白杠。 */
+.qm-panel__body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.qm-panel__body::-webkit-scrollbar-thumb {
+  background: rgba(214, 198, 160, 0.22);
+  border-radius: 4px;
+}
+
+.qm-panel__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* -------------------------------------------------------------------------
+ * 可靠度徽标 —— 三个等级用同一套配色,两个面板共用
+ *
+ * A 有据   → 青绿(可以放心当作依据)
+ * B 择一   → 赭石(多种说法里挑了一种)
+ * C 推断   → 青灰(本作自己推的)
+ * ------------------------------------------------------------------------- */
+
+.qm-grade {
+  display: inline-block;
+  flex: 0 0 auto;
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.qm-grade--A {
+  color: var(--qm-grade-a);
+}
+
+.qm-grade--B {
+  color: var(--qm-grade-b);
+}
+
+.qm-grade--C {
+  color: var(--qm-grade-c);
+}
+
+/* -------------------------------------------------------------------------
+ * 景点简介
+ * ------------------------------------------------------------------------- */
+
+.qm-points {
+  margin: 0 0 12px;
+  padding-left: 18px;
+  color: var(--qm-text);
+}
+
+.qm-points li {
+  margin-bottom: 6px;
+}
+
+/* ⚠️ 边界块与正文**同权重**:不加斜体、不缩小字号、不压暗颜色。
+   弱化成一小段灰字等于没写 —— 而它的全部作用就是让人看见。 */
+.qm-caveat {
+  margin: 12px 0 14px;
+  padding: 10px 12px;
+  border-left: 2px solid var(--qm-grade-c);
+  background: rgba(124, 135, 148, 0.1);
+  color: var(--qm-text);
+  font-size: 13px;
+}
+
+.qm-caveat__tag {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--qm-grade-c);
+}
+
+.qm-caveat p:last-child {
+  margin-bottom: 0;
+}
+
+.qm-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--qm-panel-line);
+}
+
+.qm-actions__hint {
+  font-size: 11px;
+  color: var(--qm-text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* -------------------------------------------------------------------------
+ * 舆图
+ * ------------------------------------------------------------------------- */
+
+.qm-map__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--qm-panel-line);
+  border-radius: var(--qm-radius);
+  background: rgba(12, 10, 9, 0.5);
+}
+
+.qm-map__river {
+  fill: rgba(58, 74, 84, 0.55);
+}
+
+.qm-map__bridge {
+  stroke: var(--qm-paper-dim);
+  stroke-width: 1.6;
+}
+
+.qm-map__spot {
+  cursor: pointer;
+}
+
+/* 命中区是透明的,只是把点击范围放大到 12px —— 3.5px 的圆点太难点中 */
+.qm-map__hit {
+  fill: transparent;
+}
+
+.qm-map__dot {
+  fill: var(--qm-ochre);
+}
+
+.qm-map__spot:hover .qm-map__dot,
+.qm-map__spot:focus-visible .qm-map__dot {
+  fill: var(--qm-paper);
+}
+
+.qm-map__label {
+  fill: var(--qm-text-dim);
+  font-size: 9px;
+  font-family: var(--qm-font-ui);
+  pointer-events: none;
+  user-select: none;
+}
+
+.qm-map__cam {
+  fill: none;
+  stroke: #d8cfa8;
+  stroke-width: 1.5;
+}
+
+.qm-map__status {
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--qm-text-dim);
+  letter-spacing: 0.06em;
+}
+
+/* -------------------------------------------------------------------------
+ * 复原依据
+ * ------------------------------------------------------------------------- */
+
+.qm-basis__caveat {
+  margin: 0 0 12px;
+  padding: 9px 11px;
+  border-left: 2px solid var(--qm-grade-c);
+  background: rgba(91, 100, 112, 0.14);
+  font-size: 12px;
+  color: var(--qm-text);
+}
+
+.qm-basis__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.qm-gradebtn {
+  font-size: 11px;
+  padding: 4px 10px;
+  /* 用等级色描边,一眼能对上是哪一档 */
+}
+
+.qm-gradebtn[data-grade='A'] {
+  color: var(--qm-grade-a);
+  border-color: rgba(127, 156, 114, 0.5);
+}
+
+.qm-gradebtn[data-grade='B'] {
+  color: var(--qm-grade-b);
+  border-color: rgba(176, 138, 78, 0.5);
+}
+
+.qm-gradebtn[data-grade='C'] {
+  color: var(--qm-grade-c);
+  border-color: rgba(124, 135, 148, 0.5);
+}
+
+/* 被筛掉的等级压暗 + 划掉,让"现在隐藏了哪一档"是可读的 */
+.qm-gradebtn.is-off {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+.qm-basis__item {
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(214, 198, 160, 0.12);
+}
+
+.qm-basis__item:last-child {
+  border-bottom: none;
+}
+
+.qm-basis__item header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.qm-basis__item h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--qm-paper);
+}
+
+.qm-basis__claim {
+  color: var(--qm-text);
+}
+
+.qm-basis__basis {
+  color: var(--qm-text-dim);
+  font-size: 12px;
+}
+
+.qm-basis__assert code {
+  display: block;
+  margin-top: 3px;
+  padding: 5px 7px;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--qm-ochre);
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 11px;
+  word-break: break-all;
+}
+
+.qm-basis__caveat {
+  color: var(--qm-grade-c);
+  font-size: 12px;
+}
+
+/* -------------------------------------------------------------------------
+ * 原卷
+ * ------------------------------------------------------------------------- */
+
+/* 原卷面板比别的面板宽。
+ *
+ * 全卷 15360×732(21:1),而其它面板的宽度是 380px —— 在 380px 的窗口里
+ * 看一条 21:1 的长卷,一次只能看到约 2%,拖动十几屏才走到头,
+ * "横向浏览"在交互上等于不成立。
+ * 所以这一个面板允许超出 .qm-panelhost 的宽度,贴住右边缘向左展开。
+ * 只放宽宽度,不动高度规则(高度仍按内容收)。 */
+.qm-panel--scroll {
+  left: auto;
+  right: 0;
+  width: min(760px, calc(100vw - 32px));
+}
+
+.qm-scroll__hint {
+  margin: 0 0 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--qm-text-dim);
+}
+
+.qm-scroll__view {
+  overflow-x: auto;
+  overflow-y: hidden;
+  border: 1px solid var(--qm-panel-line);
+  border-radius: var(--qm-radius);
+  background: rgba(0, 0, 0, 0.4);
+  cursor: grab;
+}
+
+.qm-scroll__view:active {
+  cursor: grabbing;
+}
+
+/* 四段并排成一条长带 —— 目的是让"这是一幅长卷"在交互上成立,
+   而不是把整卷缩成一张小图了事。 */
+.qm-scroll__strip {
+  display: flex;
+  align-items: stretch;
+  height: 150px;
+  width: max-content;
+}
+
+.qm-scroll__img {
+  display: block;
+  height: 100%;
+  width: auto;
+  flex: 0 0 auto;
+  user-select: none;
+}
+
+.qm-scroll__nav {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.qm-scroll__status {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--qm-text-dim);
+  word-break: break-all;
+}
+
+.qm-scroll__status ul {
+  margin: 6px 0 0;
+  padding-left: 16px;
+}
+
+.qm-scroll__status code {
+  color: var(--qm-ochre);
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+
+/* -------------------------------------------------------------------------
+ * 设置
+ * ------------------------------------------------------------------------- */
+
+.qm-field {
+  margin-bottom: 18px;
+}
+
+.qm-field__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+
+.qm-field__label {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  color: var(--qm-paper);
+}
+
+.qm-field__hint {
+  margin-top: 7px;
+  font-size: 11px;
+  line-height: 1.65;
+  color: var(--qm-text-dim);
+}
+
+.qm-range {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(214, 198, 160, 0.22);
+  cursor: pointer;
+}
+
+.qm-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  border: none;
+  border-radius: 50%;
+  background: var(--qm-ochre);
+}
+
+.qm-range::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border: none;
+  border-radius: 50%;
+  background: var(--qm-ochre);
+}
+
+.qm-range:focus-visible {
+  outline: 2px solid var(--qm-ochre);
+  outline-offset: 4px;
+}
+
+.qm-seg {
+  display: flex;
+  gap: 0;
+}
+
+.qm-seg__btn {
+  flex: 1 1 0;
+  border-radius: 0;
+  font-size: 12px;
+}
+
+.qm-seg__btn:first-child {
+  border-radius: var(--qm-radius) 0 0 var(--qm-radius);
+}
+
+.qm-seg__btn:last-child {
+  border-radius: 0 var(--qm-radius) var(--qm-radius) 0;
+}
+
+.qm-seg__btn + .qm-seg__btn {
+  border-left: none;
+}
+
+.qm-switches {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.qm-switch {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.qm-check {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  accent-color: var(--qm-ochre);
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------
+ * 底部工具栏
+ * ------------------------------------------------------------------------- */
+
+.qm-toolbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 10px 16px;
+  background: linear-gradient(0deg, rgba(10, 8, 7, 0.78) 0%, rgba(10, 8, 7, 0) 100%);
+}
+
+.qm-toolbar__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.qm-toolbar__btn {
+  font-size: 12px;
+}
+
+/* -------------------------------------------------------------------------
+ * 「隐藏界面」之后的返回按钮
+ *
+ * ⚠️ 它**不能长在它自己隐藏的那一层里**。
+ *    「隐藏界面」原先一并藏起顶栏、面板容器与底部工具栏,而「显示界面」
+ *    正挂在那条工具栏上 —— 点下去之后按钮自身也变成 0×0 的不可点元素,
+ *    再也点不回来。界面因此成了一次性的:要么刷新页面,要么永远没有 UI,
+ *    而画面上看不出少了什么。探针第一次运行就撞在这上面
+ *    (报「显示界面」尺寸 0×0),这类错肉眼看截图是发现不了的。
+ *
+ *    所以它挂在 `#ui-root` 下、**不属于 toolbar**,只在界面隐藏时出现。
+ *    半透明是刻意的:它是退路,不是画面主体;悬停/聚焦时完全显形。
+ * ------------------------------------------------------------------------- */
+
+.qm-restore {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 6px 12px;
+  font-size: 12px;
+  opacity: 0.42;
+  transition: opacity 0.18s ease;
+}
+
+.qm-restore:hover,
+.qm-restore:focus-visible {
+  opacity: 1;
+}
+
+/* -------------------------------------------------------------------------
+ * 三维空间标签
+ *
+ * ⚠️ 居中靠的是**独立的 `translate` 属性**,不是 `transform`。
+ *    Labels.ts 每帧都要写 `style.transform = translate(x, y)`,
+ *    会整条覆盖掉 CSS 里写的 `transform: translate(-50%,-50%)` ——
+ *    于是标签的中心偏移到右下角,而且偏移量随字号变化,像是"锚点算错了"。
+ *    `translate` 与 `transform` 是两套独立属性,会合成:
+ *        最终偏移 = translate(-50%,-50%) ∘ translate(x, y)
+ *    两个都是平移,可交换,净效果就是"以 (x,y) 为中心"。
+ * ------------------------------------------------------------------------- */
+
+.qm-labels {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.qm-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  translate: -50% -50%;
+
+  padding: 3px 10px;
+  border: 1px solid var(--qm-panel-line);
+  border-radius: 11px;
+  background: rgba(20, 17, 14, 0.76);
+  color: var(--qm-text);
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  cursor: pointer;
+  /* 每帧都改 transform,给 transform 加 transition 会让标签"追"着走 */
+  transition: border-color 140ms ease, color 140ms ease;
+  will-change: transform;
+}
+
+.qm-label:hover {
+  border-color: var(--qm-ochre);
+  background: rgba(38, 30, 22, 0.88);
+  color: var(--qm-paper);
+}
+
+/* -------------------------------------------------------------------------
+ * 性能 HUD
+ * ------------------------------------------------------------------------- */
+
+.qm-hud {
+  position: absolute;
+  top: 64px;
+  left: 16px;
+  width: 178px;
+  padding: 9px 11px;
+  border: 1px solid var(--qm-panel-line);
+  border-radius: var(--qm-radius);
+  background: rgba(14, 12, 10, 0.8);
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.qm-hud__fps {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  margin-bottom: 7px;
+}
+
+.qm-hud__big {
+  font-size: 20px;
+  color: var(--qm-paper);
+  font-variant-numeric: tabular-nums;
+}
+
+.qm-hud__unit {
+  font-size: 10px;
+  color: var(--qm-text-dim);
+}
+
+.qm-hud__grid {
+  display: grid;
+  gap: 2px;
+}
+
+.qm-kv {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.qm-kv__k {
+  color: var(--qm-text-dim);
+}
+
+.qm-kv__v {
+  color: var(--qm-text);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 软件渲染警告。必须显眼 —— 那种情况下画面**看着是正常的**,
+   只有下面的数字在骗人,所以警告要压过读数本身的视觉重量。 */
+.qm-hud__warn {
+  margin-top: 8px;
+  padding: 5px 7px;
+  border-left: 2px solid #b4553f;
+  background: rgba(180, 85, 63, 0.16);
+  color: #e5a08c;
+  font-family: var(--qm-font-ui);
+  font-size: 10px;
+  line-height: 1.5;
+}

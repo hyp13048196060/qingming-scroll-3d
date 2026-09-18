@@ -3,10 +3,23 @@ node_modules/
 dist/
 .vite/
 
+# 探针的独立构建输出(由 tools/audio_probe/ 生成,可重新构建)
+dist-audio-probe/
+
 # Blender 中间产物(可重新生成,不入库)
 # 注:public/models/ 下的 GLB 是运行资产,必须入库
 blender/out/
 blender/assets_src/
+blender/__pycache__/
+blender/.ruff_cache/
+
+# Blender 运行日志与备份:每跑一次建模脚本就重写一遍,是过程噪音不是证据
+blender/*.txt
+blender/*.err
+blender/*.bak
+
+# 字体构建中间件(24MB 的源字体;子集化产物已提交到 public/fonts/)
+.fontbuild/
 
 # 工具探测结果(与本机相关,不入库)
 tools/.caps.json
@@ -25,5 +38,17 @@ desktop.ini
 npm-debug.log*
 .screenshots-tmp/
 
-# 录制素材(体积大,按 docs/部署与录制.md 说明由使用者自行生成)
+# 录制素材(体积大,按 docs/07-录制剪辑.md 由使用者自行生成)
 recordings/
+
+# 截图:只提交文档实际引用的那一份证据
+# 其余 300MB 迭代截图在本地 screenshots/_local/(判据与重建方式见 docs/07-录制剪辑.md)
+screenshots/_local/
+
+# Python 字节码缓存(Blender 每次 import 都会重生成)
+__pycache__/
+*.pyc
+
+# Claude Code 的本地会话状态(与项目本身无关)
+.claude/scheduled_tasks.json
+.claude/scheduled_tasks.lock

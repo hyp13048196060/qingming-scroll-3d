@@ -1,0 +1,258 @@
+{
+  "lights": [
+    {
+      "type": "DirectionalLight",
+      "name": "",
+      "intensity": 1.9,
+      "color": "#fff2dc",
+      "position": [
+        107.527,
+        185.786,
+        -128.146
+      ],
+      "target": [
+        0,
+        0,
+        0
+      ],
+      "distanceToTarget": 250,
+      "shadow": {
+        "mapSize": [
+          2048,
+          2048
+        ],
+        "bias": -0.0004,
+        "normalBias": 0.04,
+        "ortho": {
+          "left": -60,
+          "right": 60,
+          "top": 60,
+          "bottom": -60,
+          "near": 120,
+          "far": 400
+        },
+        "projElements": [
+          0.01667,
+          0,
+          0,
+          0,
+          0,
+          0.01667,
+          0,
+          0,
+          0,
+          0,
+          -0.00714,
+          0,
+          0,
+          0,
+          -1.85714,
+          1
+        ],
+        "shadowMapAllocated": true
+      }
+    },
+    {
+      "type": "HemisphereLight",
+      "name": "",
+      "intensity": 0.28,
+      "color": "#bcd0e6",
+      "groundColor": "#7a6647"
+    }
+  ],
+  "environment": {
+    "hasEnv": true,
+    "intensity": 0.1,
+    "mapping": 306,
+    "colorSpace": "srgb-linear"
+  },
+  "fog": {
+    "type": "e",
+    "color": "#b9ad93",
+    "density": 0.0012
+  },
+  "renderer": {
+    "toneMapping": 6,
+    "exposure": 0.92,
+    "outputColorSpace": "srgb",
+    "shadowMapEnabled": true,
+    "shadowMapType": 1
+  },
+  "materials": [
+    {
+      "name": "SkyShader",
+      "type": "ShaderMaterial",
+      "color": null,
+      "colorLinear": null,
+      "roughness": null,
+      "metalness": null,
+      "vertexColors": false,
+      "side": 1
+    },
+    {
+      "name": "",
+      "type": "MeshStandardMaterial",
+      "color": "#6a5a40",
+      "colorLinear": [
+        0.1441,
+        0.1022,
+        0.0513
+      ],
+      "roughness": 1,
+      "metalness": 0,
+      "vertexColors": false,
+      "side": 0
+    },
+    {
+      "name": "",
+      "type": "MeshStandardMaterial",
+      "color": "#6a5730",
+      "colorLinear": [
+        0.1441,
+        0.0953,
+        0.0296
+      ],
+      "roughness": 0.55,
+      "metalness": 0,
+      "vertexColors": false,
+      "side": 0
+    },
+    {
+      "name": "wood_old",
+      "type": "MeshStandardMaterial",
+      "color": "#6b4f36",
+      "colorLinear": [
+        0.1473,
+        0.0783,
+        0.0363
+      ],
+      "roughness": 0.8799999952316284,
+      "metalness": 0,
+      "vertexColors": false,
+      "side": 2
+    },
+    {
+      "name": "wood_dark",
+      "type": "MeshStandardMaterial",
+      "color": "#4a3626",
+      "colorLinear": [
+        0.0684,
+        0.0363,
+        0.0196
+      ],
+      "roughness": 0.8500000238418579,
+      "metalness": 0,
+      "vertexColors": false,
+      "side": 2
+    },
+    {
+      "name": "wood_plank",
+      "type": "MeshStandardMaterial",
+      "color": "#785c40",
+      "colorLinear": [
+        0.1873,
+        0.1065,
+        0.0509
+      ],
+      "roughness": 0.8999999761581421,
+      "metalness": 0,
+      "vertexColors": false,
+      "side": 2
+    },
+    {
+      "name": "rope",
+      "type": "MeshStandardMaterial",
+      "color": "#8c7854",
+      "colorLinear": [
+        0.2633,
+        0.1873,
+        0.089
+      ],
+      "roughness": 0.949999988079071,
+      "metalness": 0,
+      "vertexColors": false,
+      "side": 2
+    },
+    {
+      "name": "earth",
+      "type": "MeshStandardMaterial",
+      "color": "#705c40",
+      "colorLinear": [
+        0.1626,
+        0.1065,
+        0.0509
+      ],
+      "roughness": 1,
+      "metalness": 0,
+      "vertexColors": false,
+      "side": 2
+    }
+  ],
+  "variants": {
+    "all": {
+      "meanColor": [
+        145,
+        141,
+        132
+      ],
+      "stdDev": 57.25,
+      "drawCalls": 13
+    },
+    "noSun": {
+      "meanColor": [
+        125,
+        127,
+        124
+      ],
+      "stdDev": 65.31,
+      "drawCalls": 13
+    },
+    "noHemi": {
+      "meanColor": [
+        144,
+        139,
+        131
+      ],
+      "stdDev": 58.06,
+      "drawCalls": 13
+    },
+    "noEnv": {
+      "meanColor": [
+        121,
+        109,
+        92
+      ],
+      "stdDev": 75.29,
+      "drawCalls": 13
+    },
+    "none": {
+      "meanColor": [
+        60,
+        62,
+        61
+      ],
+      "stdDev": 102.11,
+      "drawCalls": 13
+    }
+  },
+  "camera": {
+    "mode": "orbit",
+    "position": [
+      26,
+      14.000000000000004,
+      29.999999999999996
+    ],
+    "target": [
+      0,
+      4,
+      0
+    ],
+    "distance": 40.93897898091744,
+    "azimuth": 0.714090698612158,
+    "polar": 1.3240336513054407
+  },
+  "sceneStats": {
+    "meshes": 8,
+    "triangles": 19332
+  }
+}

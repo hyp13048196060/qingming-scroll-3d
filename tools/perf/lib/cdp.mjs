@@ -211,6 +211,33 @@ export class Page {
     return errors;
   }
 
+  /**
+   * 收集**全部**控制台消息(含 info / warn)。
+   *
+   * `collectErrors()` 只留 error,这对"页面没崩"够用,但不够回答
+   * "模块自己报了什么"。而 `setupActors()` 那几个 `console.info`
+   * 恰恰是**只有运行时才知道的实测量**(模板朝向、生成人数、障碍盒数)——
+   * 它们不在任何一份 json 里,不看日志就只能靠再写一个探针去问,
+   * 而再问一次等于把同一件事算两遍、且可能算出两个不同的答案。
+   *
+   * ⚠️ 与 `collectErrors` 一样,重复调用会**再挂一个监听器**(每次返回新的
+   *    数组)。一个页面里只调一次。
+   */
+  collectConsole() {
+    const lines = [];
+    this.conn.on((msg) => {
+      if (msg.sessionId !== this.sessionId) return;
+      if (msg.method === 'Runtime.consoleAPICalled') {
+        const text = msg.params.args.map((a) => a.description ?? a.value).join(' ');
+        lines.push({ type: msg.params.type, text });
+      } else if (msg.method === 'Runtime.exceptionThrown') {
+        const d = msg.params.exceptionDetails;
+        lines.push({ type: 'exception', text: d.exception?.description ?? d.text });
+      }
+    });
+    return lines;
+  }
+
   /** 鼠标事件。用于脚本化验证环视/缩放/右键平移。 */
   async mouse(type, x, y, { button = 'left', buttons, clickCount = 1, modifiers = 0 } = {}) {
     const btnMask = { none: 0, left: 1, right: 2, middle: 4 };

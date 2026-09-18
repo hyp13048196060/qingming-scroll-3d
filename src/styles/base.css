@@ -79,3 +79,215 @@ noscript {
   line-height: 1.8;
   background: var(--qm-ink);
 }
+
+/* -------------------------------------------------------------------------
+ * 加载遮罩
+ *
+ * 遮罩本身要吃掉指针事件 —— 加载没完成时不该能操作相机。
+ * 这与 #ui-root 的 pointer-events:none 是两回事,故单独开启。
+ * ------------------------------------------------------------------------- */
+
+.veil {
+  position: absolute;
+  inset: 0;
+  /*
+   * ⚠️ 这一条 `z-index` 是**全项目唯一的一个**,放在这里不是随手写的。
+   *
+   * 遮罩与界面是 `#ui-root` 下的兄弟节点,而全项目没有任何 z-index ——
+   * 谁盖住谁完全由 **DOM 顺序**决定。遮罩是**第一个**挂上去的
+   * (main.ts 先 new LoadingVeil,后 createUIRoot),于是它排在最后面:
+   * 三维标签浮在进度条上、「虹桥」压着「重试」按钮。
+   *
+   * 更糟的是顶栏与工具栏是 `.qm-interactive`(pointer-events:auto),
+   * 它们盖在遮罩之上就等于**加载期间也能点** —— 点「虹桥」会把相机飞向
+   * 一个还没加载出来的空场景,点了什么也不会发生,但什么错也不报。
+   *
+   * 这个症状是从截图里看出来的(screenshots/web/ui_11_loadfail.png):
+   * 「虹桥」正好落在进度条上。断言抓不到它 —— 元素都在、尺寸都正常,
+   * 只是层次反了。
+   *
+   * 之所以只给遮罩一个数、而不是给全套界面排一套层级:其余元素的先后
+   * 关系现在是对的,给它们加 z-index 反而会**改变**现有观感。全局只有
+   * 一个数,就没有"两个数谁大"的问题。
+   */
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  pointer-events: auto;
+  background: radial-gradient(
+      120% 90% at 50% 30%,
+      rgba(38, 31, 25, 0.9) 0%,
+      rgba(13, 11, 10, 0.97) 70%
+    );
+  transition: opacity 420ms ease;
+}
+
+.veil[hidden] {
+  display: none;
+}
+
+.veil__panel {
+  width: min(520px, 100%);
+  padding: 28px 30px 24px;
+  border: 1px solid var(--qm-panel-line);
+  border-radius: var(--qm-radius);
+  background: var(--qm-panel-bg);
+  box-shadow: var(--qm-shadow);
+}
+
+.veil__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--qm-paper);
+}
+
+.veil__sub {
+  margin: 8px 0 22px;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: var(--qm-text-dim);
+}
+
+.veil__track {
+  height: 2px;
+  background: rgba(214, 198, 160, 0.16);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.veil__bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--qm-ochre), var(--qm-paper-dim));
+  /* 不加 transition:宽度本来就来自真实进度,再补间就成了"看起来平滑"的假象 */
+}
+
+.veil__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 12px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--qm-paper-dim);
+}
+
+.veil__pct {
+  font-variant-numeric: tabular-nums;
+  color: var(--qm-paper);
+}
+
+.veil__detail {
+  min-height: 18px;
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--qm-text-dim);
+  word-break: break-all;
+}
+
+.veil__error {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-left: 2px solid #b4553f;
+  background: rgba(180, 85, 63, 0.1);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.veil__error[hidden] {
+  display: none;
+}
+
+.veil__error p {
+  margin: 0 0 8px;
+  color: var(--qm-paper);
+}
+
+.veil__error ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--qm-text-dim);
+}
+
+.veil__error code {
+  color: var(--qm-ochre);
+  font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+
+.veil__retry {
+  margin-top: 12px;
+  padding: 7px 20px;
+  border: 1px solid var(--qm-panel-line);
+  border-radius: var(--qm-radius);
+  background: transparent;
+  color: var(--qm-paper);
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+}
+
+.veil__retry:hover {
+  border-color: var(--qm-ochre);
+  color: var(--qm-ochre);
+}
+
+/* ── 图形上下文丢失 ─────────────────────────────────────────────
+   与加载失败共用 .veil__error 的**结构**,但边框色不同:
+   加载失败是"某个文件没拿到"(琥珀色,可重试),上下文丢失是
+   "显卡那边出了问题"(冷灰,只能刷新)。两者用同一个颜色的话,
+   用户分不清自己该点「重试」还是「刷新页面」。 */
+.veil__gpu {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-left: 2px solid var(--qm-panel-line);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.veil__gpu[hidden] {
+  display: none;
+}
+
+/* 上下文丢失期间把进度行收起来。
+   它显示的是"加载完成了百分之多少",而这时候**没有任何东西在推进** ——
+   留着它,用户会盯着一个停在 100% 的进度条等下去。
+   实测的截图上,「就绪 100%」与「画面已暂停」并排放着像在互相打脸。 */
+.veil.is-gpu-lost .veil__track,
+.veil.is-gpu-lost .veil__row,
+.veil.is-gpu-lost .veil__detail {
+  display: none;
+}
+
+.veil__gpu-msg {
+  margin: 0 0 6px;
+  color: var(--qm-paper);
+}
+
+.veil__gpu-detail {
+  margin: 0;
+  color: var(--qm-text-dim);
+}
+
+.veil__reload {
+  margin-top: 12px;
+  padding: 7px 20px;
+  border: 1px solid var(--qm-panel-line);
+  border-radius: var(--qm-radius);
+  background: transparent;
+  color: var(--qm-paper);
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+}
+
+.veil__reload:hover {
+  border-color: var(--qm-ochre);
+  color: var(--qm-ochre);
+}

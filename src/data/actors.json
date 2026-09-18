@@ -1,0 +1,806 @@
+{
+  "schema": 1,
+  "seed": 20240601,
+  "unit": "m",
+  "frame": "three-y-up (x, z, -y)",
+  "counts": {
+    "requested": 48,
+    "placed": 48,
+    "failed": 0,
+    "byPose": {
+      "walk": 12,
+      "carry": 11,
+      "punt": 5,
+      "vendor": 6,
+      "hold": 5,
+      "push": 5,
+      "lead": 4
+    },
+    "byZone": {
+      "桥面": 8,
+      "纤道": 6,
+      "街道": 16,
+      "市井": 13,
+      "船上": 5
+    }
+  },
+  "reject_reasons": {
+    "落在 building(mid_roof_w)上": 6,
+    "落在 tree(willow_009_leaf)上": 1,
+    "落在 building(mid_roof_e)上": 6,
+    "落在 building(far_bldg_w)上": 8,
+    "落在 building(shop_w1_1_roof)上": 1,
+    "落在 building(mid_base_e)上": 2,
+    "落在舱篷/属具上,不是甲板": 1,
+    "落在 building(shop_w0_0_roof)上": 1,
+    "落在 building(far_bldg_e)上": 1,
+    "落在 boat(boat_repair_hull)上": 1,
+    "落在 building(shop_e1_1_roof)上": 1,
+    "离最近的人不足 0.9m": 1,
+    "摊前篮:压着 building(far_bldg_e)": 1,
+    "落在 building(shop_w0_1_roof)上": 1,
+    "落在 building(shop_e0_0_lou_roof)上": 1,
+    "落在 building(shop_e0_1_cha_roof)上": 2
+  },
+  "paired_props": 17,
+  "actors": [
+    {
+      "id": "actor_000",
+      "pose": "walk",
+      "x": 3.589,
+      "y": -2.5647,
+      "z": 5.1177,
+      "yaw": 1.5708,
+      "speed": 1.05,
+      "swing": [
+        "arms",
+        "legs"
+      ],
+      "zone": "桥面",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "bridge"
+    },
+    {
+      "id": "actor_001",
+      "pose": "carry",
+      "x": 11.0031,
+      "y": 32.3148,
+      "z": -0.0,
+      "yaw": 0.0,
+      "speed": 0.85,
+      "swing": [
+        "legs"
+      ],
+      "zone": "纤道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_002",
+      "pose": "walk",
+      "x": -15.2172,
+      "y": -43.7489,
+      "z": -0.0,
+      "yaw": 3.14159,
+      "speed": 1.05,
+      "swing": [
+        "arms",
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_003",
+      "pose": "walk",
+      "x": 48.9139,
+      "y": 30.2584,
+      "z": 0.0,
+      "yaw": 0.0,
+      "speed": 1.05,
+      "swing": [
+        "arms",
+        "legs"
+      ],
+      "zone": "市井",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_004",
+      "pose": "punt",
+      "x": -7.1092,
+      "y": 32.4148,
+      "z": 0.45,
+      "yaw": 3.14159,
+      "speed": 0.0,
+      "swing": [],
+      "zone": "船上",
+      "anim": "none",
+      "on_boat": "boat_ke_b",
+      "surface": "boat"
+    },
+    {
+      "id": "actor_005",
+      "pose": "carry",
+      "x": -7.0797,
+      "y": 0.22,
+      "z": 3.5406,
+      "yaw": -1.5708,
+      "speed": 0.85,
+      "swing": [
+        "legs"
+      ],
+      "zone": "桥面",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "bridge"
+    },
+    {
+      "id": "actor_006",
+      "pose": "walk",
+      "x": 10.1789,
+      "y": 16.6026,
+      "z": -0.0,
+      "yaw": 0.0,
+      "speed": 1.05,
+      "swing": [
+        "arms",
+        "legs"
+      ],
+      "zone": "纤道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_007",
+      "pose": "carry",
+      "x": -13.3892,
+      "y": 20.3943,
+      "z": -0.0,
+      "yaw": 0.0,
+      "speed": 0.85,
+      "swing": [
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_008",
+      "pose": "vendor",
+      "x": -21.2235,
+      "y": 2.7218,
+      "z": -0.0,
+      "yaw": -1.5708,
+      "speed": 0.0,
+      "swing": [],
+      "zone": "市井",
+      "anim": "none",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_009",
+      "pose": "punt",
+      "x": -6.5632,
+      "y": 36.7122,
+      "z": 0.45,
+      "yaw": 3.14159,
+      "speed": 0.0,
+      "swing": [],
+      "zone": "船上",
+      "anim": "none",
+      "on_boat": "boat_ke_b",
+      "surface": "boat"
+    },
+    {
+      "id": "actor_010",
+      "pose": "hold",
+      "x": -0.7399,
+      "y": 1.02,
+      "z": 5.5952,
+      "yaw": -1.5708,
+      "speed": 0.7,
+      "swing": [
+        "legs"
+      ],
+      "zone": "桥面",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "bridge"
+    },
+    {
+      "id": "actor_011",
+      "pose": "hold",
+      "x": 10.1719,
+      "y": -25.0442,
+      "z": -0.0,
+      "yaw": 0.0,
+      "speed": 0.7,
+      "swing": [
+        "legs"
+      ],
+      "zone": "纤道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_012",
+      "pose": "push",
+      "x": 19.5436,
+      "y": -35.2536,
+      "z": 0.0,
+      "yaw": 0.0,
+      "speed": 0.75,
+      "swing": [
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_013",
+      "pose": "carry",
+      "x": -38.1152,
+      "y": -2.7862,
+      "z": 0.0,
+      "yaw": 3.14159,
+      "speed": 0.85,
+      "swing": [
+        "legs"
+      ],
+      "zone": "市井",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_014",
+      "pose": "punt",
+      "x": 5.5919,
+      "y": 14.6955,
+      "z": 0.45,
+      "yaw": 3.14159,
+      "speed": 0.0,
+      "swing": [],
+      "zone": "船上",
+      "anim": "none",
+      "on_boat": "boat_ke_a",
+      "surface": "boat"
+    },
+    {
+      "id": "actor_015",
+      "pose": "lead",
+      "x": 0.3646,
+      "y": 1.0155,
+      "z": 5.6101,
+      "yaw": -1.5708,
+      "speed": 0.9,
+      "swing": [
+        "legs"
+      ],
+      "zone": "桥面",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "bridge"
+    },
+    {
+      "id": "actor_016",
+      "pose": "carry",
+      "x": -11.6708,
+      "y": -5.6912,
+      "z": -0.0,
+      "yaw": 3.14159,
+      "speed": 0.85,
+      "swing": [
+        "legs"
+      ],
+      "zone": "纤道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_017",
+      "pose": "vendor",
+      "x": -19.4703,
+      "y": 13.6279,
+      "z": 0.0,
+      "yaw": -1.5708,
+      "speed": 0.0,
+      "swing": [],
+      "zone": "街道",
+      "anim": "none",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_018",
+      "pose": "push",
+      "x": 22.8825,
+      "y": 5.685,
+      "z": 0.0,
+      "yaw": 0.0,
+      "speed": 0.75,
+      "swing": [
+        "legs"
+      ],
+      "zone": "市井",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_019",
+      "pose": "punt",
+      "x": 0.9079,
+      "y": -7.3775,
+      "z": 0.45,
+      "yaw": 0.0,
+      "speed": 0.0,
+      "swing": [],
+      "zone": "船上",
+      "anim": "none",
+      "on_boat": "boat_cao_hero",
+      "surface": "boat"
+    },
+    {
+      "id": "actor_020",
+      "pose": "walk",
+      "x": 4.0384,
+      "y": 2.7479,
+      "z": 4.9787,
+      "yaw": -1.5708,
+      "speed": 1.05,
+      "swing": [
+        "arms",
+        "legs"
+      ],
+      "zone": "桥面",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "bridge"
+    },
+    {
+      "id": "actor_021",
+      "pose": "walk",
+      "x": 10.1591,
+      "y": 26.0549,
+      "z": -0.0,
+      "yaw": 0.0,
+      "speed": 1.05,
+      "swing": [
+        "arms",
+        "legs"
+      ],
+      "zone": "纤道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_022",
+      "pose": "hold",
+      "x": 17.8537,
+      "y": 22.7701,
+      "z": 0.0,
+      "yaw": 3.14159,
+      "speed": 0.7,
+      "swing": [
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_023",
+      "pose": "hold",
+      "x": -43.9609,
+      "y": 7.0307,
+      "z": 0.0,
+      "yaw": 3.14159,
+      "speed": 0.7,
+      "swing": [
+        "legs"
+      ],
+      "zone": "市井",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_024",
+      "pose": "punt",
+      "x": -5.4241,
+      "y": 32.2788,
+      "z": 0.45,
+      "yaw": 3.14159,
+      "speed": 0.0,
+      "swing": [],
+      "zone": "船上",
+      "anim": "none",
+      "on_boat": "boat_ke_b",
+      "surface": "boat"
+    },
+    {
+      "id": "actor_025",
+      "pose": "carry",
+      "x": 2.3597,
+      "y": -2.1491,
+      "z": 5.4033,
+      "yaw": 1.5708,
+      "speed": 0.85,
+      "swing": [
+        "legs"
+      ],
+      "zone": "桥面",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "bridge"
+    },
+    {
+      "id": "actor_026",
+      "pose": "carry",
+      "x": 10.6066,
+      "y": -7.555,
+      "z": 0.0,
+      "yaw": 3.14159,
+      "speed": 0.85,
+      "swing": [
+        "legs"
+      ],
+      "zone": "纤道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_027",
+      "pose": "lead",
+      "x": 14.0578,
+      "y": -17.7822,
+      "z": 0.0,
+      "yaw": 3.14159,
+      "speed": 0.9,
+      "swing": [
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_028",
+      "pose": "lead",
+      "x": 41.5863,
+      "y": 15.956,
+      "z": 0.0,
+      "yaw": 3.14159,
+      "speed": 0.9,
+      "swing": [
+        "legs"
+      ],
+      "zone": "市井",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_029",
+      "pose": "walk",
+      "x": 3.89,
+      "y": 1.8498,
+      "z": 5.0248,
+      "yaw": 1.5708,
+      "speed": 1.05,
+      "swing": [
+        "arms",
+        "legs"
+      ],
+      "zone": "桥面",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "bridge"
+    },
+    {
+      "id": "actor_030",
+      "pose": "walk",
+      "x": -17.6249,
+      "y": -25.439,
+      "z": 0.0,
+      "yaw": 0.0,
+      "speed": 1.05,
+      "swing": [
+        "arms",
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_031",
+      "pose": "walk",
+      "x": 41.3365,
+      "y": -7.6709,
+      "z": 0.0,
+      "yaw": 0.0,
+      "speed": 1.05,
+      "swing": [
+        "arms",
+        "legs"
+      ],
+      "zone": "市井",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_032",
+      "pose": "carry",
+      "x": -4.1456,
+      "y": -1.911,
+      "z": 4.9454,
+      "yaw": -1.5708,
+      "speed": 0.85,
+      "swing": [
+        "legs"
+      ],
+      "zone": "桥面",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "bridge"
+    },
+    {
+      "id": "actor_033",
+      "pose": "carry",
+      "x": -12.3214,
+      "y": 16.4223,
+      "z": 0.0,
+      "yaw": 0.0,
+      "speed": 0.85,
+      "swing": [
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_034",
+      "pose": "vendor",
+      "x": -31.8635,
+      "y": 2.2051,
+      "z": 0.0,
+      "yaw": -1.5708,
+      "speed": 0.0,
+      "swing": [],
+      "zone": "市井",
+      "anim": "none",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_035",
+      "pose": "push",
+      "x": -14.8508,
+      "y": -4.203,
+      "z": 0.2765,
+      "yaw": 3.14159,
+      "speed": 0.75,
+      "swing": [
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_036",
+      "pose": "carry",
+      "x": 32.1448,
+      "y": 1.7289,
+      "z": -0.0,
+      "yaw": 3.14159,
+      "speed": 0.85,
+      "swing": [
+        "legs"
+      ],
+      "zone": "市井",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_037",
+      "pose": "vendor",
+      "x": 19.6044,
+      "y": -27.7151,
+      "z": 0.0,
+      "yaw": 1.5708,
+      "speed": 0.0,
+      "swing": [],
+      "zone": "街道",
+      "anim": "none",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_038",
+      "pose": "push",
+      "x": -28.9523,
+      "y": 5.5988,
+      "z": 0.0,
+      "yaw": 3.14159,
+      "speed": 0.75,
+      "swing": [
+        "legs"
+      ],
+      "zone": "市井",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_039",
+      "pose": "hold",
+      "x": 16.8039,
+      "y": -24.9674,
+      "z": -0.0,
+      "yaw": 0.0,
+      "speed": 0.7,
+      "swing": [
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_040",
+      "pose": "walk",
+      "x": 34.3682,
+      "y": -4.1002,
+      "z": 0.0,
+      "yaw": 0.0,
+      "speed": 1.05,
+      "swing": [
+        "arms",
+        "legs"
+      ],
+      "zone": "市井",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_041",
+      "pose": "lead",
+      "x": -19.0599,
+      "y": -38.2965,
+      "z": 0.0,
+      "yaw": 0.0,
+      "speed": 0.9,
+      "swing": [
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_042",
+      "pose": "vendor",
+      "x": 26.9838,
+      "y": -10.2825,
+      "z": 0.0,
+      "yaw": -1.5708,
+      "speed": 0.0,
+      "swing": [],
+      "zone": "市井",
+      "anim": "none",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_043",
+      "pose": "walk",
+      "x": -13.7122,
+      "y": -9.0984,
+      "z": 0.0,
+      "yaw": 3.14159,
+      "speed": 1.05,
+      "swing": [
+        "arms",
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_044",
+      "pose": "vendor",
+      "x": 21.2871,
+      "y": -4.9591,
+      "z": 0.0,
+      "yaw": -1.5708,
+      "speed": 0.0,
+      "swing": [],
+      "zone": "市井",
+      "anim": "none",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_045",
+      "pose": "carry",
+      "x": -13.9344,
+      "y": 40.6696,
+      "z": 0.0,
+      "yaw": 3.14159,
+      "speed": 0.85,
+      "swing": [
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_046",
+      "pose": "push",
+      "x": 14.3424,
+      "y": -14.6792,
+      "z": 0.0,
+      "yaw": 3.14159,
+      "speed": 0.75,
+      "swing": [
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    },
+    {
+      "id": "actor_047",
+      "pose": "walk",
+      "x": 18.6455,
+      "y": -9.993,
+      "z": 0.0,
+      "yaw": 3.14159,
+      "speed": 1.05,
+      "swing": [
+        "arms",
+        "legs"
+      ],
+      "zone": "街道",
+      "anim": "walk",
+      "on_boat": null,
+      "surface": "terrain"
+    }
+  ]
+}

@@ -1,0 +1,4850 @@
+{
+  "generatedAt": "2026-09-18T11:16:10.273Z",
+  "browser": "Chrome/153.0.8010.37",
+  "gpu": {
+    "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Laptop GPU (0x00002560) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "Google Inc. (NVIDIA)",
+    "isSoftware": false
+  },
+  "viewport": {
+    "width": 1920,
+    "height": 1080,
+    "deviceScaleFactor": 1
+  },
+  "protocol": {
+    "warmupMs": 8000,
+    "measureMs": 8000,
+    "note": "热身数据全部丢弃;frameCost 只含绘制(连渲 150 帧 + 逐帧 gl.finish,串行上界偏保守);bothCost 是逻辑+绘制的一帧 CPU 总量,比门限以它为准;stageCost 逐环节,各环分开测,不能相加当总帧时;pass 分解取逐帧采样中的最坏帧"
+  },
+  "rafFloor": {
+    "runs": [
+      6.1,
+      6.1,
+      6.1,
+      6.1,
+      6.1,
+      6.1,
+      6.1,
+      6.1
+    ],
+    "samples": 199,
+    "p50": 6.1,
+    "min": 6.1,
+    "max": 6.1,
+    "worstMax": 151.5,
+    "note": "空页面 rAF 间隔,重复 8 次。地板会漂,故报全部读数与离散度,不报单一常数"
+  },
+  "thresholds": {
+    "drawcallMain": 220,
+    "drawcallMainMax": 400,
+    "triTotal": 1200000,
+    "triTotalMax": 2500000,
+    "triReflect": 500000,
+    "triShadow": 800000,
+    "programs": 60,
+    "p95": 20,
+    "p95Max": 33,
+    "cpu": 16.7,
+    "cpuMax": 33
+  },
+  "collections": [
+    {
+      "tag": "low/bridge",
+      "url": "http://127.0.0.1:4173/?q=low&hud=0&spot=bridge",
+      "quality": "low",
+      "spot": "bridge",
+      "reflect": null,
+      "frame": {
+        "frames": 1232,
+        "p50": 6.07,
+        "p95": 12.12,
+        "max": 18.11,
+        "avgFps": 153.03,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 489.28,
+        "msPerFrame": 3.26,
+        "p50": 3.27,
+        "p95": 3.73,
+        "max": 3.95,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 713.99,
+        "msPerFrame": 2.97,
+        "p50": 1.42,
+        "p95": 10.84,
+        "max": 20.58,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 1597.89,
+        "msPerFrame": 6.66,
+        "p50": 4.85,
+        "p95": 16.66,
+        "max": 28.51,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 1.45,
+          "p95": 2.45,
+          "share": 0.5914634119009371
+        },
+        {
+          "name": "人物",
+          "ms": 0.98,
+          "p95": 10.18,
+          "share": 0.39634146570462025
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.008130079577167559
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.02,
+          "share": 0.004065042817275068
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 150,
+          "triangles": 119964
+        },
+        "shadow": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "reflection": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "main": {
+          "calls": 150,
+          "triangles": 119964
+        },
+        "shadowRenders": 1,
+        "reflectionRenders": 0,
+        "memory": {
+          "textures": 110,
+          "geometries": 138
+        },
+        "programs": 13
+      },
+      "passAvg": {
+        "total": {
+          "calls": 150,
+          "triangles": 119964
+        },
+        "shadow": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "reflection": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "main": {
+          "calls": 150,
+          "triangles": 119964
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 1,
+      "reflectionRenders": 0,
+      "reflectionFrames": 0,
+      "memory": {
+        "textures": 110,
+        "geometries": 138
+      },
+      "programs": 13,
+      "qualityState": "low",
+      "river": {
+        "mounted": true,
+        "enabled": false,
+        "rtSize": [
+          512,
+          256
+        ],
+        "everyNFrames": 3,
+        "reflectionPasses": 0,
+        "skippedPasses": 0,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 0,
+        "birds": 0,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 0,
+        "time": 30.330279999998297
+      }
+    },
+    {
+      "tag": "low/boat",
+      "url": "http://127.0.0.1:4173/?q=low&hud=0&spot=boat",
+      "quality": "low",
+      "spot": "boat",
+      "reflect": null,
+      "frame": {
+        "frames": 1295,
+        "p50": 6.06,
+        "p95": 6.14,
+        "max": 17.95,
+        "avgFps": 163.92,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 248.39,
+        "msPerFrame": 1.66,
+        "p50": 1.64,
+        "p95": 2.2,
+        "max": 3.17,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 715.46,
+        "msPerFrame": 2.98,
+        "p50": 1.39,
+        "p95": 12.39,
+        "max": 25.02,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 1282.51,
+        "msPerFrame": 5.34,
+        "p50": 4.03,
+        "p95": 12.74,
+        "max": 24.83,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 2.18,
+          "p95": 2.9,
+          "share": 0.7242524927798553
+        },
+        {
+          "name": "人物",
+          "ms": 0.8,
+          "p95": 9.91,
+          "share": 0.26411960145225627
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.00664451687442887
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.02,
+          "p95": 0.02,
+          "share": 0.004983388893459623
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 149,
+          "triangles": 109828
+        },
+        "shadow": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "reflection": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "main": {
+          "calls": 149,
+          "triangles": 109828
+        },
+        "shadowRenders": 1,
+        "reflectionRenders": 0,
+        "memory": {
+          "textures": 109,
+          "geometries": 138
+        },
+        "programs": 13
+      },
+      "passAvg": {
+        "total": {
+          "calls": 149,
+          "triangles": 109828
+        },
+        "shadow": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "reflection": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "main": {
+          "calls": 149,
+          "triangles": 109828
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 1,
+      "reflectionRenders": 0,
+      "reflectionFrames": 0,
+      "memory": {
+        "textures": 109,
+        "geometries": 138
+      },
+      "programs": 13,
+      "qualityState": "low",
+      "river": {
+        "mounted": true,
+        "enabled": false,
+        "rtSize": [
+          512,
+          256
+        ],
+        "everyNFrames": 3,
+        "reflectionPasses": 0,
+        "skippedPasses": 0,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 0,
+        "birds": 0,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 0,
+        "time": 30.35100500000429
+      }
+    },
+    {
+      "tag": "low/teahouse",
+      "url": "http://127.0.0.1:4173/?q=low&hud=0&spot=teahouse",
+      "quality": "low",
+      "spot": "teahouse",
+      "reflect": null,
+      "frame": {
+        "frames": 1317,
+        "p50": 6.06,
+        "p95": 6.11,
+        "max": 12.13,
+        "avgFps": 164.19,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 87,
+        "msPerFrame": 0.58,
+        "p50": 0.59,
+        "p95": 0.71,
+        "max": 0.85,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 482.93,
+        "msPerFrame": 2.01,
+        "p50": 1.12,
+        "p95": 6.56,
+        "max": 8.37,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 647.56,
+        "msPerFrame": 2.7,
+        "p50": 1.6,
+        "p95": 7.58,
+        "max": 11.24,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "人物",
+          "ms": 0.73,
+          "p95": 7.17,
+          "share": 0.5404411762691776
+        },
+        {
+          "name": "绘制",
+          "ms": 0.59,
+          "p95": 0.72,
+          "share": 0.437499999315204
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.014705879291500187
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.02,
+          "share": 0.0073529451241181815
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 37,
+          "triangles": 40816
+        },
+        "shadow": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "reflection": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "main": {
+          "calls": 37,
+          "triangles": 40816
+        },
+        "shadowRenders": 1,
+        "reflectionRenders": 0,
+        "memory": {
+          "textures": 40,
+          "geometries": 48
+        },
+        "programs": 13
+      },
+      "passAvg": {
+        "total": {
+          "calls": 37,
+          "triangles": 40816
+        },
+        "shadow": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "reflection": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "main": {
+          "calls": 37,
+          "triangles": 40816
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 1,
+      "reflectionRenders": 0,
+      "reflectionFrames": 0,
+      "memory": {
+        "textures": 40,
+        "geometries": 48
+      },
+      "programs": 13,
+      "qualityState": "low",
+      "river": {
+        "mounted": true,
+        "enabled": false,
+        "rtSize": [
+          512,
+          256
+        ],
+        "everyNFrames": 3,
+        "reflectionPasses": 0,
+        "skippedPasses": 0,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 0,
+        "birds": 0,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 0,
+        "time": 30.269284999996593
+      }
+    },
+    {
+      "tag": "low/gate",
+      "url": "http://127.0.0.1:4173/?q=low&hud=0&spot=gate",
+      "quality": "low",
+      "spot": "gate",
+      "reflect": null,
+      "frame": {
+        "frames": 1314,
+        "p50": 6.06,
+        "p95": 6.14,
+        "max": 12.94,
+        "avgFps": 164.19,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 84.33,
+        "msPerFrame": 0.56,
+        "p50": 0.56,
+        "p95": 0.72,
+        "max": 0.8,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 488.05,
+        "msPerFrame": 2.03,
+        "p50": 1.21,
+        "p95": 6.72,
+        "max": 14.23,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 631.88,
+        "msPerFrame": 2.63,
+        "p50": 1.53,
+        "p95": 7.65,
+        "max": 15.91,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "人物",
+          "ms": 0.97,
+          "p95": 7.31,
+          "share": 0.6178343910958938
+        },
+        {
+          "name": "绘制",
+          "ms": 0.57,
+          "p95": 0.72,
+          "share": 0.36305731849315626
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.04,
+          "share": 0.012738860273966673
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.02,
+          "share": 0.006369430136983337
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 23,
+          "triangles": 29556
+        },
+        "shadow": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "reflection": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "main": {
+          "calls": 23,
+          "triangles": 29556
+        },
+        "shadowRenders": 1,
+        "reflectionRenders": 0,
+        "memory": {
+          "textures": 35,
+          "geometries": 33
+        },
+        "programs": 13
+      },
+      "passAvg": {
+        "total": {
+          "calls": 23,
+          "triangles": 29556
+        },
+        "shadow": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "reflection": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "main": {
+          "calls": 23,
+          "triangles": 29556
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 1,
+      "reflectionRenders": 0,
+      "reflectionFrames": 0,
+      "memory": {
+        "textures": 35,
+        "geometries": 33
+      },
+      "programs": 13,
+      "qualityState": "low",
+      "river": {
+        "mounted": true,
+        "enabled": false,
+        "rtSize": [
+          512,
+          256
+        ],
+        "everyNFrames": 3,
+        "reflectionPasses": 0,
+        "skippedPasses": 0,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 0,
+        "birds": 0,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 0,
+        "time": 30.25465499999593
+      }
+    },
+    {
+      "tag": "low/market",
+      "url": "http://127.0.0.1:4173/?q=low&hud=0&spot=market",
+      "quality": "low",
+      "spot": "market",
+      "reflect": null,
+      "frame": {
+        "frames": 1312,
+        "p50": 6.06,
+        "p95": 6.11,
+        "max": 13.56,
+        "avgFps": 164.19,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 118.29,
+        "msPerFrame": 0.79,
+        "p50": 0.8,
+        "p95": 0.99,
+        "max": 1.11,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 481.88,
+        "msPerFrame": 2.01,
+        "p50": 1.03,
+        "p95": 6.72,
+        "max": 9.2,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 739.15,
+        "msPerFrame": 3.08,
+        "p50": 1.99,
+        "p95": 8.83,
+        "max": 15.73,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 0.83,
+          "p95": 1.03,
+          "share": 0.5460526319014275
+        },
+        {
+          "name": "人物",
+          "ms": 0.66,
+          "p95": 7.24,
+          "share": 0.434210525154861
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.013157892028009125
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.02,
+          "share": 0.006578950915702337
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 62,
+          "triangles": 54556
+        },
+        "shadow": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "reflection": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "main": {
+          "calls": 62,
+          "triangles": 54556
+        },
+        "shadowRenders": 1,
+        "reflectionRenders": 0,
+        "memory": {
+          "textures": 62,
+          "geometries": 73
+        },
+        "programs": 13
+      },
+      "passAvg": {
+        "total": {
+          "calls": 61.8,
+          "triangles": 54548
+        },
+        "shadow": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "reflection": {
+          "calls": 0,
+          "triangles": 0
+        },
+        "main": {
+          "calls": 61.8,
+          "triangles": 54548
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 1,
+      "reflectionRenders": 0,
+      "reflectionFrames": 0,
+      "memory": {
+        "textures": 62,
+        "geometries": 73
+      },
+      "programs": 13,
+      "qualityState": "low",
+      "river": {
+        "mounted": true,
+        "enabled": false,
+        "rtSize": [
+          512,
+          256
+        ],
+        "everyNFrames": 3,
+        "reflectionPasses": 0,
+        "skippedPasses": 0,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 0,
+        "birds": 0,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 0,
+        "time": 30.28373999999713
+      }
+    },
+    {
+      "tag": "mid/bridge",
+      "url": "http://127.0.0.1:4173/?q=mid&hud=0&spot=bridge",
+      "quality": "mid",
+      "spot": "bridge",
+      "reflect": null,
+      "frame": {
+        "frames": 1230,
+        "p50": 6.06,
+        "p95": 12.1,
+        "max": 18.2,
+        "avgFps": 154.22,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 602.33,
+        "msPerFrame": 4.02,
+        "p50": 3.34,
+        "p95": 6.48,
+        "max": 7.52,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 453.75,
+        "msPerFrame": 1.89,
+        "p50": 0.84,
+        "p95": 6.5,
+        "max": 8.42,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 1450.47,
+        "msPerFrame": 6.04,
+        "p50": 5.64,
+        "p95": 10.55,
+        "max": 15.21,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 3.04,
+          "p95": 5.9,
+          "share": 0.7937336827420913
+        },
+        {
+          "name": "人物",
+          "ms": 0.76,
+          "p95": 6.51,
+          "share": 0.1984334187402015
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.005221931048257244
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.02,
+          "share": 0.0026109674694499347
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 508,
+          "triangles": 393214
+        },
+        "shadow": {
+          "calls": 215,
+          "triangles": 166928
+        },
+        "reflection": {
+          "calls": 141,
+          "triangles": 106184
+        },
+        "main": {
+          "calls": 152,
+          "triangles": 120102
+        },
+        "shadowRenders": 2,
+        "reflectionRenders": 1,
+        "memory": {
+          "textures": 118,
+          "geometries": 231
+        },
+        "programs": 21
+      },
+      "passAvg": {
+        "total": {
+          "calls": 402.3,
+          "triangles": 313576
+        },
+        "shadow": {
+          "calls": 215,
+          "triangles": 166928
+        },
+        "reflection": {
+          "calls": 35.3,
+          "triangles": 26546
+        },
+        "main": {
+          "calls": 152,
+          "triangles": 120102
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 2,
+      "reflectionRenders": 1,
+      "reflectionFrames": 6,
+      "memory": {
+        "textures": 118,
+        "geometries": 231
+      },
+      "programs": 21,
+      "qualityState": "mid",
+      "river": {
+        "mounted": true,
+        "enabled": true,
+        "rtSize": [
+          512,
+          256
+        ],
+        "everyNFrames": 3,
+        "reflectionPasses": 1187,
+        "skippedPasses": 2372,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 64,
+        "birds": 5,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 0.5,
+        "time": 30.299485000003653
+      }
+    },
+    {
+      "tag": "mid/boat",
+      "url": "http://127.0.0.1:4173/?q=mid&hud=0&spot=boat",
+      "quality": "mid",
+      "spot": "boat",
+      "reflect": null,
+      "frame": {
+        "frames": 1243,
+        "p50": 6.06,
+        "p95": 12.07,
+        "max": 18.17,
+        "avgFps": 155.92,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 584.52,
+        "msPerFrame": 3.9,
+        "p50": 3.13,
+        "p95": 6.59,
+        "max": 7.67,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 507.76,
+        "msPerFrame": 2.12,
+        "p50": 0.9,
+        "p95": 8.79,
+        "max": 15.41,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 1441.03,
+        "msPerFrame": 6,
+        "p50": 5.83,
+        "p95": 12.13,
+        "max": 16.91,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 3.4,
+          "p95": 7.39,
+          "share": 0.8270401966572851
+        },
+        {
+          "name": "人物",
+          "ms": 0.68,
+          "p95": 6.7,
+          "share": 0.1656516422802055
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.04,
+          "share": 0.004872109795008047
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.02,
+          "share": 0.0024360512675013005
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 513,
+          "triangles": 372322
+        },
+        "shadow": {
+          "calls": 215,
+          "triangles": 166928
+        },
+        "reflection": {
+          "calls": 147,
+          "triangles": 95428
+        },
+        "main": {
+          "calls": 151,
+          "triangles": 109966
+        },
+        "shadowRenders": 2,
+        "reflectionRenders": 1,
+        "memory": {
+          "textures": 114,
+          "geometries": 233
+        },
+        "programs": 21
+      },
+      "passAvg": {
+        "total": {
+          "calls": 427.3,
+          "triangles": 316656
+        },
+        "shadow": {
+          "calls": 215,
+          "triangles": 166928
+        },
+        "reflection": {
+          "calls": 61.3,
+          "triangles": 39762
+        },
+        "main": {
+          "calls": 151,
+          "triangles": 109966
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 2,
+      "reflectionRenders": 1,
+      "reflectionFrames": 10,
+      "memory": {
+        "textures": 114,
+        "geometries": 233
+      },
+      "programs": 21,
+      "qualityState": "mid",
+      "river": {
+        "mounted": true,
+        "enabled": true,
+        "rtSize": [
+          512,
+          256
+        ],
+        "everyNFrames": 3,
+        "reflectionPasses": 1196,
+        "skippedPasses": 2391,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 64,
+        "birds": 5,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 0.5,
+        "time": 30.312179999995944
+      }
+    },
+    {
+      "tag": "mid/teahouse",
+      "url": "http://127.0.0.1:4173/?q=mid&hud=0&spot=teahouse",
+      "quality": "mid",
+      "spot": "teahouse",
+      "reflect": null,
+      "frame": {
+        "frames": 1312,
+        "p50": 6.06,
+        "p95": 6.12,
+        "max": 12.13,
+        "avgFps": 163.93,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 299.8,
+        "msPerFrame": 2,
+        "p50": 1.91,
+        "p95": 3,
+        "max": 3.31,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 469.77,
+        "msPerFrame": 1.96,
+        "p50": 1.01,
+        "p95": 7.09,
+        "max": 12.58,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 1010.9,
+        "msPerFrame": 4.21,
+        "p50": 3.25,
+        "p95": 10.83,
+        "max": 15.96,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 1.68,
+          "p95": 2.76,
+          "share": 0.6942148784757043
+        },
+        {
+          "name": "人物",
+          "ms": 0.71,
+          "p95": 6.34,
+          "share": 0.2933884268259792
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.008264461079709445
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.03,
+          "share": 0.004132233618607034
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 287,
+          "triangles": 234318
+        },
+        "shadow": {
+          "calls": 215,
+          "triangles": 166704
+        },
+        "reflection": {
+          "calls": 33,
+          "triangles": 26660
+        },
+        "main": {
+          "calls": 39,
+          "triangles": 40954
+        },
+        "shadowRenders": 2,
+        "reflectionRenders": 1,
+        "memory": {
+          "textures": 51,
+          "geometries": 230
+        },
+        "programs": 18
+      },
+      "passAvg": {
+        "total": {
+          "calls": 263.6,
+          "triangles": 215434
+        },
+        "shadow": {
+          "calls": 215,
+          "triangles": 166704
+        },
+        "reflection": {
+          "calls": 9.6,
+          "triangles": 7776
+        },
+        "main": {
+          "calls": 39,
+          "triangles": 40954
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 2,
+      "reflectionRenders": 1,
+      "reflectionFrames": 7,
+      "memory": {
+        "textures": 51,
+        "geometries": 230
+      },
+      "programs": 18,
+      "qualityState": "mid",
+      "river": {
+        "mounted": true,
+        "enabled": true,
+        "rtSize": [
+          512,
+          256
+        ],
+        "everyNFrames": 3,
+        "reflectionPasses": 1248,
+        "skippedPasses": 2495,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 64,
+        "birds": 5,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 0.5,
+        "time": 30.254354999998373
+      }
+    },
+    {
+      "tag": "mid/gate",
+      "url": "http://127.0.0.1:4173/?q=mid&hud=0&spot=gate",
+      "quality": "mid",
+      "spot": "gate",
+      "reflect": null,
+      "frame": {
+        "frames": 1311,
+        "p50": 6.06,
+        "p95": 6.16,
+        "max": 12.27,
+        "avgFps": 163.65,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 254.92,
+        "msPerFrame": 1.7,
+        "p50": 1.57,
+        "p95": 2.48,
+        "max": 2.81,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 486.67,
+        "msPerFrame": 2.03,
+        "p50": 1.02,
+        "p95": 7.18,
+        "max": 13.86,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 943.28,
+        "msPerFrame": 3.93,
+        "p50": 2.85,
+        "p95": 8.97,
+        "max": 21.23,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 1.54,
+          "p95": 2.42,
+          "share": 0.6769230780315318
+        },
+        {
+          "name": "人物",
+          "ms": 0.7,
+          "p95": 6.54,
+          "share": 0.3098901082922073
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.008791206934186896
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.02,
+          "share": 0.004395606742073922
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 258,
+          "triangles": 211186
+        },
+        "shadow": {
+          "calls": 215,
+          "triangles": 167064
+        },
+        "reflection": {
+          "calls": 18,
+          "triangles": 14428
+        },
+        "main": {
+          "calls": 25,
+          "triangles": 29694
+        },
+        "shadowRenders": 2,
+        "reflectionRenders": 1,
+        "memory": {
+          "textures": 44,
+          "geometries": 230
+        },
+        "programs": 17
+      },
+      "passAvg": {
+        "total": {
+          "calls": 247.5,
+          "triangles": 202770
+        },
+        "shadow": {
+          "calls": 215,
+          "triangles": 167064
+        },
+        "reflection": {
+          "calls": 7.5,
+          "triangles": 6012
+        },
+        "main": {
+          "calls": 25,
+          "triangles": 29694
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 2,
+      "reflectionRenders": 1,
+      "reflectionFrames": 10,
+      "memory": {
+        "textures": 44,
+        "geometries": 230
+      },
+      "programs": 17,
+      "qualityState": "mid",
+      "river": {
+        "mounted": true,
+        "enabled": true,
+        "rtSize": [
+          512,
+          256
+        ],
+        "everyNFrames": 3,
+        "reflectionPasses": 1251,
+        "skippedPasses": 2502,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 64,
+        "birds": 5,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 0.5,
+        "time": 30.297264999996568
+      }
+    },
+    {
+      "tag": "mid/market",
+      "url": "http://127.0.0.1:4173/?q=mid&hud=0&spot=market",
+      "quality": "mid",
+      "spot": "market",
+      "reflect": null,
+      "frame": {
+        "frames": 1308,
+        "p50": 6.06,
+        "p95": 6.11,
+        "max": 12.15,
+        "avgFps": 163.92,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 355.62,
+        "msPerFrame": 2.37,
+        "p50": 2.06,
+        "p95": 3.64,
+        "max": 4.3,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 450.77,
+        "msPerFrame": 1.88,
+        "p50": 0.78,
+        "p95": 6.9,
+        "max": 11.21,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 1115.75,
+        "msPerFrame": 4.65,
+        "p50": 3.71,
+        "p95": 10.87,
+        "max": 16.63,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 2.03,
+          "p95": 3.84,
+          "share": 0.7593283548479782
+        },
+        {
+          "name": "人物",
+          "ms": 0.62,
+          "p95": 6.88,
+          "share": 0.22947761488634005
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.007462684990409546
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.02,
+          "share": 0.0037313452752721524
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 336,
+          "triangles": 260986
+        },
+        "shadow": {
+          "calls": 215,
+          "triangles": 166864
+        },
+        "reflection": {
+          "calls": 57,
+          "triangles": 39428
+        },
+        "main": {
+          "calls": 64,
+          "triangles": 54694
+        },
+        "shadowRenders": 2,
+        "reflectionRenders": 1,
+        "memory": {
+          "textures": 70,
+          "geometries": 232
+        },
+        "programs": 21
+      },
+      "passAvg": {
+        "total": {
+          "calls": 295.3,
+          "triangles": 233046
+        },
+        "shadow": {
+          "calls": 215,
+          "triangles": 166864
+        },
+        "reflection": {
+          "calls": 16.5,
+          "triangles": 11497
+        },
+        "main": {
+          "calls": 63.7,
+          "triangles": 54685
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 2,
+      "reflectionRenders": 1,
+      "reflectionFrames": 7,
+      "memory": {
+        "textures": 70,
+        "geometries": 232
+      },
+      "programs": 21,
+      "qualityState": "mid",
+      "river": {
+        "mounted": true,
+        "enabled": true,
+        "rtSize": [
+          512,
+          256
+        ],
+        "everyNFrames": 3,
+        "reflectionPasses": 1248,
+        "skippedPasses": 2494,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 64,
+        "birds": 5,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 0.5,
+        "time": 30.310829999997793
+      }
+    },
+    {
+      "tag": "high/bridge",
+      "url": "http://127.0.0.1:4173/?q=high&hud=0&spot=bridge",
+      "quality": "high",
+      "spot": "bridge",
+      "reflect": null,
+      "frame": {
+        "frames": 917,
+        "p50": 6.09,
+        "p95": 12.17,
+        "max": 18.19,
+        "avgFps": 116.48,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 973.28,
+        "msPerFrame": 6.49,
+        "p50": 6.35,
+        "p95": 7.78,
+        "max": 9.43,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 497.52,
+        "msPerFrame": 2.07,
+        "p50": 0.95,
+        "p95": 7.02,
+        "max": 12.91,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 2036.46,
+        "msPerFrame": 8.49,
+        "p50": 7.68,
+        "p95": 13.34,
+        "max": 15.7,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 5.93,
+          "p95": 6.99,
+          "share": 0.891810668626434
+        },
+        {
+          "name": "人物",
+          "ms": 0.69,
+          "p95": 5.89,
+          "share": 0.10368144237974308
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.0030052585828511135
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.02,
+          "share": 0.0015026304109718547
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 516,
+          "triangles": 395418
+        },
+        "shadow": {
+          "calls": 223,
+          "triangles": 168996
+        },
+        "reflection": {
+          "calls": 141,
+          "triangles": 106184
+        },
+        "main": {
+          "calls": 152,
+          "triangles": 120238
+        },
+        "shadowRenders": 2,
+        "reflectionRenders": 1,
+        "memory": {
+          "textures": 121,
+          "geometries": 231
+        },
+        "programs": 21
+      },
+      "passAvg": {
+        "total": {
+          "calls": 516,
+          "triangles": 395418
+        },
+        "shadow": {
+          "calls": 223,
+          "triangles": 168996
+        },
+        "reflection": {
+          "calls": 141,
+          "triangles": 106184
+        },
+        "main": {
+          "calls": 152,
+          "triangles": 120238
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 2,
+      "reflectionRenders": 1,
+      "reflectionFrames": 24,
+      "memory": {
+        "textures": 121,
+        "geometries": 231
+      },
+      "programs": 21,
+      "qualityState": "high",
+      "river": {
+        "mounted": true,
+        "enabled": true,
+        "rtSize": [
+          1024,
+          512
+        ],
+        "everyNFrames": 1,
+        "reflectionPasses": 2856,
+        "skippedPasses": 0,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 128,
+        "birds": 9,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 1,
+        "time": 30.385669999999326
+      }
+    },
+    {
+      "tag": "high/boat",
+      "url": "http://127.0.0.1:4173/?q=high&hud=0&spot=boat",
+      "quality": "high",
+      "spot": "boat",
+      "reflect": null,
+      "frame": {
+        "frames": 909,
+        "p50": 6.1,
+        "p95": 12.19,
+        "max": 24.24,
+        "avgFps": 113.28,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 932.54,
+        "msPerFrame": 6.22,
+        "p50": 6.21,
+        "p95": 7.05,
+        "max": 7.88,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 462.97,
+        "msPerFrame": 1.93,
+        "p50": 1,
+        "p95": 6.53,
+        "max": 10.84,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 2010.4,
+        "msPerFrame": 8.38,
+        "p50": 7.48,
+        "p95": 13.05,
+        "max": 20.68,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 6.08,
+          "p95": 7.08,
+          "share": 0.889539139326891
+        },
+        {
+          "name": "人物",
+          "ms": 0.72,
+          "p95": 6.66,
+          "share": 0.10607168929269745
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.0029261149803163837
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.02,
+          "share": 0.0014630564000951895
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 521,
+          "triangles": 374590
+        },
+        "shadow": {
+          "calls": 223,
+          "triangles": 169060
+        },
+        "reflection": {
+          "calls": 147,
+          "triangles": 95428
+        },
+        "main": {
+          "calls": 151,
+          "triangles": 110102
+        },
+        "shadowRenders": 2,
+        "reflectionRenders": 1,
+        "memory": {
+          "textures": 117,
+          "geometries": 233
+        },
+        "programs": 21
+      },
+      "passAvg": {
+        "total": {
+          "calls": 521,
+          "triangles": 374590
+        },
+        "shadow": {
+          "calls": 223,
+          "triangles": 169060
+        },
+        "reflection": {
+          "calls": 147,
+          "triangles": 95428
+        },
+        "main": {
+          "calls": 151,
+          "triangles": 110102
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 2,
+      "reflectionRenders": 1,
+      "reflectionFrames": 24,
+      "memory": {
+        "textures": 117,
+        "geometries": 233
+      },
+      "programs": 21,
+      "qualityState": "high",
+      "river": {
+        "mounted": true,
+        "enabled": true,
+        "rtSize": [
+          1024,
+          512
+        ],
+        "everyNFrames": 1,
+        "reflectionPasses": 2887,
+        "skippedPasses": 0,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 128,
+        "birds": 9,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 1,
+        "time": 30.375174999994588
+      }
+    },
+    {
+      "tag": "high/teahouse",
+      "url": "http://127.0.0.1:4173/?q=high&hud=0&spot=teahouse",
+      "quality": "high",
+      "spot": "teahouse",
+      "reflect": null,
+      "frame": {
+        "frames": 1253,
+        "p50": 6.06,
+        "p95": 8.4,
+        "max": 24.23,
+        "avgFps": 156.91,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 466.28,
+        "msPerFrame": 3.11,
+        "p50": 3.08,
+        "p95": 3.86,
+        "max": 4.4,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 496.31,
+        "msPerFrame": 2.07,
+        "p50": 0.83,
+        "p95": 7.75,
+        "max": 15.3,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 1321.51,
+        "msPerFrame": 5.51,
+        "p50": 4.33,
+        "p95": 12.88,
+        "max": 18.77,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 2.64,
+          "p95": 3.2,
+          "share": 0.7883755601448664
+        },
+        {
+          "name": "人物",
+          "ms": 0.67,
+          "p95": 6.71,
+          "share": 0.19970193857845267
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.03,
+          "p95": 0.04,
+          "share": 0.008941873736771267
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.02,
+          "share": 0.0029806275399095958
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 295,
+          "triangles": 236150
+        },
+        "shadow": {
+          "calls": 223,
+          "triangles": 168400
+        },
+        "reflection": {
+          "calls": 33,
+          "triangles": 26660
+        },
+        "main": {
+          "calls": 39,
+          "triangles": 41090
+        },
+        "shadowRenders": 2,
+        "reflectionRenders": 1,
+        "memory": {
+          "textures": 59,
+          "geometries": 230
+        },
+        "programs": 18
+      },
+      "passAvg": {
+        "total": {
+          "calls": 295,
+          "triangles": 236150
+        },
+        "shadow": {
+          "calls": 223,
+          "triangles": 168400
+        },
+        "reflection": {
+          "calls": 33,
+          "triangles": 26660
+        },
+        "main": {
+          "calls": 39,
+          "triangles": 41090
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 2,
+      "reflectionRenders": 1,
+      "reflectionFrames": 24,
+      "memory": {
+        "textures": 59,
+        "geometries": 230
+      },
+      "programs": 18,
+      "qualityState": "high",
+      "river": {
+        "mounted": true,
+        "enabled": true,
+        "rtSize": [
+          1024,
+          512
+        ],
+        "everyNFrames": 1,
+        "reflectionPasses": 3675,
+        "skippedPasses": 0,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 128,
+        "birds": 9,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 1,
+        "time": 30.310880000000058
+      }
+    },
+    {
+      "tag": "high/gate",
+      "url": "http://127.0.0.1:4173/?q=high&hud=0&spot=gate",
+      "quality": "high",
+      "spot": "gate",
+      "reflect": null,
+      "frame": {
+        "frames": 1312,
+        "p50": 6.06,
+        "p95": 6.13,
+        "max": 12.23,
+        "avgFps": 163.65,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 362.73,
+        "msPerFrame": 2.42,
+        "p50": 2.39,
+        "p95": 2.88,
+        "max": 3.4,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 477.57,
+        "msPerFrame": 1.99,
+        "p50": 1.18,
+        "p95": 6.44,
+        "max": 13.87,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 1041.93,
+        "msPerFrame": 4.34,
+        "p50": 3.53,
+        "p95": 8.85,
+        "max": 14.53,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 2.34,
+          "p95": 2.8,
+          "share": 0.7588996751112849
+        },
+        {
+          "name": "人物",
+          "ms": 0.72,
+          "p95": 6.45,
+          "share": 0.23139158665008347
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.006472490551627002
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.01,
+          "p95": 0.02,
+          "share": 0.0032362476870046297
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 266,
+          "triangles": 213454
+        },
+        "shadow": {
+          "calls": 223,
+          "triangles": 169196
+        },
+        "reflection": {
+          "calls": 18,
+          "triangles": 14428
+        },
+        "main": {
+          "calls": 25,
+          "triangles": 29830
+        },
+        "shadowRenders": 2,
+        "reflectionRenders": 1,
+        "memory": {
+          "textures": 52,
+          "geometries": 232
+        },
+        "programs": 17
+      },
+      "passAvg": {
+        "total": {
+          "calls": 266,
+          "triangles": 213454
+        },
+        "shadow": {
+          "calls": 223,
+          "triangles": 169196
+        },
+        "reflection": {
+          "calls": 18,
+          "triangles": 14428
+        },
+        "main": {
+          "calls": 25,
+          "triangles": 29830
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 2,
+      "reflectionRenders": 1,
+      "reflectionFrames": 24,
+      "memory": {
+        "textures": 52,
+        "geometries": 232
+      },
+      "programs": 17,
+      "qualityState": "high",
+      "river": {
+        "mounted": true,
+        "enabled": true,
+        "rtSize": [
+          1024,
+          512
+        ],
+        "everyNFrames": 1,
+        "reflectionPasses": 3741,
+        "skippedPasses": 0,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 128,
+        "birds": 9,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 1,
+        "time": 30.267805000006106
+      }
+    },
+    {
+      "tag": "high/market",
+      "url": "http://127.0.0.1:4173/?q=high&hud=0&spot=market",
+      "quality": "high",
+      "spot": "market",
+      "reflect": null,
+      "frame": {
+        "frames": 1268,
+        "p50": 6.06,
+        "p95": 6.47,
+        "max": 12.18,
+        "avgFps": 160.73,
+        "windowMs": 8000,
+        "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+      },
+      "frameCost": {
+        "frames": 150,
+        "totalMs": 545.51,
+        "msPerFrame": 3.64,
+        "p50": 3.58,
+        "p95": 4.25,
+        "max": 5.55,
+        "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+      },
+      "logicCost": {
+        "frames": 240,
+        "totalMs": 474.45,
+        "msPerFrame": 1.98,
+        "p50": 0.81,
+        "p95": 7.33,
+        "max": 14.68,
+        "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+      },
+      "bothCost": {
+        "frames": 240,
+        "totalMs": 1530.08,
+        "msPerFrame": 6.38,
+        "p50": 5.31,
+        "p95": 12.26,
+        "max": 22.6,
+        "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+      },
+      "stageCost": [
+        {
+          "name": "绘制",
+          "ms": 3.61,
+          "p95": 4.27,
+          "share": 0.85935637909867
+        },
+        {
+          "name": "人物",
+          "ms": 0.55,
+          "p95": 6.83,
+          "share": 0.13110846196842157
+        },
+        {
+          "name": "道具风动",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.004767579466454172
+        },
+        {
+          "name": "界面更新",
+          "ms": 0.02,
+          "p95": 0.03,
+          "share": 0.004767579466454172
+        },
+        {
+          "name": "天空/时辰",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "相机",
+          "ms": 0,
+          "p95": 0.01,
+          "share": 0
+        },
+        {
+          "name": "配乐",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "水面",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        },
+        {
+          "name": "氛围粒子",
+          "ms": 0,
+          "p95": 0,
+          "share": 0
+        }
+      ],
+      "passWorst": {
+        "total": {
+          "calls": 339,
+          "triangles": 261942
+        },
+        "shadow": {
+          "calls": 218,
+          "triangles": 167684
+        },
+        "reflection": {
+          "calls": 57,
+          "triangles": 39428
+        },
+        "main": {
+          "calls": 64,
+          "triangles": 54830
+        },
+        "shadowRenders": 2,
+        "reflectionRenders": 1,
+        "memory": {
+          "textures": 73,
+          "geometries": 232
+        },
+        "programs": 21
+      },
+      "passAvg": {
+        "total": {
+          "calls": 338.5,
+          "triangles": 261925
+        },
+        "shadow": {
+          "calls": 218,
+          "triangles": 167684
+        },
+        "reflection": {
+          "calls": 56.8,
+          "triangles": 39420
+        },
+        "main": {
+          "calls": 63.7,
+          "triangles": 54821
+        }
+      },
+      "passSampleCount": 24,
+      "shadowRenders": 2,
+      "reflectionRenders": 1,
+      "reflectionFrames": 24,
+      "memory": {
+        "textures": 73,
+        "geometries": 232
+      },
+      "programs": 21,
+      "qualityState": "high",
+      "river": {
+        "mounted": true,
+        "enabled": true,
+        "rtSize": [
+          1024,
+          512
+        ],
+        "everyNFrames": 1,
+        "reflectionPasses": 3566,
+        "skippedPasses": 0,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "actorsCount": null,
+      "fx": {
+        "mounted": true,
+        "puffs": 128,
+        "birds": 9,
+        "emitters": [
+          {
+            "from": "shop_e0_1_cha_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              -34.668946266174316
+            ]
+          },
+          {
+            "from": "shop_e0_0_lou_roof",
+            "at": [
+              25.59999942779541,
+              8.824999809265137,
+              -20.71574878692627
+            ]
+          },
+          {
+            "from": "shop_w0_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              -37.31562519073486
+            ]
+          },
+          {
+            "from": "shop_e1_0_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              45.762916564941406
+            ]
+          },
+          {
+            "from": "shop_e1_1_roof",
+            "at": [
+              24.962499618530273,
+              6.667500019073486,
+              22.325013637542725
+            ]
+          },
+          {
+            "from": "shop_w1_1_roof",
+            "at": [
+              -24.962499618530273,
+              6.667500019073486,
+              31.514917373657227
+            ]
+          },
+          {
+            "from": "boat_ke_a_cover",
+            "at": [
+              6.449999630048446,
+              0.971188485622406,
+              -21.549999982118607
+            ]
+          },
+          {
+            "from": "boat_ke_b_cover",
+            "at": [
+              -6.300000369951554,
+              0.971188485622406,
+              -35.04999998211861
+            ]
+          }
+        ],
+        "birdBand": {
+          "center": [
+            0,
+            5
+          ],
+          "rMin": 45,
+          "rMax": 80,
+          "yMin": 9,
+          "yMax": 18
+        },
+        "warnings": [],
+        "effectsRatio": 1,
+        "time": 30.26264499999833
+      }
+    }
+  ],
+  "reflectionAB": [
+    {
+      "quality": "high",
+      "spot": "bridge",
+      "on": {
+        "tag": "high/bridge/reflect=1",
+        "url": "http://127.0.0.1:4173/?q=high&hud=0&spot=bridge&reflect=1",
+        "quality": "high",
+        "spot": "bridge",
+        "reflect": "1",
+        "frame": {
+          "frames": 862,
+          "p50": 6.13,
+          "p95": 12.59,
+          "max": 24.25,
+          "avgFps": 108.09,
+          "windowMs": 8000,
+          "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+        },
+        "frameCost": {
+          "frames": 150,
+          "totalMs": 1022.22,
+          "msPerFrame": 6.81,
+          "p50": 6.7,
+          "p95": 8.02,
+          "max": 10.83,
+          "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+        },
+        "logicCost": {
+          "frames": 240,
+          "totalMs": 480.95,
+          "msPerFrame": 2,
+          "p50": 0.86,
+          "p95": 6.99,
+          "max": 16.92,
+          "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+        },
+        "bothCost": {
+          "frames": 240,
+          "totalMs": 2166.73,
+          "msPerFrame": 9.03,
+          "p50": 8.01,
+          "p95": 14.17,
+          "max": 26.33,
+          "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+        },
+        "stageCost": [
+          {
+            "name": "绘制",
+            "ms": 6.27,
+            "p95": 7.47,
+            "share": 0.8918149478390738
+          },
+          {
+            "name": "人物",
+            "ms": 0.73,
+            "p95": 6.95,
+            "share": 0.1039145893523463
+          },
+          {
+            "name": "道具风动",
+            "ms": 0.02,
+            "p95": 0.03,
+            "share": 0.0028469744986660216
+          },
+          {
+            "name": "界面更新",
+            "ms": 0.01,
+            "p95": 0.02,
+            "share": 0.00142348830991388
+          },
+          {
+            "name": "天空/时辰",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          },
+          {
+            "name": "相机",
+            "ms": 0,
+            "p95": 0.01,
+            "share": 0
+          },
+          {
+            "name": "配乐",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          },
+          {
+            "name": "水面",
+            "ms": 0,
+            "p95": 0.01,
+            "share": 0
+          },
+          {
+            "name": "氛围粒子",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          }
+        ],
+        "passWorst": {
+          "total": {
+            "calls": 516,
+            "triangles": 395418
+          },
+          "shadow": {
+            "calls": 223,
+            "triangles": 168996
+          },
+          "reflection": {
+            "calls": 141,
+            "triangles": 106184
+          },
+          "main": {
+            "calls": 152,
+            "triangles": 120238
+          },
+          "shadowRenders": 2,
+          "reflectionRenders": 1,
+          "memory": {
+            "textures": 121,
+            "geometries": 231
+          },
+          "programs": 21
+        },
+        "passAvg": {
+          "total": {
+            "calls": 516,
+            "triangles": 395418
+          },
+          "shadow": {
+            "calls": 223,
+            "triangles": 168996
+          },
+          "reflection": {
+            "calls": 141,
+            "triangles": 106184
+          },
+          "main": {
+            "calls": 152,
+            "triangles": 120238
+          }
+        },
+        "passSampleCount": 24,
+        "shadowRenders": 2,
+        "reflectionRenders": 1,
+        "reflectionFrames": 24,
+        "memory": {
+          "textures": 121,
+          "geometries": 231
+        },
+        "programs": 21,
+        "qualityState": "high",
+        "river": {
+          "mounted": true,
+          "enabled": true,
+          "rtSize": [
+            1024,
+            512
+          ],
+          "everyNFrames": 1,
+          "reflectionPasses": 2789,
+          "skippedPasses": 0,
+          "reflectLayerObjects": 1452,
+          "excludedObjects": 59,
+          "halfWidth": 8.25,
+          "ripple": 1
+        },
+        "actorsCount": null,
+        "fx": {
+          "mounted": true,
+          "puffs": 128,
+          "birds": 9,
+          "emitters": [
+            {
+              "from": "shop_e0_1_cha_roof",
+              "at": [
+                24.962499618530273,
+                6.667500019073486,
+                -34.668946266174316
+              ]
+            },
+            {
+              "from": "shop_e0_0_lou_roof",
+              "at": [
+                25.59999942779541,
+                8.824999809265137,
+                -20.71574878692627
+              ]
+            },
+            {
+              "from": "shop_w0_1_roof",
+              "at": [
+                -24.962499618530273,
+                6.667500019073486,
+                -37.31562519073486
+              ]
+            },
+            {
+              "from": "shop_e1_0_roof",
+              "at": [
+                24.962499618530273,
+                6.667500019073486,
+                45.762916564941406
+              ]
+            },
+            {
+              "from": "shop_e1_1_roof",
+              "at": [
+                24.962499618530273,
+                6.667500019073486,
+                22.325013637542725
+              ]
+            },
+            {
+              "from": "shop_w1_1_roof",
+              "at": [
+                -24.962499618530273,
+                6.667500019073486,
+                31.514917373657227
+              ]
+            },
+            {
+              "from": "boat_ke_a_cover",
+              "at": [
+                6.449999630048446,
+                0.971188485622406,
+                -21.549999982118607
+              ]
+            },
+            {
+              "from": "boat_ke_b_cover",
+              "at": [
+                -6.300000369951554,
+                0.971188485622406,
+                -35.04999998211861
+              ]
+            }
+          ],
+          "birdBand": {
+            "center": [
+              0,
+              5
+            ],
+            "rMin": 45,
+            "rMax": 80,
+            "yMin": 9,
+            "yMax": 18
+          },
+          "warnings": [],
+          "effectsRatio": 1,
+          "time": 30.434079999993948
+        }
+      },
+      "off": {
+        "tag": "high/bridge/reflect=0",
+        "url": "http://127.0.0.1:4173/?q=high&hud=0&spot=bridge&reflect=0",
+        "quality": "high",
+        "spot": "bridge",
+        "reflect": "0",
+        "frame": {
+          "frames": 1319,
+          "p50": 6.06,
+          "p95": 6.13,
+          "max": 12.12,
+          "avgFps": 164.74,
+          "windowMs": 8000,
+          "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+        },
+        "frameCost": {
+          "frames": 150,
+          "totalMs": 266.17,
+          "msPerFrame": 1.77,
+          "p50": 1.69,
+          "p95": 2.28,
+          "max": 2.93,
+          "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+        },
+        "logicCost": {
+          "frames": 240,
+          "totalMs": 438.67,
+          "msPerFrame": 1.83,
+          "p50": 0.73,
+          "p95": 6.5,
+          "max": 12.9,
+          "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+        },
+        "bothCost": {
+          "frames": 240,
+          "totalMs": 955.71,
+          "msPerFrame": 3.98,
+          "p50": 2.98,
+          "p95": 8.92,
+          "max": 15.36,
+          "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+        },
+        "stageCost": [
+          {
+            "name": "绘制",
+            "ms": 1.56,
+            "p95": 2.78,
+            "share": 0.690265486142174
+          },
+          {
+            "name": "人物",
+            "ms": 0.67,
+            "p95": 6.21,
+            "share": 0.2964601770786739
+          },
+          {
+            "name": "道具风动",
+            "ms": 0.02,
+            "p95": 0.02,
+            "share": 0.008849555654956704
+          },
+          {
+            "name": "界面更新",
+            "ms": 0.01,
+            "p95": 0.02,
+            "share": 0.004424781124195422
+          },
+          {
+            "name": "天空/时辰",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          },
+          {
+            "name": "相机",
+            "ms": 0,
+            "p95": 0.01,
+            "share": 0
+          },
+          {
+            "name": "配乐",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          },
+          {
+            "name": "水面",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          },
+          {
+            "name": "氛围粒子",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          }
+        ],
+        "passWorst": {
+          "total": {
+            "calls": 375,
+            "triangles": 289234
+          },
+          "shadow": {
+            "calls": 223,
+            "triangles": 168996
+          },
+          "reflection": {
+            "calls": 0,
+            "triangles": 0
+          },
+          "main": {
+            "calls": 152,
+            "triangles": 120238
+          },
+          "shadowRenders": 1,
+          "reflectionRenders": 0,
+          "memory": {
+            "textures": 120,
+            "geometries": 231
+          },
+          "programs": 14
+        },
+        "passAvg": {
+          "total": {
+            "calls": 375,
+            "triangles": 289234
+          },
+          "shadow": {
+            "calls": 223,
+            "triangles": 168996
+          },
+          "reflection": {
+            "calls": 0,
+            "triangles": 0
+          },
+          "main": {
+            "calls": 152,
+            "triangles": 120238
+          }
+        },
+        "passSampleCount": 24,
+        "shadowRenders": 1,
+        "reflectionRenders": 0,
+        "reflectionFrames": 0,
+        "memory": {
+          "textures": 120,
+          "geometries": 231
+        },
+        "programs": 14,
+        "qualityState": "high",
+        "river": {
+          "mounted": true,
+          "enabled": false,
+          "rtSize": [
+            512,
+            256
+          ],
+          "everyNFrames": 1,
+          "reflectionPasses": 0,
+          "skippedPasses": 0,
+          "reflectLayerObjects": 1452,
+          "excludedObjects": 59,
+          "halfWidth": 8.25,
+          "ripple": 1
+        },
+        "actorsCount": null,
+        "fx": {
+          "mounted": true,
+          "puffs": 128,
+          "birds": 9,
+          "emitters": [
+            {
+              "from": "shop_e0_1_cha_roof",
+              "at": [
+                24.962499618530273,
+                6.667500019073486,
+                -34.668946266174316
+              ]
+            },
+            {
+              "from": "shop_e0_0_lou_roof",
+              "at": [
+                25.59999942779541,
+                8.824999809265137,
+                -20.71574878692627
+              ]
+            },
+            {
+              "from": "shop_w0_1_roof",
+              "at": [
+                -24.962499618530273,
+                6.667500019073486,
+                -37.31562519073486
+              ]
+            },
+            {
+              "from": "shop_e1_0_roof",
+              "at": [
+                24.962499618530273,
+                6.667500019073486,
+                45.762916564941406
+              ]
+            },
+            {
+              "from": "shop_e1_1_roof",
+              "at": [
+                24.962499618530273,
+                6.667500019073486,
+                22.325013637542725
+              ]
+            },
+            {
+              "from": "shop_w1_1_roof",
+              "at": [
+                -24.962499618530273,
+                6.667500019073486,
+                31.514917373657227
+              ]
+            },
+            {
+              "from": "boat_ke_a_cover",
+              "at": [
+                6.449999630048446,
+                0.971188485622406,
+                -21.549999982118607
+              ]
+            },
+            {
+              "from": "boat_ke_b_cover",
+              "at": [
+                -6.300000369951554,
+                0.971188485622406,
+                -35.04999998211861
+              ]
+            }
+          ],
+          "birdBand": {
+            "center": [
+              0,
+              5
+            ],
+            "rMin": 45,
+            "rMax": 80,
+            "yMin": 9,
+            "yMax": 18
+          },
+          "warnings": [],
+          "effectsRatio": 1,
+          "time": 30.14061999999713
+        }
+      }
+    },
+    {
+      "quality": "high",
+      "spot": "boat",
+      "on": {
+        "tag": "high/boat/reflect=1",
+        "url": "http://127.0.0.1:4173/?q=high&hud=0&spot=boat&reflect=1",
+        "quality": "high",
+        "spot": "boat",
+        "reflect": "1",
+        "frame": {
+          "frames": 1239,
+          "p50": 6.06,
+          "p95": 12.1,
+          "max": 13.98,
+          "avgFps": 153.5,
+          "windowMs": 8000,
+          "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+        },
+        "frameCost": {
+          "frames": 150,
+          "totalMs": 627.55,
+          "msPerFrame": 4.18,
+          "p50": 4.12,
+          "p95": 4.76,
+          "max": 5.53,
+          "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+        },
+        "logicCost": {
+          "frames": 240,
+          "totalMs": 433.09,
+          "msPerFrame": 1.8,
+          "p50": 0.71,
+          "p95": 6.45,
+          "max": 11.54,
+          "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+        },
+        "bothCost": {
+          "frames": 240,
+          "totalMs": 1468.78,
+          "msPerFrame": 6.12,
+          "p50": 5.03,
+          "p95": 11.13,
+          "max": 17.92,
+          "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+        },
+        "stageCost": [
+          {
+            "name": "绘制",
+            "ms": 4.04,
+            "p95": 4.67,
+            "share": 0.8744588777959348
+          },
+          {
+            "name": "人物",
+            "ms": 0.55,
+            "p95": 6.27,
+            "share": 0.11904761866364767
+          },
+          {
+            "name": "道具风动",
+            "ms": 0.02,
+            "p95": 0.02,
+            "share": 0.004329003435398214
+          },
+          {
+            "name": "界面更新",
+            "ms": 0.01,
+            "p95": 0.01,
+            "share": 0.0021645001050193203
+          },
+          {
+            "name": "天空/时辰",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          },
+          {
+            "name": "相机",
+            "ms": 0,
+            "p95": 0.01,
+            "share": 0
+          },
+          {
+            "name": "配乐",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          },
+          {
+            "name": "水面",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          },
+          {
+            "name": "氛围粒子",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          }
+        ],
+        "passWorst": {
+          "total": {
+            "calls": 521,
+            "triangles": 374590
+          },
+          "shadow": {
+            "calls": 223,
+            "triangles": 169060
+          },
+          "reflection": {
+            "calls": 147,
+            "triangles": 95428
+          },
+          "main": {
+            "calls": 151,
+            "triangles": 110102
+          },
+          "shadowRenders": 2,
+          "reflectionRenders": 1,
+          "memory": {
+            "textures": 117,
+            "geometries": 233
+          },
+          "programs": 21
+        },
+        "passAvg": {
+          "total": {
+            "calls": 521,
+            "triangles": 374590
+          },
+          "shadow": {
+            "calls": 223,
+            "triangles": 169060
+          },
+          "reflection": {
+            "calls": 147,
+            "triangles": 95428
+          },
+          "main": {
+            "calls": 151,
+            "triangles": 110102
+          }
+        },
+        "passSampleCount": 24,
+        "shadowRenders": 2,
+        "reflectionRenders": 1,
+        "reflectionFrames": 24,
+        "memory": {
+          "textures": 117,
+          "geometries": 233
+        },
+        "programs": 21,
+        "qualityState": "high",
+        "river": {
+          "mounted": true,
+          "enabled": true,
+          "rtSize": [
+            1024,
+            512
+          ],
+          "everyNFrames": 1,
+          "reflectionPasses": 3588,
+          "skippedPasses": 0,
+          "reflectLayerObjects": 1452,
+          "excludedObjects": 59,
+          "halfWidth": 8.25,
+          "ripple": 1
+        },
+        "actorsCount": null,
+        "fx": {
+          "mounted": true,
+          "puffs": 128,
+          "birds": 9,
+          "emitters": [
+            {
+              "from": "shop_e0_1_cha_roof",
+              "at": [
+                24.962499618530273,
+                6.667500019073486,
+                -34.668946266174316
+              ]
+            },
+            {
+              "from": "shop_e0_0_lou_roof",
+              "at": [
+                25.59999942779541,
+                8.824999809265137,
+                -20.71574878692627
+              ]
+            },
+            {
+              "from": "shop_w0_1_roof",
+              "at": [
+                -24.962499618530273,
+                6.667500019073486,
+                -37.31562519073486
+              ]
+            },
+            {
+              "from": "shop_e1_0_roof",
+              "at": [
+                24.962499618530273,
+                6.667500019073486,
+                45.762916564941406
+              ]
+            },
+            {
+              "from": "shop_e1_1_roof",
+              "at": [
+                24.962499618530273,
+                6.667500019073486,
+                22.325013637542725
+              ]
+            },
+            {
+              "from": "shop_w1_1_roof",
+              "at": [
+                -24.962499618530273,
+                6.667500019073486,
+                31.514917373657227
+              ]
+            },
+            {
+              "from": "boat_ke_a_cover",
+              "at": [
+                6.449999630048446,
+                0.971188485622406,
+                -21.549999982118607
+              ]
+            },
+            {
+              "from": "boat_ke_b_cover",
+              "at": [
+                -6.300000369951554,
+                0.971188485622406,
+                -35.04999998211861
+              ]
+            }
+          ],
+          "birdBand": {
+            "center": [
+              0,
+              5
+            ],
+            "rMin": 45,
+            "rMax": 80,
+            "yMin": 9,
+            "yMax": 18
+          },
+          "warnings": [],
+          "effectsRatio": 1,
+          "time": 30.273320000010223
+        }
+      },
+      "off": {
+        "tag": "high/boat/reflect=0",
+        "url": "http://127.0.0.1:4173/?q=high&hud=0&spot=boat&reflect=0",
+        "quality": "high",
+        "spot": "boat",
+        "reflect": "0",
+        "frame": {
+          "frames": 1322,
+          "p50": 6.06,
+          "p95": 6.11,
+          "max": 8.55,
+          "avgFps": 165.02,
+          "windowMs": 8000,
+          "note": "rAF 口径。受无头 Chrome 的 rAF 节拍地板限制,不等于帧时,勿用于比门限"
+        },
+        "frameCost": {
+          "frames": 150,
+          "totalMs": 254.41,
+          "msPerFrame": 1.7,
+          "p50": 1.64,
+          "p95": 2.08,
+          "max": 2.74,
+          "note": "同步连渲吞吐,逐帧 gl.finish(串行上界),与 rAF 节拍无关;**只含绘制,不含 CPU 逻辑**"
+        },
+        "logicCost": {
+          "frames": 240,
+          "totalMs": 433.97,
+          "msPerFrame": 1.81,
+          "p50": 0.81,
+          "p95": 6.34,
+          "max": 12.02,
+          "note": "frameStep(dt, wt, false):无任何绘制的纯逻辑"
+        },
+        "bothCost": {
+          "frames": 240,
+          "totalMs": 879.47,
+          "msPerFrame": 3.66,
+          "p50": 2.59,
+          "p95": 8.79,
+          "max": 12.92,
+          "note": "frameStep(dt, wt, true):逻辑 + 绘制,真循环里一帧的 CPU 总量"
+        },
+        "stageCost": [
+          {
+            "name": "绘制",
+            "ms": 1.55,
+            "p95": 1.85,
+            "share": 0.6873614258086579
+          },
+          {
+            "name": "人物",
+            "ms": 0.67,
+            "p95": 6.42,
+            "share": 0.2993348108412893
+          },
+          {
+            "name": "道具风动",
+            "ms": 0.02,
+            "p95": 0.02,
+            "share": 0.00886917776938643
+          },
+          {
+            "name": "界面更新",
+            "ms": 0.01,
+            "p95": 0.02,
+            "share": 0.004434585580666336
+          },
+          {
+            "name": "天空/时辰",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          },
+          {
+            "name": "相机",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          },
+          {
+            "name": "配乐",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          },
+          {
+            "name": "水面",
+            "ms": 0,
+            "p95": 0.01,
+            "share": 0
+          },
+          {
+            "name": "氛围粒子",
+            "ms": 0,
+            "p95": 0,
+            "share": 0
+          }
+        ],
+        "passWorst": {
+          "total": {
+            "calls": 374,
+            "triangles": 279162
+          },
+          "shadow": {
+            "calls": 223,
+            "triangles": 169060
+          },
+          "reflection": {
+            "calls": 0,
+            "triangles": 0
+          },
+          "main": {
+            "calls": 151,
+            "triangles": 110102
+          },
+          "shadowRenders": 1,
+          "reflectionRenders": 0,
+          "memory": {
+            "textures": 115,
+            "geometries": 233
+          },
+          "programs": 14
+        },
+        "passAvg": {
+          "total": {
+            "calls": 374,
+            "triangles": 279162
+          },
+          "shadow": {
+            "calls": 223,
+            "triangles": 169060
+          },
+          "reflection": {
+            "calls": 0,
+            "triangles": 0
+          },
+          "main": {
+            "calls": 151,
+            "triangles": 110102
+          }
+        },
+        "passSampleCount": 24,
+        "shadowRenders": 1,
+        "reflectionRenders": 0,
+        "reflectionFrames": 0,
+        "memory": {
+          "textures": 115,
+          "geometries": 233
+        },
+        "programs": 14,
+        "qualityState": "high",
+        "river": {
+          "mounted": true,
+          "enabled": false,
+          "rtSize": [
+            512,
+            256
+          ],
+          "everyNFrames": 1,
+          "reflectionPasses": 0,
+          "skippedPasses": 0,
+          "reflectLayerObjects": 1452,
+          "excludedObjects": 59,
+          "halfWidth": 8.25,
+          "ripple": 1
+        },
+        "actorsCount": null,
+        "fx": {
+          "mounted": true,
+          "puffs": 128,
+          "birds": 9,
+          "emitters": [
+            {
+              "from": "shop_e0_1_cha_roof",
+              "at": [
+                24.962499618530273,
+                6.667500019073486,
+                -34.668946266174316
+              ]
+            },
+            {
+              "from": "shop_e0_0_lou_roof",
+              "at": [
+                25.59999942779541,
+                8.824999809265137,
+                -20.71574878692627
+              ]
+            },
+            {
+              "from": "shop_w0_1_roof",
+              "at": [
+                -24.962499618530273,
+                6.667500019073486,
+                -37.31562519073486
+              ]
+            },
+            {
+              "from": "shop_e1_0_roof",
+              "at": [
+                24.962499618530273,
+                6.667500019073486,
+                45.762916564941406
+              ]
+            },
+            {
+              "from": "shop_e1_1_roof",
+              "at": [
+                24.962499618530273,
+                6.667500019073486,
+                22.325013637542725
+              ]
+            },
+            {
+              "from": "shop_w1_1_roof",
+              "at": [
+                -24.962499618530273,
+                6.667500019073486,
+                31.514917373657227
+              ]
+            },
+            {
+              "from": "boat_ke_a_cover",
+              "at": [
+                6.449999630048446,
+                0.971188485622406,
+                -21.549999982118607
+              ]
+            },
+            {
+              "from": "boat_ke_b_cover",
+              "at": [
+                -6.300000369951554,
+                0.971188485622406,
+                -35.04999998211861
+              ]
+            }
+          ],
+          "birdBand": {
+            "center": [
+              0,
+              5
+            ],
+            "rMin": 45,
+            "rMax": 80,
+            "yMin": 9,
+            "yMax": 18
+          },
+          "warnings": [],
+          "effectsRatio": 1,
+          "time": 30.14753999998758
+        }
+      }
+    }
+  ]
+}

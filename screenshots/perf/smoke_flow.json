@@ -1,0 +1,1216 @@
+{
+  "generatedAt": "2026-09-18T11:23:58.810Z",
+  "url": "http://127.0.0.1:4173/",
+  "viewport": [
+    1600,
+    900
+  ],
+  "limits": {
+    "errFinal": 0.05,
+    "tailVar": 0.0001,
+    "regression": 0.0001,
+    "settle": 0.01,
+    "minTweenFrames": 20
+  },
+  "groups": [
+    {
+      "id": 1,
+      "title": "环视/缩放/右键平移/键盘",
+      "ready": true,
+      "where": "tools/perf/verify_camera.mjs"
+    },
+    {
+      "id": 2,
+      "title": "五景点平滑切换",
+      "ready": true,
+      "where": "本文件(逐帧采样)"
+    },
+    {
+      "id": 3,
+      "title": "标签→简介→走近看看",
+      "ready": true,
+      "where": "tools/perf/probe_ui.mjs [③]"
+    },
+    {
+      "id": 4,
+      "title": "舆图定位/横卷/复原依据",
+      "ready": true,
+      "where": "tools/perf/probe_ui.mjs [④]"
+    },
+    {
+      "id": 5,
+      "title": "时辰/画质/动画·标签·线框",
+      "ready": true,
+      "where": "tools/perf/probe_ui.mjs [⑤]"
+    },
+    {
+      "id": 6,
+      "title": "巡游/隐藏界面/全屏/配乐",
+      "ready": true,
+      "where": "tools/perf/probe_ui.mjs [⑥]"
+    },
+    {
+      "id": 7,
+      "title": "真实进度 + 错误提示",
+      "ready": true,
+      "where": "tools/perf/probe_ui.mjs [⑦]"
+    },
+    {
+      "id": 8,
+      "title": "相机稳定性",
+      "ready": true,
+      "where": "tools/perf/probe_ui.mjs [⑧]"
+    }
+  ],
+  "checks": [
+    {
+      "group": 1,
+      "name": "进度终值 = 1.0",
+      "ok": true,
+      "detail": "phase=ready progress=1"
+    },
+    {
+      "group": 1,
+      "name": "阶段日志依次经过 下载 → 解析 → 编译",
+      "ok": true,
+      "detail": "实际顺序: manifest → fetching → parsing → compiling → ready"
+    },
+    {
+      "group": 1,
+      "name": "下载字节数与 manifest 分母一致",
+      "ok": true,
+      "detail": "13347004 / 13347004 字节,失败 0 项"
+    },
+    {
+      "group": 1,
+      "name": "① 左键拖拽 → 环视",
+      "ok": true,
+      "detail": "方位角 Δ1.815 rad(需 >0.15),半径 Δ0.00m(需 <5%)"
+    },
+    {
+      "group": 1,
+      "name": "② 滚轮前滚 → 拉近",
+      "ok": true,
+      "detail": "半径 40.94 → 30.09m(比 0.735,需 <0.95),方位角 Δ0.0001"
+    },
+    {
+      "group": 1,
+      "name": "② 滚轮后滚 → 推远",
+      "ok": true,
+      "detail": "半径 30.09 → 47.75m"
+    },
+    {
+      "group": 1,
+      "name": "③ 右键拖拽 → 平移",
+      "ok": true,
+      "detail": "目标点位移 11.87m(需 >0.5),半径 Δ0.00m(需 <5%)"
+    },
+    {
+      "group": 1,
+      "name": "④ 键盘 W → 靠近目标",
+      "ok": true,
+      "detail": "相机位移 7.94m,观察半径 40.94 → 33.30m(需缩短)"
+    },
+    {
+      "group": 1,
+      "name": "④ 按 W 时目标点不动",
+      "ok": true,
+      "detail": "目标点位移 0.00001m(需 ≈0)"
+    },
+    {
+      "group": 1,
+      "name": "④ 键盘 S → 远离目标",
+      "ok": true,
+      "detail": "相机位移 7.78m,观察半径 33.30 → 40.78m(需变长)"
+    },
+    {
+      "group": 1,
+      "name": "④ 键盘 D → 绕目标横行",
+      "ok": true,
+      "detail": "方位角 Δ0.191 rad(需 >0.05),半径 Δ0.007m(需 <0.6)"
+    },
+    {
+      "group": 2,
+      "name": "虹桥 切换",
+      "ok": true,
+      "detail": "终点误差 0.0000m；末 0.3s 方差 1.22e-5；回退 0 帧/最大 0.00e+0m；到位后摆动 0.00mm；285 帧 / 1792ms"
+    },
+    {
+      "group": 2,
+      "name": "漕船 切换",
+      "ok": true,
+      "detail": "终点误差 0.0000m；末 0.3s 方差 1.17e-5；回退 0 帧/最大 0.00e+0m；到位后摆动 0.00mm；259 帧 / 1577ms"
+    },
+    {
+      "group": 2,
+      "name": "茶肆 切换",
+      "ok": true,
+      "detail": "终点误差 0.0000m；末 0.3s 方差 2.35e-5；回退 0 帧/最大 0.00e+0m；到位后摆动 0.00mm；296 帧 / 1799ms"
+    },
+    {
+      "group": 2,
+      "name": "城门 切换",
+      "ok": true,
+      "detail": "终点误差 0.0000m；末 0.3s 方差 1.24e-5；回退 0 帧/最大 0.00e+0m；到位后摆动 0.00mm；284 帧 / 1803ms"
+    },
+    {
+      "group": 2,
+      "name": "街市 切换",
+      "ok": true,
+      "detail": "终点误差 0.0000m；末 0.3s 方差 8.52e-6；回退 0 帧/最大 0.00e+0m；到位后摆动 0.00mm；296 帧 / 1796ms"
+    },
+    {
+      "group": 3,
+      "name": "三维标签已生成",
+      "ok": true,
+      "detail": "5 个"
+    },
+    {
+      "group": 3,
+      "name": "顶栏景点按钮",
+      "ok": true,
+      "detail": "5 个"
+    },
+    {
+      "group": 3,
+      "name": "标签容器未被隐藏",
+      "ok": true,
+      "detail": "false"
+    },
+    {
+      "group": 3,
+      "name": "标签经投影落在了视口内的真实坐标上",
+      "ok": true,
+      "detail": "4/5 个在视口内,例:虹桥 @ (800, 385) α=0.935355"
+    },
+    {
+      "group": 3,
+      "name": "点景点按钮后面板切换为简介",
+      "ok": true,
+      "detail": "panel=spot"
+    },
+    {
+      "group": 3,
+      "name": "简介面板确实可见",
+      "ok": true,
+      "detail": "qm-panel qm-panel--spot qm-interactive"
+    },
+    {
+      "group": 3,
+      "name": "简介面板在 DOM 里也确实是展开的那个",
+      "ok": true,
+      "detail": "编木虹桥 · 全卷的拱心"
+    },
+    {
+      "group": 3,
+      "name": "简介标题非空",
+      "ok": true,
+      "detail": "编木虹桥 · 全卷的拱心"
+    },
+    {
+      "group": 3,
+      "name": "简介正文非空",
+      "ok": true,
+      "detail": "365 字"
+    },
+    {
+      "group": 3,
+      "name": "带可靠度徽标",
+      "ok": true,
+      "detail": "B · 择一"
+    },
+    {
+      "group": 3,
+      "name": "边界说明固定在面板里",
+      "ok": true,
+      "detail": "79 字"
+    },
+    {
+      "group": 3,
+      "name": "走近看看把相机送到近观位",
+      "ok": true,
+      "detail": "误差 0.0000 m"
+    },
+    {
+      "group": 4,
+      "name": "舆图面板可见",
+      "ok": true,
+      "detail": "qm-panel qm-panel--map qm-interactive"
+    },
+    {
+      "group": 4,
+      "name": "舆图上五个定位点",
+      "ok": true,
+      "detail": "5 个"
+    },
+    {
+      "group": 4,
+      "name": "舆图上有相机标记",
+      "ok": true,
+      "detail": "1 个"
+    },
+    {
+      "group": 4,
+      "name": "点舆图后相机确实移动",
+      "ok": true,
+      "detail": "位移 18.14 m"
+    },
+    {
+      "group": 4,
+      "name": "复原依据条目 ≥12",
+      "ok": true,
+      "detail": "17 条"
+    },
+    {
+      "group": 4,
+      "name": "每条都带等级、且 A/B/C 都存在",
+      "ok": true,
+      "detail": "实际出现 A/B/C"
+    },
+    {
+      "group": 4,
+      "name": "筛选按钮默认全开(不藏 C 级)",
+      "ok": true,
+      "detail": "A 有据 6 | B 择一 5 | C 推断 6"
+    },
+    {
+      "group": 4,
+      "name": "原卷面板可见",
+      "ok": true,
+      "detail": "qm-panel qm-panel--scroll qm-interactive"
+    },
+    {
+      "group": 4,
+      "name": "原卷四段全部解码完成",
+      "ok": true,
+      "detail": "状态:ok,ok,ok,ok"
+    },
+    {
+      "group": 4,
+      "name": "四张原卷图都在 DOM 里",
+      "ok": true,
+      "detail": "4 张"
+    },
+    {
+      "group": 4,
+      "name": "每张图都有真实像素(不是破图)",
+      "ok": true,
+      "detail": "3840x732 3840x732 3840x732 3840x732"
+    },
+    {
+      "group": 4,
+      "name": "长条远比视口宽(是\"长卷\"而非缩略图)",
+      "ok": true,
+      "detail": "条宽 3148px / 视口 728px = 4.3 屏"
+    },
+    {
+      "group": 4,
+      "name": "四段按实物顺序排列(未镜像)",
+      "ok": true,
+      "detail": "section1.jpg section2.jpg section3.jpg section4.jpg"
+    },
+    {
+      "group": 4,
+      "name": "卷首按钮标明了它落在右端",
+      "ok": true,
+      "detail": "▸ 卷首(右端) | 卷尾(左端) ◂"
+    },
+    {
+      "group": 4,
+      "name": "点「卷首」滚到最右端(卷首确实在右)",
+      "ok": true,
+      "detail": "scrollLeft=2420 / 最大 2420"
+    },
+    {
+      "group": 4,
+      "name": "卷尾按钮标明了它落在左端",
+      "ok": true,
+      "detail": "卷尾(左端) ◂"
+    },
+    {
+      "group": 4,
+      "name": "点「卷尾」滚回最左端",
+      "ok": true,
+      "detail": "scrollLeft=0"
+    },
+    {
+      "group": 4,
+      "name": "面板写明了展阅方向与\"未镜像\"",
+      "ok": true,
+      "detail": "44 字"
+    },
+    {
+      "group": 5,
+      "name": "切画质前后对象 UUID 集合相同",
+      "ok": true,
+      "detail": "1514 → 1514 个对象"
+    },
+    {
+      "group": 5,
+      "name": "切画质前后材质 UUID 集合相同(未重建材质)",
+      "ok": true,
+      "detail": "121 → 121 个材质"
+    },
+    {
+      "group": 5,
+      "name": "画质已切到 high",
+      "ok": true,
+      "detail": "quality=high"
+    },
+    {
+      "group": 5,
+      "name": "阴影贴图跟着变",
+      "ok": true,
+      "detail": "4096px"
+    },
+    {
+      "group": 5,
+      "name": "人物阴影名额有实际作用对象",
+      "ok": true,
+      "detail": "蒙皮网格 73 个,投影 16 个"
+    },
+    {
+      "group": 5,
+      "name": "线框已开且作用到材质",
+      "ok": true,
+      "detail": "wireframe=true,report 报 121 个材质"
+    },
+    {
+      "group": 5,
+      "name": "report 的材质数与直接遍历场景一致",
+      "ok": true,
+      "detail": "report=121 实测=121"
+    },
+    {
+      "group": 5,
+      "name": "开线框没有新建材质",
+      "ok": true,
+      "detail": "121 → 121"
+    },
+    {
+      "group": 5,
+      "name": "关掉线框后材质集合仍不变",
+      "ok": true,
+      "detail": "121 → 121"
+    },
+    {
+      "group": 5,
+      "name": "关掉后没有任何材质仍处于线框态",
+      "ok": true,
+      "detail": "0/294 个材质仍为 wireframe"
+    },
+    {
+      "group": 5,
+      "name": "时辰已改变",
+      "ok": true,
+      "detail": "tod=0.85"
+    },
+    {
+      "group": 5,
+      "name": "环境贴图确实重建了",
+      "ok": true,
+      "detail": "environmentRevision 1 → 2"
+    },
+    {
+      "group": 5,
+      "name": "标签开关真的隐藏了标签",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "group": 5,
+      "name": "「动画」开关已出现(阶段 4 接上了消费者)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": 5,
+      "name": "有可观测的人物(否则\"冻住了\"是句空话)",
+      "ok": true,
+      "detail": "48 个人物实例;空表时任何\"没动\"都自动成立"
+    },
+    {
+      "group": 5,
+      "name": "关掉后人物完全不动",
+      "ok": true,
+      "detail": "0/48 个人在动(animOn=false)"
+    },
+    {
+      "group": 5,
+      "name": "关掉后动画钟一步不走、世界钟照常走",
+      "ok": true,
+      "detail": "anim 13.9991 → 13.9991,world 14.3142 → 15.8352"
+    },
+    {
+      "group": 5,
+      "name": "打开后人物重新在动",
+      "ok": true,
+      "detail": "37/48 个人在动(animOn=true)"
+    },
+    {
+      "group": 5,
+      "name": "重新打开是从冻结点续上,不是跳到新相位",
+      "ok": true,
+      "detail": "解冻瞬间动画钟 +0.006s,而冻结时长为 1.52s(跳到新相位的话这里会≈1.52s)"
+    },
+    {
+      "group": 5,
+      "name": "6 条船都有观测读数(含上岸那条 —— 它必须被看见)",
+      "ok": true,
+      "detail": "6 条船有读数;表空则\"没动\"毫无意义"
+    },
+    {
+      "group": 5,
+      "name": "5 条下水船被登记为整船横摇",
+      "ok": true,
+      "detail": "rigid={\"hull_rock\":5,\"mast_fold\":5,\"oar\":6,\"rudder\":5}"
+    },
+    {
+      "group": 5,
+      "name": "上岸船被 qm_beached 挡在摇晃之外",
+      "ok": true,
+      "detail": "skipped={\"风动·无权重属性(类别不适合推导)\":3,\"刚体·已拖上岸,不随水摇\":2,\"刚体·蒙皮件归骨骼管\":6}(应为 2:上岸船的船壳 + 它的舵)"
+    },
+    {
+      "group": 5,
+      "name": "横摇角真的在变,且量级与声明的 2° 相符",
+      "ok": true,
+      "detail": "各船 |角| 极差 {\"boat_cao_a_hull\":1.3975,\"boat_cao_b_hull\":1.124,\"boat_cao_hero_hull\":1.2838,\"boat_ke_a_hull\":1.1959,\"boat_ke_b_hull\":1.8265}°(2° 幅值的极差应落在 0.2~4)"
+    },
+    {
+      "group": 5,
+      "name": "船壳转动与船上部件的位移符合刚体关系(位移 = 2·力臂·sin(Δθ/2))",
+      "ok": true,
+      "detail": "各船\"实测−预测\"余差 {\"boat_cao_a_hull\":0.000001,\"boat_cao_b_hull\":0.000007,\"boat_cao_hero_hull\":-0.000007,\"boat_ke_a_hull\":-0.000004,\"boat_ke_b_hull\":0.000005} m,最大相对残差 0.02%(门限 5%)。力臂 0.84/0.84/0.9862/0.84/0.84 m"
+    },
+    {
+      "group": 5,
+      "name": "上岸船一步不动(qm_beached 的反面判据)",
+      "ok": true,
+      "detail": "boat_repair_hull 的三维位移 [0] m"
+    },
+    {
+      "group": 5,
+      "name": "上岸船是被闸门挡下的,不是振幅恰好为 0",
+      "ok": true,
+      "detail": "rockDeg 读数 [null,null,null,null](应全为 null:null=没被驱动)"
+    },
+    {
+      "group": 6,
+      "name": "点巡游后 autoTour === true",
+      "ok": true,
+      "detail": "true"
+    },
+    {
+      "group": 6,
+      "name": "按钮文字跟着变成「停止巡游」",
+      "ok": true,
+      "detail": "停止巡游"
+    },
+    {
+      "group": 6,
+      "name": "手动操作立即退出巡游",
+      "ok": true,
+      "detail": "退出原因:pointerdown (from tour)"
+    },
+    {
+      "group": 6,
+      "name": "隐藏界面后顶栏、工具栏、面板容器都消失",
+      "ok": true,
+      "detail": "topbar=true toolbar=true panelhost=true"
+    },
+    {
+      "group": 6,
+      "name": "但三维标签仍在(它属于画面内容)",
+      "ok": true,
+      "detail": "labels.hidden=false"
+    },
+    {
+      "group": 6,
+      "name": "隐藏界面后存在可点的恢复入口",
+      "ok": true,
+      "detail": "尺寸 78×31 @ (1549, 27)"
+    },
+    {
+      "group": 6,
+      "name": "点恢复入口真的回到了有界面的状态",
+      "ok": true,
+      "detail": "chrome=true"
+    },
+    {
+      "group": 6,
+      "name": "键盘 H 也能隐藏界面",
+      "ok": true,
+      "detail": "chrome=false"
+    },
+    {
+      "group": 6,
+      "name": "再按一次 H 恢复",
+      "ok": true,
+      "detail": "chrome=true"
+    },
+    {
+      "group": 6,
+      "name": "「配乐」按钮存在(音频引擎已接入)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": 6,
+      "name": "点「配乐」后 AudioContext 处于 running",
+      "ok": true,
+      "detail": "state=running enabled=true store.audio=true worklet=module"
+    },
+    {
+      "group": 6,
+      "name": "store 的 audio 与引擎真实状态一致(不是只改了高亮)",
+      "ok": true,
+      "detail": "store.audio=true engine.enabled=true"
+    },
+    {
+      "group": 6,
+      "name": "工作节点确实起播了音符(不只是上下文空转)",
+      "ok": true,
+      "detail": "已起播 2 个音,被动丢音 0,渲染循环最大间隔 2.67ms,时钟错位 0.00ms,乐句 217 音 指纹 19b97345"
+    },
+    {
+      "group": 6,
+      "name": "再点一次关得掉,且状态回写一致",
+      "ok": true,
+      "detail": "store.audio=false engine.enabled=false state=running"
+    },
+    {
+      "group": 7,
+      "name": "进度条被逐次变化地采到了(不是抽样)",
+      "ok": true,
+      "detail": "55 次变化 / 55 个不同取值"
+    },
+    {
+      "group": 7,
+      "name": "进度条上的数字全程单调不减",
+      "ok": true,
+      "detail": "0% → 100%"
+    },
+    {
+      "group": 7,
+      "name": "进度条走到 100%",
+      "ok": true,
+      "detail": "终值 100%"
+    },
+    {
+      "group": 7,
+      "name": "全精度进度单调不减且终值为 1",
+      "ok": true,
+      "detail": "0 → 1"
+    },
+    {
+      "group": 7,
+      "name": "记录器从第 0 帧就开始采(不是半途插入)",
+      "ok": true,
+      "detail": "首值 0"
+    },
+    {
+      "group": 7,
+      "name": "进度依次经过 下载 → 解析 → 编译 → 就绪",
+      "ok": true,
+      "detail": "manifest → fetching → parsing → compiling → ready"
+    },
+    {
+      "group": 7,
+      "name": "注入 404 后加载确实进了失败态",
+      "ok": true,
+      "detail": "phase=failed"
+    },
+    {
+      "group": 7,
+      "name": "404 确实被我们拦下来改写过",
+      "ok": true,
+      "detail": "1 次"
+    },
+    {
+      "group": 7,
+      "name": "遮罩没有消失,而是切成了失败态",
+      "ok": true,
+      "detail": "hidden=false is-failed=true"
+    },
+    {
+      "group": 7,
+      "name": "失败条目出现在遮罩里",
+      "ok": true,
+      "detail": "1 条"
+    },
+    {
+      "group": 7,
+      "name": "指明了是哪个文件",
+      "ok": true,
+      "detail": "scene_props.glb"
+    },
+    {
+      "group": 7,
+      "name": "指明了是哪一步、什么状态码",
+      "ok": true,
+      "detail": "stage=fetch status=404 msg=HTTP 404 Not Found"
+    },
+    {
+      "group": 7,
+      "name": "界面上的文字把文件名与原因都写出来了",
+      "ok": true,
+      "detail": "http://127.0.0.1:4173/models/scene_props.glb — 下载 (HTTP 404):HTTP 404 Not Found"
+    },
+    {
+      "group": 7,
+      "name": "提供了重试入口",
+      "ok": true,
+      "detail": "重试"
+    },
+    {
+      "group": 7,
+      "name": "遮罩盖在顶栏/工具栏/三维标签之上(加载期间点不到它们)",
+      "ok": true,
+      "detail": ".qm-spotnav__btn→遮罩(pe=auto) .qm-toolbar__btn→遮罩(pe=auto) .qm-label→遮罩(pe=auto)"
+    },
+    {
+      "group": 7,
+      "name": "点重试后真的恢复到了就绪",
+      "ok": true,
+      "detail": "phase=ready"
+    },
+    {
+      "group": 7,
+      "name": "恢复后遮罩撤掉、四块模型都在场景里",
+      "ok": true,
+      "detail": "veil.hidden=true chunks=4 children=58"
+    },
+    {
+      "group": 7,
+      "name": "重试没有把模型往场景里加第二遍",
+      "ok": true,
+      "detail": "54 个顶层组,无重名"
+    },
+    {
+      "group": 8,
+      "name": "漫游确实在跑",
+      "ok": true,
+      "detail": "mode=roam"
+    },
+    {
+      "group": 8,
+      "name": "漫游期间采到了足够多的帧",
+      "ok": true,
+      "detail": "1630 帧 / 1631 个样本"
+    },
+    {
+      "group": 8,
+      "name": "漫游期间相机确实在移动(否则下面的断言是空的)",
+      "ok": true,
+      "detail": "累计路程 21.85 m"
+    },
+    {
+      "group": 8,
+      "name": "漫游瞬时速度不超过 2×p95(没有瞬移)",
+      "ok": true,
+      "detail": "速度 p50 2.183 / p95 2.183 / max 2.183 m/s(阈值 4.367) —— 同时测到的位移 p50 0.0132 / p95 0.0134 / max 0.0266 m,帧长 p50 6.1 / max 12.2 ms"
+    },
+    {
+      "group": 8,
+      "name": "每一帧的位移都等于该帧时长应走的距离(速度恒定)",
+      "ok": true,
+      "detail": "速度中位 2.183 m/s,最大偏离 +0.0% —— 同一批样本换 performance.now() 当分母,最大速度 8.851 m/s(305%),那是回调落点漂移造成的假数"
+    },
+    {
+      "group": 8,
+      "name": "漫游全程相机在地面之上",
+      "ok": true,
+      "detail": "13/13 条射线命中,最小净空 8.67 m (射线耗时 23ms)"
+    },
+    {
+      "group": 8,
+      "name": "近观位停住后相机不再自己走",
+      "ok": true,
+      "detail": "最大漂移 0.00 mm,单帧最大位移 0.000 mm"
+    },
+    {
+      "group": 8,
+      "name": "近观位脚下有实地、相机在其上方",
+      "ok": true,
+      "detail": "最小净空 11.40 m,命中物 岸线_路"
+    },
+    {
+      "group": 8,
+      "name": "换一个半径再漫游,相机仍在移动",
+      "ok": true,
+      "detail": "累计路程 7.52 m"
+    },
+    {
+      "group": 8,
+      "name": "漫游的高度是恒定的(只有方位角在变)",
+      "ok": true,
+      "detail": "高度 11.40…11.40 m,极差 0.0 mm"
+    },
+    {
+      "group": 8,
+      "name": "这一段漫游也全程在地面之上",
+      "ok": true,
+      "detail": "最低机位 y=11.40 m,最小净空 11.28 m"
+    },
+    {
+      "group": 8,
+      "name": "十个预设机位全部在地面之上",
+      "ok": true,
+      "detail": "10 个机位,最小净空 1.75 m"
+    }
+  ],
+  "extras": [
+    {
+      "group": "布局",
+      "name": "桌面 1600×900 无横向溢出",
+      "ok": true,
+      "detail": "scrollWidth=1600 innerWidth=1600"
+    },
+    {
+      "group": "控制台",
+      "name": "无未捕获异常与 console.error",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "响应式",
+      "name": "页面在 390px 宽下没有横向溢出",
+      "ok": true,
+      "detail": "documentElement 390 / body 390 / innerWidth 390"
+    },
+    {
+      "group": "响应式",
+      "name": "景点条允许自己横滚(窄下去时不把整页撑宽)",
+      "ok": true,
+      "detail": "overflow-x=auto,内容 366 / 可视 366(当前排得下,无需滚动)"
+    },
+    {
+      "group": "响应式",
+      "name": "顶栏 / 面板区 / 工具栏都在视口内",
+      "ok": true,
+      "detail": ".qm-topbar y 0–76 x 0–390 | .qm-panelhost y 104–692 x 8–382 | .qm-toolbar y 765–844 x 0–390"
+    },
+    {
+      "group": "响应式",
+      "name": "面板区没有被顶栏或工具栏压住(两者的实测矩形不相交)",
+      "ok": true,
+      "detail": "顶栏底 76 ≤ 面板区顶 104;面板区底 692 ≤ 工具栏顶 765"
+    },
+    {
+      "group": "响应式",
+      "name": "窄屏断点确实命中(否则\"没溢出\"可能只是规则没生效)",
+      "ok": true,
+      "detail": "顶栏 column / 工具栏 column(高 79px),面板区 left=8px"
+    },
+    {
+      "group": "响应式",
+      "name": "三维画布仍然铺满整个视口(没有被界面挤小)",
+      "ok": true,
+      "detail": "画布 390×844"
+    },
+    {
+      "group": "响应式",
+      "name": "窄屏上每个可见控件都点得到(中心点命中它自己)",
+      "ok": true,
+      "detail": "检查了 16 个(.qm-spotnav__btn×5, .qm-toolbar__btn×9, .qm-label×2),全部可点"
+    },
+    {
+      "group": "响应式",
+      "name": "触摸点景点按钮,简介面板真的开了(且开的是点的那个景点)",
+      "ok": true,
+      "detail": "panelVisible=qm-panel qm-panel--spot qm-interactive selected=boat(点前 null) 标题「漕船 · 放倒桅杆的一刻」"
+    },
+    {
+      "group": "响应式",
+      "name": "触摸点【走近看看】,相机走到了该景点的机位",
+      "ok": true,
+      "detail": "位移 30.86 m,与漕船机位相差 0.000 m(触摸点 63,588)"
+    },
+    {
+      "group": "响应式",
+      "name": "触摸点工具栏按钮,面板真的开了",
+      "ok": true,
+      "detail": "panelVisible=qm-panel qm-panel--basis qm-interactive(触摸点 219,787)"
+    },
+    {
+      "group": "响应式",
+      "name": "面板在窄屏上没有超出视口",
+      "ok": true,
+      "detail": "面板 374×588 x 8–382 y 104–692"
+    },
+    {
+      "group": "响应式",
+      "name": "面板内容超高时可滚动(内容看不全又不能滚 = 手机上永远读不到)",
+      "ok": true,
+      "detail": "内容 3799 / 可视 531 px,overflow-y=auto"
+    },
+    {
+      "group": "响应式",
+      "name": "量拖动前面板已收起(否则量的是面板,不是画布)",
+      "ok": true,
+      "detail": "panelhost 里还有 0 个面板可见(关了 1 个)"
+    },
+    {
+      "group": "响应式",
+      "name": "窄屏上画布仍是可触区域的主体(标签只占少数小岛)",
+      "ok": true,
+      "detail": "30/30 个采样点最上面是画布"
+    },
+    {
+      "group": "响应式",
+      "name": "画布上单指拖动,相机跟着绕行",
+      "ok": true,
+      "detail": "位移 3.788 m(起手点 195,362,最上面是画布)"
+    },
+    {
+      "group": "响应式",
+      "name": "窄屏下无未捕获异常与 console.error",
+      "ok": true,
+      "detail": "(无)"
+    },
+    {
+      "group": "音频",
+      "name": "同进程建两次乐句表指纹一致",
+      "ok": true,
+      "detail": "指纹 19b97345"
+    },
+    {
+      "group": "音频",
+      "name": "律制确实不是十二平均律(至少三个音有非零偏差)",
+      "ok": true,
+      "detail": "偏差(音分) 宫0 商3.91 角7.82 徵1.955 羽5.865"
+    },
+    {
+      "group": "音频",
+      "name": "IR 的 L2 范数归一化到 1",
+      "ok": true,
+      "detail": "L2 = 1"
+    },
+    {
+      "group": "音频",
+      "name": "IR 首尾相差 > 40dB(是指数衰减,不是一段平噪声)",
+      "ok": true,
+      "detail": "-44.7 → -111 dB"
+    },
+    {
+      "group": "音频",
+      "name": "同一颗种子生成的 IR 指纹一致",
+      "ok": true,
+      "detail": "3bc8f47e"
+    },
+    {
+      "group": "音频",
+      "name": "惰性:构造时不建 AudioContext",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "音频",
+      "name": "init 后 state === 'running'",
+      "ok": true,
+      "detail": "running"
+    },
+    {
+      "group": "音频",
+      "name": "worklet 模块真的加载了(不是回退掩盖失败)",
+      "ok": true,
+      "detail": "来源 module"
+    },
+    {
+      "group": "音频",
+      "name": "工作节点回话(证明注册名背后确实是我们的处理器)",
+      "ok": true,
+      "detail": "version 1"
+    },
+    {
+      "group": "音频",
+      "name": "实时图量到非零信号",
+      "ok": true,
+      "detail": "峰值 0.21503 / 有效值 0.06778"
+    },
+    {
+      "group": "音频",
+      "name": "工作节点真的起了音(不是别的节点在出声)",
+      "ok": true,
+      "detail": "播放段结束: started=3 dropped=0 flushed=0 active=3"
+    },
+    {
+      "group": "音频",
+      "name": "setEnabled(false) 之后确实静音",
+      "ok": true,
+      "detail": "尾部峰值 0.000000"
+    },
+    {
+      "group": "音频",
+      "name": "setEnabled(true) 之后恢复出声",
+      "ok": true,
+      "detail": "峰值 0.21277"
+    },
+    {
+      "group": "音频",
+      "name": "播放期间世界钟与音频钟的差在引擎容差内(< 250ms,未误触发重同步)",
+      "ok": true,
+      "detail": "差 7.97 ms(稳态速率 1.00107)"
+    },
+    {
+      "group": "音频",
+      "name": "人为制造 30s 漂移后触发一次重同步",
+      "ok": true,
+      "detail": "0 → 1"
+    },
+    {
+      "group": "音频",
+      "name": "离线 PCM 非零",
+      "ok": true,
+      "detail": "峰值 0.16645"
+    },
+    {
+      "group": "音频",
+      "name": "整段都有声音(没有整格静音)",
+      "ok": true,
+      "detail": "24/24 格有声"
+    },
+    {
+      "group": "音频",
+      "name": "两次离线渲染逐位相同",
+      "ok": true,
+      "detail": "maxDiff=0"
+    },
+    {
+      "group": "音频",
+      "name": "整曲峰值在 (-6, -0.2) dBFS 之间 —— 既没削顶也不是听不见",
+      "ok": true,
+      "detail": "-2.584 dBFS"
+    },
+    {
+      "group": "音频",
+      "name": "没有削顶样本(限幅器兜住了)",
+      "ok": true,
+      "detail": "0 个样本 > 0.99"
+    },
+    {
+      "group": "音频",
+      "name": "全曲 >90% 的时间有声音",
+      "ok": true,
+      "detail": "100.0%"
+    },
+    {
+      "group": "音频",
+      "name": "商/角/羽的实测音高更接近三分损益而不是十二平均律",
+      "ok": true,
+      "detail": "商: 损益-0.021 vs 平均律3.889  角: 损益0.033 vs 平均律7.853  羽: 损益0.122 vs 平均律5.987"
+    },
+    {
+      "group": "音频",
+      "name": "五个音的实测频率都在目标 ±1 音分内(环路长度没被滤波器相位延迟带偏)",
+      "ok": true,
+      "detail": "最大误差 0.12 音分"
+    },
+    {
+      "group": "音频",
+      "name": "走的是内联 Blob 回退",
+      "ok": true,
+      "detail": "blob"
+    },
+    {
+      "group": "音频",
+      "name": "回退原因被记录(不静默)",
+      "ok": true,
+      "detail": "worklet 模块加载失败(Failed to load worklet module script: http://127.0.0.1:5199/assets/pluck-processor-ByzsmUqz.js (Network error)),已用内联 Blob 回退"
+    },
+    {
+      "group": "音频",
+      "name": "回退路径同样出声(工作节点起了音且有非零输出)",
+      "ok": true,
+      "detail": "峰值 0.21503 started=3"
+    },
+    {
+      "group": "音频",
+      "name": "页面没有未捕获异常",
+      "ok": true,
+      "detail": "0 条控制台错误"
+    }
+  ],
+  "detail": {
+    "2": [
+      {
+        "id": "bridge",
+        "reportedDistance": 47.8774952247922,
+        "ok": true,
+        "frames": 497,
+        "tweenFrames": 285,
+        "start": [
+          25.99985891825656,
+          14.000494229058846,
+          29.994723055542902
+        ],
+        "final": [
+          24.725999999999996,
+          18.463,
+          -17.652000000000005
+        ],
+        "dest": [
+          24.726,
+          18.463,
+          -17.652
+        ],
+        "tweenMs": 1792,
+        "fps": 159,
+        "errFinal": 5.0242958677880805e-15,
+        "tailFrames": 50,
+        "tailSpanMs": 298,
+        "tailVar": 0.000012158232792028295,
+        "tailMax": 0.011679513327300701,
+        "worstRegression": 0,
+        "regressions": 0,
+        "settleMax": 0,
+        "settleSamples": 210,
+        "settleMs": 1286
+      },
+      {
+        "id": "boat",
+        "reportedDistance": 27.72022029133246,
+        "ok": true,
+        "frames": 469,
+        "tweenFrames": 259,
+        "start": [
+          25.996478184572354,
+          13.998363467024967,
+          29.99874078861262
+        ],
+        "final": [
+          2.087,
+          2.888000000000001,
+          21.45
+        ],
+        "dest": [
+          2.087,
+          2.888,
+          21.45
+        ],
+        "tweenMs": 1577,
+        "fps": 164,
+        "errFinal": 8.881784197001252e-16,
+        "tailFrames": 50,
+        "tailSpanMs": 296,
+        "tailVar": 0.000011738502570005956,
+        "tailMax": 0.011571147638134018,
+        "worstRegression": 0,
+        "regressions": 0,
+        "settleMax": 0,
+        "settleSamples": 208,
+        "settleMs": 1260
+      },
+      {
+        "id": "teahouse",
+        "reportedDistance": 66.94629774677611,
+        "ok": true,
+        "frames": 506,
+        "tweenFrames": 296,
+        "start": [
+          25.998425604571512,
+          13.99882391412873,
+          29.992659367125814
+        ],
+        "final": [
+          12.13,
+          3.6390000000000007,
+          -34.669
+        ],
+        "dest": [
+          12.13,
+          3.639,
+          -34.669
+        ],
+        "tweenMs": 1799,
+        "fps": 165,
+        "errFinal": 8.881784197001252e-16,
+        "tailFrames": 50,
+        "tailSpanMs": 296,
+        "tailVar": 0.00002352621092796403,
+        "tailMax": 0.01632348236825114,
+        "worstRegression": 0,
+        "regressions": 0,
+        "settleMax": 0,
+        "settleSamples": 209,
+        "settleMs": 1260
+      },
+      {
+        "id": "gate",
+        "reportedDistance": 42.863845394458025,
+        "ok": true,
+        "frames": 497,
+        "tweenFrames": 284,
+        "start": [
+          26.002716744809067,
+          14.001078997233856,
+          30.003839649484615
+        ],
+        "final": [
+          50.131,
+          23.584000000000003,
+          64.105
+        ],
+        "dest": [
+          50.131,
+          23.584,
+          64.105
+        ],
+        "tweenMs": 1803,
+        "fps": 158,
+        "errFinal": 3.552713678800501e-15,
+        "tailFrames": 48,
+        "tailSpanMs": 298,
+        "tailVar": 0.000012427477223241054,
+        "tailMax": 0.016005147042022543,
+        "worstRegression": 0,
+        "regressions": 0,
+        "settleMax": 0,
+        "settleSamples": 212,
+        "settleMs": 1273
+      },
+      {
+        "id": "market",
+        "reportedDistance": 40.29114691839883,
+        "ok": true,
+        "frames": 511,
+        "tweenFrames": 296,
+        "start": [
+          25.998355069065173,
+          13.998914804184452,
+          29.995554703884558
+        ],
+        "final": [
+          12.370000000000003,
+          5.007999999999999,
+          -6.834000000000001
+        ],
+        "dest": [
+          12.37,
+          5.008,
+          -6.834
+        ],
+        "tweenMs": 1796,
+        "fps": 165,
+        "errFinal": 4.070144838902081e-15,
+        "tailFrames": 50,
+        "tailSpanMs": 293,
+        "tailVar": 0.000008523208898874391,
+        "tailMax": 0.009836792775611706,
+        "worstRegression": 0,
+        "regressions": 0,
+        "settleMax": 1.7763568394002505e-15,
+        "settleSamples": 215,
+        "settleMs": 1299
+      }
+    ]
+  },
+  "summary": {
+    "pass": 116,
+    "fail": 0,
+    "notImplemented": 0,
+    "extrasPass": 45,
+    "extrasTotal": 45
+  }
+}

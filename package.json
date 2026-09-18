@@ -14,7 +14,8 @@
     "preview": "node scripts/serve-dist.mjs --dir dist --port 4173",
     "typecheck": "tsc --noEmit",
     "shot": "node tools/perf/shot.mjs",
-    "perf": "node tools/perf/perf_probe.mjs"
+    "stats": "node tools/stats_report.mjs",
+    "repro": "node tools/verify_reproducible.mjs --runs 2"
   },
   "dependencies": {
     "three": "0.186.0"

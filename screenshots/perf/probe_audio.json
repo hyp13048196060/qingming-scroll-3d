@@ -1,0 +1,172 @@
+{
+  "generatedAt": "2026-09-18T11:23:38.617Z",
+  "checks": [
+    {
+      "group": "音频",
+      "name": "同进程建两次乐句表指纹一致",
+      "ok": true,
+      "detail": "指纹 19b97345"
+    },
+    {
+      "group": "音频",
+      "name": "律制确实不是十二平均律(至少三个音有非零偏差)",
+      "ok": true,
+      "detail": "偏差(音分) 宫0 商3.91 角7.82 徵1.955 羽5.865"
+    },
+    {
+      "group": "音频",
+      "name": "IR 的 L2 范数归一化到 1",
+      "ok": true,
+      "detail": "L2 = 1"
+    },
+    {
+      "group": "音频",
+      "name": "IR 首尾相差 > 40dB(是指数衰减,不是一段平噪声)",
+      "ok": true,
+      "detail": "-44.7 → -111 dB"
+    },
+    {
+      "group": "音频",
+      "name": "同一颗种子生成的 IR 指纹一致",
+      "ok": true,
+      "detail": "3bc8f47e"
+    },
+    {
+      "group": "音频",
+      "name": "惰性:构造时不建 AudioContext",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "group": "音频",
+      "name": "init 后 state === 'running'",
+      "ok": true,
+      "detail": "running"
+    },
+    {
+      "group": "音频",
+      "name": "worklet 模块真的加载了(不是回退掩盖失败)",
+      "ok": true,
+      "detail": "来源 module"
+    },
+    {
+      "group": "音频",
+      "name": "工作节点回话(证明注册名背后确实是我们的处理器)",
+      "ok": true,
+      "detail": "version 1"
+    },
+    {
+      "group": "音频",
+      "name": "实时图量到非零信号",
+      "ok": true,
+      "detail": "峰值 0.21503 / 有效值 0.06778"
+    },
+    {
+      "group": "音频",
+      "name": "工作节点真的起了音(不是别的节点在出声)",
+      "ok": true,
+      "detail": "播放段结束: started=3 dropped=0 flushed=0 active=3"
+    },
+    {
+      "group": "音频",
+      "name": "setEnabled(false) 之后确实静音",
+      "ok": true,
+      "detail": "尾部峰值 0.000000"
+    },
+    {
+      "group": "音频",
+      "name": "setEnabled(true) 之后恢复出声",
+      "ok": true,
+      "detail": "峰值 0.21277"
+    },
+    {
+      "group": "音频",
+      "name": "播放期间世界钟与音频钟的差在引擎容差内(< 250ms,未误触发重同步)",
+      "ok": true,
+      "detail": "差 7.97 ms(稳态速率 1.00107)"
+    },
+    {
+      "group": "音频",
+      "name": "人为制造 30s 漂移后触发一次重同步",
+      "ok": true,
+      "detail": "0 → 1"
+    },
+    {
+      "group": "音频",
+      "name": "离线 PCM 非零",
+      "ok": true,
+      "detail": "峰值 0.16645"
+    },
+    {
+      "group": "音频",
+      "name": "整段都有声音(没有整格静音)",
+      "ok": true,
+      "detail": "24/24 格有声"
+    },
+    {
+      "group": "音频",
+      "name": "两次离线渲染逐位相同",
+      "ok": true,
+      "detail": "maxDiff=0"
+    },
+    {
+      "group": "音频",
+      "name": "整曲峰值在 (-6, -0.2) dBFS 之间 —— 既没削顶也不是听不见",
+      "ok": true,
+      "detail": "-2.584 dBFS"
+    },
+    {
+      "group": "音频",
+      "name": "没有削顶样本(限幅器兜住了)",
+      "ok": true,
+      "detail": "0 个样本 > 0.99"
+    },
+    {
+      "group": "音频",
+      "name": "全曲 >90% 的时间有声音",
+      "ok": true,
+      "detail": "100.0%"
+    },
+    {
+      "group": "音频",
+      "name": "商/角/羽的实测音高更接近三分损益而不是十二平均律",
+      "ok": true,
+      "detail": "商: 损益-0.021 vs 平均律3.889  角: 损益0.033 vs 平均律7.853  羽: 损益0.122 vs 平均律5.987"
+    },
+    {
+      "group": "音频",
+      "name": "五个音的实测频率都在目标 ±1 音分内(环路长度没被滤波器相位延迟带偏)",
+      "ok": true,
+      "detail": "最大误差 0.12 音分"
+    },
+    {
+      "group": "音频",
+      "name": "走的是内联 Blob 回退",
+      "ok": true,
+      "detail": "blob"
+    },
+    {
+      "group": "音频",
+      "name": "回退原因被记录(不静默)",
+      "ok": true,
+      "detail": "worklet 模块加载失败(Failed to load worklet module script: http://127.0.0.1:5199/assets/pluck-processor-ByzsmUqz.js (Network error)),已用内联 Blob 回退"
+    },
+    {
+      "group": "音频",
+      "name": "回退路径同样出声(工作节点起了音且有非零输出)",
+      "ok": true,
+      "detail": "峰值 0.21503 started=3"
+    },
+    {
+      "group": "音频",
+      "name": "页面没有未捕获异常",
+      "ok": true,
+      "detail": "0 条控制台错误"
+    }
+  ],
+  "summary": {
+    "pass": 27,
+    "fail": 0,
+    "total": 27
+  }
+}

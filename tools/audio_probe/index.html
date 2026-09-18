@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>配乐引擎探针</title>
+  </head>
+  <body>
+    <!--
+      一次性探针页面 —— 只在验收时构建,不进作品主包。
+
+      为什么要有它:作品主入口(src/main.ts)里还没有接配乐引擎(接线由用户自己
+      做),所以 `npx vite build` 的产物里**不会**有 worklet 资源,拿 dist/ 去
+      探针只能证明"找不到文件"。这里给引擎做一个最小构建入口,产出真实部署
+      形态的资源(相对路径、独立 .js 文件),测量结果才有意义。
+
+      页面上不放任何 UI:全部探测都通过 window.__QM_AUDIO_PROBE__ 由 CDP 驱动,
+      测的是引擎本身,不是页面。
+    -->
+    <p id="boot">探针页已加载,等待 CDP 调用 window.__QM_AUDIO_PROBE__</p>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

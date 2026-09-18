@@ -19,18 +19,35 @@ export default defineConfig({
 
   plugins: [
     viteStaticCopy({
+      // ⚠️ `rename: { stripBase: true }` 不是可选项,少了它产物路径是错的。
+      //
+      //    vite-plugin-static-copy 4.x 一律保留匹配文件相对 root 的**整条目录**:
+      //    collectCopyTargets 里是 `destDir = path.join(dest, dirClean)`,而
+      //    dirClean 就是 `node_modules/three/examples/jsm/libs/draco`。
+      //    (v2 曾有 `structured: false` 可以压平,4.x 已移除该选项。)
+      //
+      //    结果就是解码器落到
+      //      dist/draco/node_modules/three/examples/jsm/libs/draco/draco_decoder.js
+      //    而 DRACOLoader 按 `./draco/` 去取 —— 必然 404,且只在真正
+      //    需要解压时才暴露,是那种"上线才发现"的坑。
+      //
+      //    stripBase 让插件用 `../../..` 把中间目录抵消掉,
+      //    经 path.join 归一化后正好落回 dest 根。已实测确认路径。
       targets: [
         {
           src: 'node_modules/three/examples/jsm/libs/draco/*.{js,wasm}',
           dest: 'draco',
+          rename: { stripBase: true },
         },
         {
           src: 'node_modules/three/examples/jsm/libs/basis/*.{js,wasm}',
           dest: 'basis',
+          rename: { stripBase: true },
         },
         {
           src: 'node_modules/three/examples/jsm/libs/meshopt_decoder.module.js',
           dest: 'meshopt',
+          rename: { stripBase: true },
         },
       ],
     }),

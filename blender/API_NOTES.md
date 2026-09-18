@@ -158,6 +158,10 @@ INFO MeshOptimizer is available, use library at .../io_scene_gltf2/bf_intern_mes
 - 节点必须按 `type` 查找,不能按名字:
   `next(n for n in mat.node_tree.nodes if n.type == "BSDF_PRINCIPLED")`
   —— 非英文界面下节点名是本地化的。
+- `World.use_nodes` 同样已标记废弃(与 `Material.use_nodes` 同批)。
+  WORKBENCH 预览的底色走 `shading.background_type="VIEWPORT"` +
+  `background_color`,**与 world 无关**,所以这一行可以直接删掉,
+  不需要找替代写法。v2 的渲染日志里刷过这条 Warning。
 
 ## 8. `pixels.foreach_set` 性能
 

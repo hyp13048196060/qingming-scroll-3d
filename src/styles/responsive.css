@@ -1,0 +1,182 @@
+/* =========================================================================
+ * 窄屏与矮屏适配
+ *
+ * 验收要求在 **1600×900** 与 **390×844** 两套尺寸下截图都不出现溢出。
+ * 这里处理的就是 390 那一套(以及横屏手机那种"矮而宽"的情况)。
+ *
+ * ⚠️ 本文件**只改布局尺寸**,不改任何颜色、字号体系或交互语义。
+ *    如果某条规则既调布局又调视觉,它应该在 panels.css 里。
+ *
+ * ⚠️ 三个绝对定位层(topbar / panelhost / toolbar)是垂直叠放的,
+ *    所以窄屏上必须重新分配它们的高度配额 —— 面板的 `top`/`bottom`
+ *    是写死的数值,顶栏一变高就会被压住。凡是改某一层的高度,
+ *    必须同时检查另外两层的 `top`/`bottom` 还对不对。
+ * ========================================================================= */
+
+/* -------------------------------------------------------------------------
+ * 窄屏:手机竖屏(≤ 720px)
+ *
+ * 顶栏变成两行:第一行标题,第二行景点按钮横向滚动。
+ * 五个景点按钮在 390px 上排不下两行,横向滚动比折行更好 ——
+ * 折行会让顶栏高度随景点数量变化,而下面两层的 `top` 是写死的。
+ * ------------------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .qm-topbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .qm-brand {
+    justify-content: flex-start;
+  }
+
+  .qm-brand__title {
+    font-size: 16px;
+    letter-spacing: 0.16em;
+  }
+
+  /* 副标题在窄屏上没有信息量,让位给景点按钮 */
+  .qm-brand__sub {
+    display: none;
+  }
+
+  .qm-spotnav {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    /* 惯性滚动;隐藏滚动条,靠内容被切断来暗示"还能往右划" */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+
+  .qm-spotnav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .qm-spotnav__btn {
+    flex: 0 0 auto;
+  }
+
+  /* ⚠️ top 必须跟着两行顶栏一起下移。写死在 62px 的话,
+     第一行标题会压在面板标题上 —— 而面板本身仍然"看起来正常"。 */
+  .qm-panelhost {
+    top: 104px;
+    right: 8px;
+    left: 8px;
+    bottom: 108px;
+    width: auto;
+  }
+
+  .qm-panel__body {
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  .qm-toolbar {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .qm-toolbar__group {
+    gap: 5px;
+  }
+
+  .qm-toolbar__btn {
+    font-size: 11px;
+    padding: 5px 9px;
+  }
+
+  /* HUD 在窄屏上缩到最低限度:它只是调试读数,不该占掉半个画面。
+     但仍然**可见** —— 「隐藏界面时三维画面干净」是另一回事,
+     读数本身没有理由在手机上消失。 */
+  .qm-hud {
+    top: 108px;
+    left: 8px;
+    width: 132px;
+    font-size: 10px;
+    padding: 7px 9px;
+  }
+
+  .qm-hud__big {
+    font-size: 16px;
+  }
+
+  .qm-label {
+    font-size: 11px;
+    padding: 2px 8px;
+  }
+
+  .qm-scroll__strip {
+    height: 96px;
+  }
+}
+
+/* -------------------------------------------------------------------------
+ * 极窄屏(≤ 420px):工具栏两组各占一行,避免挤成一条
+ * ------------------------------------------------------------------------- */
+
+@media (max-width: 420px) {
+  .qm-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .qm-toolbar__group {
+    justify-content: center;
+  }
+
+  /* 工具栏变两行了,面板的 bottom 要再抬起来 */
+  .qm-panelhost {
+    bottom: 152px;
+  }
+}
+
+/* -------------------------------------------------------------------------
+ * 矮屏:横屏手机、以及任何高度不足的窗口
+ *
+ * ⚠️ 这一条与宽度无关,所以必须用 height 查询单独写 ——
+ *    横屏手机宽 844px,**不满足**上面的 max-width:720px,
+ *    于是窄屏那一套完全不生效,面板会顶着上下两条栏。
+ * ------------------------------------------------------------------------- */
+
+@media (max-height: 560px) {
+  .qm-panelhost {
+    top: 52px;
+    bottom: 56px;
+  }
+
+  .qm-hud {
+    top: 54px;
+  }
+
+  .qm-brand__sub {
+    display: none;
+  }
+
+  .qm-scroll__strip {
+    height: 78px;
+  }
+
+  .qm-panel__body {
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+/* -------------------------------------------------------------------------
+ * 无障碍与省电
+ * ------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  /* 只关掉界面自己的过渡。不碰三维动画 —— 那由「设置 → 动画」开关负责,
+     两者是不同的东西:前者是 CSS 过渡,后者是场景内容。 */
+  .qm-btn,
+  .qm-label,
+  .qm-panel {
+    transition: none;
+  }
+}

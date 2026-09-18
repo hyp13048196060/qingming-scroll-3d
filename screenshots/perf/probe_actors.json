@@ -1,0 +1,44 @@
+{
+  "url": "http://127.0.0.1:4173/?q=high&hud=0",
+  "browser": "Chrome/153.0.8010.37",
+  "info": {
+    "actors": {
+      "mounted": true,
+      "spawned": 48,
+      "walking": 37,
+      "templates": [
+        "carry",
+        "hold",
+        "lead",
+        "punt",
+        "push",
+        "vendor",
+        "walk"
+      ],
+      "localFacing": [
+        0,
+        0,
+        -1
+      ],
+      "obstacles": {
+        "boxes": 61,
+        "groundMeshes": 8
+      }
+    },
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Laptop GPU (0x00002560) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "quality": "high"
+  },
+  "notes": [
+    "生成 48 人,其中走动 37 人;模板 7 种: carry, hold, lead, punt, push, vendor, walk",
+    "障碍盒 61 个,地面网格 8 个",
+    "模型局部前向实量为 (0, 0, -1);外部依据(Blender 脸朝 +Y ⇒ three −Z)为 (0, 0, -1)",
+    "每具被驱动的骨骼数分布: {\"0\":11,\"6\":25,\"10\":12}",
+    "2 秒内:位置变化 >5cm 的 37 人,相位推进的 37 人",
+    "位移分位: 最小 0m  p50 1.736m  最大 2.145m",
+    "朝向自检排除:窗口内掉头 0 具(朝向变了,净位移方向没有意义),位移不足 11 具",
+    "位移方向 vs 骨骼朝向的夹角: p50 0°  最大 8.1°(actor_015)  样本 37 个",
+    "位移轴向分布(仅信息,非判据): 沿 Z 29 具 / 沿 X 8 具",
+    "位移方向 vs Blender yaw 口径: 相符 37 具,不符 0 具"
+  ],
+  "problems": []
+}
