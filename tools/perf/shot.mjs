@@ -98,6 +98,31 @@ try {
     //
     // ⚠️ 这段在模板字符串里,注释里不能出现反引号 —— 会截断字符串。
     const st = qm.store.read();
+    // ⚠️ store 的值只说明**状态改没改**,不说明**渲染动没动**。
+    //    2026-09-18 踩过:`?tod=` 与 `?wire=` 两个网址参数从来没生效过
+    //    (store 里有值、太阳一直停在 day 预设、材质一个没变线框),
+    //    而本文件当时只核对了 store,于是每一张带 `?tod=` 的图都判了通过。
+    //    所以下面另取一组**消费者那一侧**的读数,核对时以它为准。
+    s.rendererSide = {
+      // 太阳高度由仰角算出,是光照参数真的被应用了的最直接证据
+      sunY: +qm.skyTime.sun.position.y.toFixed(2),
+      sunColor: '#' + qm.skyTime.sun.color.getHexString(),
+      // 自己遍历数线框材质,不用 quality.report().wireframeMaterials ——
+      // 那个字段在内部分支为假时直接返回 0,分不出"没生效"与"本来就关着"
+      wireframeMats: (() => {
+        let n = 0;
+        qm.scene.traverse((o) => {
+          if (!o.isMesh || !o.material) return;
+          for (const m of [].concat(o.material)) if (m && m.wireframe) n++;
+        });
+        return n;
+      })(),
+      // 画质三档之间的差别落在这些量上(阴影尺寸/人物名额/粒子密度),
+      // 光看 pixelRatio 与 drawingBuffer 分不开 mid 与 high
+      shadowMapSize: qm.quality.report().shadowMapSize,
+      charShadows: qm.quality.report().charactersCastingShadow,
+      puffs: (qm.fxRuntime() || {}).puffs ?? null,
+    };
     s.appliedState = {
       quality: st.quality,
       tod: +st.tod.toFixed(3),
@@ -160,8 +185,16 @@ try {
         problems.push(`URL 要求 q=${expectQ},实际生效 quality=${got.quality} —— 参数没被应用`);
       }
       const expectTod = want.get('tod');
-      if (expectTod !== null && Math.abs(got.tod - Number(expectTod)) > 0.02) {
-        problems.push(`URL 要求 tod=${expectTod},实际生效 tod=${got.tod} —— 参数没被应用`);
+      if (expectTod !== null) {
+        if (Math.abs(got.tod - Number(expectTod)) > 0.02) {
+          problems.push(`URL 要求 tod=${expectTod},实际生效 tod=${got.tod} —— 参数没被应用`);
+        }
+        // 再核一遍**渲染侧**:太阳高度必须就是个被应用过的值。
+        // 光看 store 正是本项目栽过的那个坑(见上方 rendererSide 的说明)。
+        const rs = sample.rendererSide;
+        if (!rs || !(rs.sunY > 0)) {
+          problems.push(`太阳高度读数为 ${rs ? rs.sunY : '(未取到)'} —— 光照参数没落到光源上`);
+        }
       }
       for (const [k, field] of [['tags', 'labels'], ['hud', 'hud'], ['wire', 'wireframe']]) {
         const v = want.get(k);
@@ -170,6 +203,25 @@ try {
         if (got[field] !== exp) {
           problems.push(`URL 要求 ${k}=${v},实际生效 ${field}=${got[field]} —— 参数没被应用`);
         }
+        // 线框另核渲染侧:store 说开了、材质一个都没变,就是没生效
+        const rs = sample.rendererSide;
+        if (k === 'wire' && rs) {
+          if (exp && rs.wireframeMats === 0) {
+            problems.push(`URL 要求 wire=1,但场景里一个线框材质都没有 —— 开关没落到材质上`);
+          }
+          if (!exp && rs.wireframeMats > 0) {
+            problems.push(`URL 要求 wire=0,但仍有 ${rs.wireframeMats} 个线框材质`);
+          }
+        }
+      }
+      // 画质:三档之间的差别不在像素比上,在阴影尺寸与粒子密度上。
+      // 这里只做一次**档位自洽**核对,不硬编码期望值(那会变成第二个真相源)。
+      const rs = sample.rendererSide;
+      if (rs && got.quality === 'low' && rs.shadowMapSize !== 0) {
+        problems.push(`low 档应当没有阴影贴图,实测 shadowMapSize=${rs.shadowMapSize}`);
+      }
+      if (rs && want.get('q') === 'high' && rs.puffs === 0) {
+        problems.push(`high 档的炊烟应当有在画的,实测 0 团 —— 画质没落到子系统上`);
       }
       // 反射:URL 覆盖与"画质档位"必须一致,否则 `?reflect=` 是空转的
       const expectRefl = want.get('reflect');

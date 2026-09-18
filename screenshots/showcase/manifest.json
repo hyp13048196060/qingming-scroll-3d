@@ -1,0 +1,1026 @@
+{
+  "note": "由 tools/capture_showcase.mjs 生成。applied 是拍摄当时页面真实生效的状态与实测读数,不是 URL 里写了什么 —— 两者对不上时该图会被记进 problems 并在此表中留下 error。",
+  "frameCaveat": "applied.rAF 里的 avgFps / p95ms **不是作品的开销**,是无头 Chrome 的 rAF 节拍。本机空页面的 rAF 地板实测为 6.10ms(重复 8 次读数全同,见 docs/05-性能测量报告.md 第 3 节),因此约 164fps 只是\"这一帧恰好落在节拍上\",与场景轻重无关;140~155fps 则多半是偶尔多等了一拍。作品的帧开销请看 docs/05 的 bothCost 一列(逻辑+绘制合计,p95 最坏 16.66ms)。applied.passes 是 passStats 的**分解值**(主/阴影/反射各自),可用;renderer.info.render 那种累加值在本文件里不出现,以免把三个 pass 的和说成一个。",
+  "countCaveat": "applied.passes 里的 reflectionRenders / shadowRenders 是\"到采样那一刻为止渲染过几次\"的累计计数,随等待时长浮动,不是配置值。跨两次运行比它们没有意义。",
+  "units": {
+    "mainTris": "三角面",
+    "mainCalls": "drawcall",
+    "applied.rAF.p95ms": "毫秒"
+  },
+  "browser": "Chrome/153.0.8010.37",
+  "base": "http://127.0.0.1:4173/",
+  "generatedBy": "node tools/capture_showcase.mjs <URL>",
+  "shots": [
+    {
+      "file": "01-hongqiao.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=high",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "虹桥。全卷的视觉中心,桥面行人、桥下漕船、两岸摊贩在同一画面里。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.5,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 159,
+          "mainTris": 121846,
+          "shadowTris": 168996,
+          "shadowRenders": 2,
+          "reflectionTris": 109180,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 137.9,
+          "p95ms": 12.15,
+          "frames": 645
+        }
+      }
+    },
+    {
+      "file": "02-caochuan.webp",
+      "url": "http://127.0.0.1:4173/?spot=boat&q=high",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "漕船。船体、桅杆、篷索与水面反射。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.5,
+        "camera": [
+          2.1,
+          2.9,
+          21.4
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 156,
+          "mainTris": 111618,
+          "shadowTris": 169060,
+          "shadowRenders": 2,
+          "reflectionTris": 96376,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 153.27,
+          "p95ms": 12.1,
+          "frames": 750
+        }
+      }
+    },
+    {
+      "file": "03-chasi.webp",
+      "url": "http://127.0.0.1:4173/?spot=teahouse&q=high",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "茶肆。沿河商铺的立面与幌子。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.5,
+        "camera": [
+          12.1,
+          3.6,
+          -34.7
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 38,
+          "mainTris": 40838,
+          "shadowTris": 168400,
+          "shadowRenders": 2,
+          "reflectionTris": 26408,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 163.65,
+          "p95ms": 6.14,
+          "frames": 810
+        }
+      }
+    },
+    {
+      "file": "04-chengmen.webp",
+      "url": "http://127.0.0.1:4173/?spot=gate&q=high",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "城门。城楼、门洞与进出人流。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.5,
+        "camera": [
+          50.1,
+          23.6,
+          64.1
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 25,
+          "mainTris": 29830,
+          "shadowTris": 169196,
+          "shadowRenders": 2,
+          "reflectionTris": 14428,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 164.74,
+          "p95ms": 6.13,
+          "frames": 814
+        }
+      }
+    },
+    {
+      "file": "05-jieshi.webp",
+      "url": "http://127.0.0.1:4173/?spot=market&q=high",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "街市。街巷两侧的屋舍与摊位。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.5,
+        "camera": [
+          12.4,
+          5,
+          -6.8
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 60,
+          "mainTris": 54262,
+          "shadowTris": 167684,
+          "shadowRenders": 2,
+          "reflectionTris": 38860,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 163.92,
+          "p95ms": 6.13,
+          "frames": 809
+        }
+      }
+    },
+    {
+      "file": "06-chen.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=high&tod=0.05",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "清晨侧。太阳低、光色偏暖,影子拉长。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.05,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 51.98,
+          "sunColor": "#ffdcb5",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 159,
+          "mainTris": 121846,
+          "shadowTris": 164812,
+          "shadowRenders": 2,
+          "reflectionTris": 109148,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 148.44,
+          "p95ms": 12.13,
+          "frames": 741
+        }
+      }
+    },
+    {
+      "file": "07-wu.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=high&tod=0.50",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "白昼。太阳最高,阴影收短而深。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.5,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 159,
+          "mainTris": 121846,
+          "shadowTris": 168996,
+          "shadowRenders": 2,
+          "reflectionTris": 109148,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 150.01,
+          "p95ms": 12.13,
+          "frames": 745
+        }
+      }
+    },
+    {
+      "file": "08-hun.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=high&tod=0.80",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "暮色侧。太阳西斜,屋脊受暖色斜射光。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.8,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 89.59,
+          "sunColor": "#ffc5a0",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 159,
+          "mainTris": 121846,
+          "shadowTris": 172068,
+          "shadowRenders": 2,
+          "reflectionTris": 109148,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 148.66,
+          "p95ms": 12.12,
+          "frames": 732
+        }
+      }
+    },
+    {
+      "file": "09-mu.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=high&tod=1.00",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "暮色最深的一档(太阳仰角 3°)。这是本作品最暗的时刻,仍不是夜晚 —— 没有月光与灯烛。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 1,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 13.08,
+          "sunColor": "#ff9d5c",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 159,
+          "mainTris": 121846,
+          "shadowTris": 164812,
+          "shadowRenders": 2,
+          "reflectionTris": 109148,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 150.01,
+          "p95ms": 12.13,
+          "frames": 739
+        }
+      }
+    },
+    {
+      "file": "10-di.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=low&tod=0.5",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "low 档。关阴影、关水面反射、远景 LOD 降级。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "low",
+        "tod": 0.5,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 0,
+          "puffs": 0
+        },
+        "passes": {
+          "mainCalls": 157,
+          "mainTris": 121572,
+          "shadowTris": 0,
+          "shadowRenders": 1,
+          "reflectionTris": 0,
+          "reflectionRenders": 0
+        },
+        "rAF": {
+          "avgFps": 163.38,
+          "p95ms": 6.14,
+          "frames": 811
+        }
+      }
+    },
+    {
+      "file": "11-zhong.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=mid&tod=0.5",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "mid 档。开阴影,水面反射降频。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "mid",
+        "tod": 0.5,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 2048,
+          "puffs": 64
+        },
+        "passes": {
+          "mainCalls": 159,
+          "mainTris": 121710,
+          "shadowTris": 166928,
+          "shadowRenders": 1,
+          "reflectionTris": 0,
+          "reflectionRenders": 0
+        },
+        "rAF": {
+          "avgFps": 162.84,
+          "p95ms": 6.13,
+          "frames": 802
+        }
+      }
+    },
+    {
+      "file": "12-gao.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=high&tod=0.5",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "high 档。全量阴影与实时水面反射。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.5,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 159,
+          "mainTris": 121846,
+          "shadowTris": 168996,
+          "shadowRenders": 2,
+          "reflectionTris": 109148,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 148.22,
+          "p95ms": 12.12,
+          "frames": 733
+        }
+      }
+    },
+    {
+      "file": "13-yutu.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=high",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "「舆图」面板:全卷缩略图与当前机位标记。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.5,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 158,
+          "mainTris": 121814,
+          "shadowTris": 168996,
+          "shadowRenders": 2,
+          "reflectionTris": 108580,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 150.93,
+          "p95ms": 12.12,
+          "frames": 962
+        }
+      }
+    },
+    {
+      "file": "14-yuanjuan.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=high",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "「原卷」面板:高清原作对照,可缩放平移到当前景点。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.5,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 158,
+          "mainTris": 121814,
+          "shadowTris": 168996,
+          "shadowRenders": 2,
+          "reflectionTris": 108580,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 148,
+          "p95ms": 12.13,
+          "frames": 953
+        }
+      }
+    },
+    {
+      "file": "15-yiju.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=high",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "「依据」面板:每个构件的推定依据与不确定度,直接写在界面里。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.5,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 158,
+          "mainTris": 121814,
+          "shadowTris": 168996,
+          "shadowRenders": 2,
+          "reflectionTris": 108580,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 146.46,
+          "p95ms": 12.13,
+          "frames": 935
+        }
+      }
+    },
+    {
+      "file": "16-shezhi.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=high",
+      "viewport": {
+        "w": 1600,
+        "h": 900,
+        "mobile": false
+      },
+      "note": "「设置」面板:画质、时辰、标签、线框、HUD。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 16,
+          "y": 12,
+          "w": 116,
+          "h": 25,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 19,
+          "fontWeight": "500"
+        },
+        "sub": {
+          "sel": ".qm-brand__sub",
+          "x": 144,
+          "y": 21,
+          "w": 129,
+          "h": 14,
+          "color": "rgb(201, 189, 160)",
+          "fontSize": 11,
+          "fontWeight": "400"
+        }
+      },
+      "applied": {
+        "quality": "high",
+        "tod": 0.5,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 4096,
+          "puffs": 128
+        },
+        "passes": {
+          "mainCalls": 158,
+          "mainTris": 121814,
+          "shadowTris": 168996,
+          "shadowRenders": 2,
+          "reflectionTris": 108580,
+          "reflectionRenders": 1
+        },
+        "rAF": {
+          "avgFps": 151.85,
+          "p95ms": 12.12,
+          "frames": 960
+        }
+      }
+    },
+    {
+      "file": "17-yidong.webp",
+      "url": "http://127.0.0.1:4173/?spot=bridge&q=mid",
+      "viewport": {
+        "w": 390,
+        "h": 844,
+        "mobile": true
+      },
+      "note": "移动端竖屏。工具栏折行、面板改为全宽。",
+      "textProbe": {
+        "title": {
+          "sel": ".qm-brand__title",
+          "x": 12,
+          "y": 8,
+          "w": 93,
+          "h": 22,
+          "color": "rgb(230, 220, 195)",
+          "fontSize": 16,
+          "fontWeight": "500"
+        },
+        "sub": null
+      },
+      "applied": {
+        "quality": "mid",
+        "tod": 0.5,
+        "camera": [
+          24.7,
+          18.5,
+          -17.7
+        ],
+        "rendererSide": {
+          "sunY": 185.79,
+          "sunColor": "#fff2dc",
+          "shadowMapSize": 2048,
+          "puffs": 64
+        },
+        "passes": {
+          "mainCalls": 64,
+          "mainTris": 69274,
+          "shadowTris": 166928,
+          "shadowRenders": 1,
+          "reflectionTris": 0,
+          "reflectionRenders": 0
+        },
+        "rAF": {
+          "avgFps": 164.47,
+          "p95ms": 6.14,
+          "frames": 814
+        }
+      }
+    }
+  ]
+}

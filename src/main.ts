@@ -21,7 +21,7 @@ import { createParticleFx, type ParticleFx, type EffectsFamily } from './actors/
 import { CameraDirector } from './camera/CameraDirector';
 import { LoadingVeil } from './ui/LoadingVeil';
 import { createUIRoot } from './ui/UIRoot';
-import { store } from './ui/store';
+import { store, type Quality } from './ui/store';
 import {
   setQuality,
   setTimeOfDay,
@@ -316,9 +316,33 @@ function main(): void {
   //    对应的控件也不画(见 SettingsCapabilities / UIRootDeps.audio)。
   //    一张"声明了状态但没人读"的接线表会让人以为功能已经做完了。
   {
-    let lastTod = store.read().tod;
-    let lastQuality = store.read().quality;
-    let lastWire = store.read().ui.wireframe;
+    /**
+     * ⚠️ 这三个追踪值的**初值必须是哨兵,不能读 store 的当前值**。
+     *
+     *    它们的作用是"变了才调 setter",而 `store.subscribe()` 会**立即
+     *    同步推一次当前值**(store.ts:`fn(this.state)`)。问题在于:URL 状态
+     *    在这一段**之前**就已经写进 store 了(见上面「URL 状态 → store」)。
+     *    于是若写成 `let lastTod = store.read().tod`,首次推送时
+     *    `s.tod !== lastTod` 恒为**假**,setter 一次都不会被调用。
+     *
+     *    后果不是"少调一次",而是 **`?tod=` 与 `?wire=` 这两个网址参数
+     *    从来没有生效过**:`store.tod` 里明明写着 0.2,太阳却一直停在
+     *    day 预设上(`setPreset('day')` 是构造函数的最后一件事)。
+     *    而且任何"查 store"的断言都会通过 —— 状态对了,渲染没动。
+     *
+     *    这个坑 `src/world/skyTime.ts` 的 `environmentRevision` 注释里
+     *    **一字不差地预言过**:「只断言 store.tod 变了,证明的只是状态改了,
+     *    完全没碰渲染侧」。当时没顺着这句话去查这条接线。
+     *
+     *    哨兵取"真实状态不可能等于"的值,保证首次推送必定触发:
+     *    tod 恒在 [0,1] 之间(故 NaN 安全),画质是三个字符串之一,
+     *    线框是布尔。多出来的这一次调用是幂等的 ——
+     *    `setTimeOfDay` 只是重设一组参数并标脏一次 PMREM,
+     *    `setWireframe` 把材质设成本来就是的值。
+     */
+    let lastTod = Number.NaN;
+    let lastQuality: Quality | null = null;
+    let lastWire: boolean | null = null;
 
     store.subscribe((s) => {
       // 时辰 → 天空/太阳/雾,并标记 PMREM 需要重建
