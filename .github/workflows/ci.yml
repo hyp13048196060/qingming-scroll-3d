@@ -1,0 +1,137 @@
+name: 构建与校验
+
+# 触发:推到 master/main,以及针对它们的 PR。
+# 不设 paths 过滤 —— 这个仓库的交付要求是"全新 clone 能构建能打开",
+# 那就让每一次推送都真的走一遍完整链路。
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+  workflow_dispatch:
+
+# Pages 部署需要这两个权限;verify 作业不需要,但令牌是工作流级的
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一分支只跑一个,新的推上去就取消旧的。别让排队的历史推送白烧额度。
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: 构建与校验
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          # 必须与 package.json 的 engines(>=24.0.0 <25)一致。
+          # .npmrc 里 engine-strict=true —— 版本不对会**直接拒绝安装**,
+          # 不是警告。所以这里写错分支会红,不会悄悄降级跑过去。
+          node-version: '24'
+          cache: npm
+
+      - name: 打印环境(便于事后对账)
+        run: node -v && npm -v
+
+      # 用 ci 不是 install:ci 严格照 lockfile 装,装不上就失败。
+      # 这正好顺带验证了 lockfile 是完整且自洽的。
+      - name: npm ci
+        run: npm ci
+
+      # 逐个文件 node --check。这一步专门拦"工具整个无法解析"那类故障 ——
+      # .mjs 不在 tsconfig 的 include 里,typecheck 和 build 都不管它们,
+      # 没有这一步的话,一个坏掉的探针可以一直躺在仓库里没人发现。
+      - name: 语法检查
+        run: npm run lint:syntax
+
+      - name: 类型检查
+        run: npm run typecheck
+
+      - name: 构建
+        run: npm run build
+
+      # 交付要求原文:「模型、字体、贴图和解码器都包含在运行资产中」。
+      # 上面那步构建成功**不足以**说明这一点(缺文件照样构建成功),
+      # 所以这里逐个点名,少一个就红。
+      - name: 核对运行资产链
+        run: |
+          set -eu
+          miss=0
+          need="
+            dist/index.html
+            dist/models/manifest.json
+            dist/models/scene_core.glb
+            dist/models/boats.glb
+            dist/models/scene_props.glb
+            dist/models/scene_characters.glb
+            dist/draco/draco_decoder.js
+            dist/draco/draco_decoder.wasm
+            dist/draco/draco_wasm_wrapper.js
+            dist/basis/basis_transcoder.js
+            dist/basis/basis_transcoder.wasm
+            dist/meshopt/meshopt_decoder.module.js
+            dist/fonts/LXGW-WenKai-OFL.txt
+            dist/original/section1.jpg
+          "
+          for f in $need; do
+            if [ -f "$f" ]; then
+              printf '  ✓ %s\n' "$f"
+            else
+              printf '  ✗ %s 缺失\n' "$f"
+              miss=$((miss+1))
+            fi
+          done
+
+          # 两个 woff2 带内容哈希,文件名不定,按通配数
+          n=$(ls dist/assets/lxgw-wenkai-*.woff2 2>/dev/null | wc -l || true)
+          if [ "$n" -eq 2 ]; then
+            printf '  ✓ 字体子集 2 个\n'
+          else
+            printf '  ✗ 字体子集应有 2 个,实到 %s 个\n' "$n"
+            miss=$((miss+1))
+          fi
+
+          if [ "$miss" -ne 0 ]; then
+            echo "运行资产链缺 $miss 项,失败。"
+            exit 1
+          fi
+          echo "运行资产链完整。"
+
+      - name: 上传构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 7
+
+  deploy:
+    name: 部署到 GitHub Pages
+    # 只在推到默认分支时部署,PR 只构建不上线。
+    # 另外:Pages 对**私有库**需要付费套餐,所以这一步在转公开前会失败 ——
+    # 那是预期内的,不影响 verify 的结论。
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
+    needs: verify
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
