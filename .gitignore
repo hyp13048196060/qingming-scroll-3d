@@ -18,8 +18,10 @@ blender/*.txt
 blender/*.err
 blender/*.bak
 
-# 字体构建中间件(24MB 的源字体;子集化产物已提交到 public/fonts/)
+# 字体构建中间件(24MB 的源字体;子集化产物已提交,见下)
 .fontbuild/
+# 注:子集化产物 .woff2 落在 src/assets/fonts/(交给 Vite 重写路径,
+#     放 public/ 会在 GitHub Pages 子路径下 404),OFL 全文在 public/fonts/。
 
 # 工具探测结果(与本机相关,不入库)
 tools/.caps.json

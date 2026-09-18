@@ -127,6 +127,19 @@ def main() -> int:
             "--layout-features=kern,liga,vert,vrt2",
             "--no-hinting",
             "--desubroutinize",
+            # ⚠️ 必须显式列 13/14,否则**授权声明会被子集器悄悄删掉**。
+            #
+            # pyftsubset 的 --name-IDs 默认值是 0,1,2,3,4,5,6 —— 恰好不含
+            # nameID 13(许可描述)与 14(许可网址)。源字体里这两个字段是有的
+            # (实测 LXGWWenKai-Regular.ttf:`SIL Open Font License, Version 1.1`,
+            # https://openfontlicense.org),但它们不会自动跟过来。
+            #
+            # 后果是:产物 woff2 里再没有任何地方写着它是什么许可。别人把这个
+            # 文件单独拷走,授权信息就断了 —— 而 OFL 第 2 条要求"每一份副本都
+            # 带有上述版权声明与本许可",并列明可以放在**机器可读的元数据字段**
+            # 里。仓库里另附 OFL.txt 已能满足该条,但让授权跟着文件本身走更稳:
+            # 复制走 .woff2 的人,手里就有一份完整的声明。
+            "--name-IDs=0,1,2,3,4,5,6,13,14",
         ]
         subset.main(args)
         print(f"✓ {out_name:30s} {src.stat().st_size/1048576:6.2f} MB → "
