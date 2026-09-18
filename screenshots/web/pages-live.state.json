@@ -1,0 +1,70 @@
+{
+  "url": "https://hyp13048196060.github.io/qingming-scroll-3d/",
+  "viewport": {
+    "w": 1600,
+    "h": 900,
+    "dsf": 1,
+    "mobile": false
+  },
+  "sample": {
+    "width": 1600,
+    "height": 900,
+    "meanColor": [
+      141,
+      140,
+      134
+    ],
+    "stdDev": 64.73,
+    "nonUniformRatio": 0.97,
+    "isSoftwareRenderer": false,
+    "drawCalls": 408,
+    "triangles": 297366,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Laptop GPU (0x00002560) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "gpuVendor": "Google Inc. (NVIDIA)",
+    "programs": 21,
+    "textures": 123,
+    "geometries": 233,
+    "frameStats": {
+      "frames": 7157,
+      "p50": 6.1,
+      "p95": 12.2,
+      "max": 24.3,
+      "avgFps": 130.79
+    },
+    "rendererSide": {
+      "sunY": 185.79,
+      "sunColor": "#fff2dc",
+      "wireframeMats": 0,
+      "shadowMapSize": 2048,
+      "charShadows": 8,
+      "puffs": 64
+    },
+    "appliedState": {
+      "quality": "mid",
+      "tod": 0.5,
+      "labels": true,
+      "hud": false,
+      "wireframe": false,
+      "river": {
+        "mounted": true,
+        "enabled": true,
+        "rtSize": [
+          512,
+          256
+        ],
+        "everyNFrames": 3,
+        "reflectionPasses": 343,
+        "skippedPasses": 686,
+        "reflectLayerObjects": 1452,
+        "excludedObjects": 59,
+        "halfWidth": 8.25,
+        "ripple": 1
+      },
+      "camera": [
+        26,
+        14,
+        30
+      ]
+    }
+  }
+}
